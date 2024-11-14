@@ -32,10 +32,10 @@ function BannerContents() {
 
 
 // EXPORT DEFAULT ----------------------------------------------------------------------------------------------------------------------------
-const mainUrl = window.location.href
+// -------------------------------------------------------------------------------------------------------------------------------------------
 
 export default function Banner() {
-    const bannerUrl = `${mainUrl}Banner1.png`.toLowerCase()
+    const bannerUrl = '/banner1.png'
 
     return (
         <div style={{ backgroundImage: `url('${bannerUrl}')` }}

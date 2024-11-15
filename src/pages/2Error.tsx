@@ -25,11 +25,12 @@ function Error() {
     return (
         <>
             <MainNav />
-            <div className="h-32 lg:h-60"></div>
+            <div className='h-32 lg:h-60'></div>
             <div className='flex flex-col items-center w-full gap-5'>
                 <h3 className='uppercase text-3xl font-bold '>{title}</h3>
                 <p>{message}</p>
             </div>
+            <div className='h-96'></div>
         </>
     );
 }

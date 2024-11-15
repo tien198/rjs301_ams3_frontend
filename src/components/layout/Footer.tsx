@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import Container from "../UI/Container";
+import { Link } from 'react-router-dom';
+import Container from '../UI/Container';
 
 
 interface FooterRowProps {
@@ -10,8 +10,8 @@ interface FooterRowProps {
 function FooterRow({ title, children }: FooterRowProps) {
     return (
         <span>
-            <h5 className="uppercase text-xl font-medium mb-5">{title}</h5>
-            <div className="flex flex-col gap-1 capitalize font-thin text-sm">
+            <h5 className='uppercase text-xl font-medium mb-5'>{title}</h5>
+            <div className='flex flex-col gap-1 capitalize font-thin text-sm'>
                 {children}
             </div>
         </span>
@@ -20,7 +20,7 @@ function FooterRow({ title, children }: FooterRowProps) {
 
 function Row_1() {
     return (
-        <FooterRow title="Customer Services">
+        <FooterRow title='Customer Services'>
             <Link to=''>Help & Contact Us</Link>
             <Link to=''>Returns & Refunds</Link>
             <Link to=''>Online Stores</Link>
@@ -31,7 +31,7 @@ function Row_1() {
 
 function Row_2() {
     return (
-        <FooterRow title="Company">
+        <FooterRow title='Company'>
             <Link to=''>What we do</Link>
             <Link to=''>Available services</Link>
             <Link to=''>Latest Posts</Link>
@@ -42,7 +42,7 @@ function Row_2() {
 
 function Row_3() {
     return (
-        <FooterRow title="Social Media">
+        <FooterRow title='Social Media'>
             <Link to=''>Twitter</Link>
             <Link to=''>Instagram</Link>
             <Link to=''>Facebook</Link>
@@ -54,10 +54,8 @@ function Row_3() {
 
 function Footer() {
     return (
-        <footer>
-            <Container className="bg-black text-white italic py-8 md:py-10 lg:py-14 
-                                    grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
-                                    gap-8">
+        <footer className='bg-black text-white italic py-8 md:py-10 lg:py-14'>
+            <Container className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 <Row_1 />
                 <Row_2 />
                 <Row_3 />

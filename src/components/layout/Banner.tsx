@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import classes from './Banner.module.css'
-import { PageUrlsList } from '../../ultil/PageUrlsList'
+import { PageUrlsList } from '../../ultil/UltilCoventions'
 
 interface IMainButton {
     children?: any
@@ -21,7 +21,7 @@ function BannerContents() {
     const navigate = useNavigate()
     return (
         <section className={`${classes['absolute-center']} flex flex-col gap-4 italic max-w-[11rem] md:max-w-[20rem] lg:max-w-[25rem]`}>
-            <h5 className='uppercase text-zinc-400'>New Inspiration 2024</h5>
+            <h5 className='uppercase text-zinc-500'>New Inspiration 2024</h5>
             <h4 className='uppercase text-4xl'>20% Of New Season</h4>
             <MainButton className='bg-zinc-800 text-white p-2 italic font-thin' onClick={() => navigate(PageUrlsList.Shop)}>
                 Browse Collections

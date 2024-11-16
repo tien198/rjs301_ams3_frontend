@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Container from "../UI/Container";
 import classes from './CategoriesBrowser.module.css'
+import { SectionTitle } from "../UI/SectionTitle";
+
 
 function CategoriesBrowser() {
     0
@@ -20,17 +22,15 @@ function CategoriesBrowser() {
     ]
     return (
         <Container className="text-center uppercase italic">
-            <h4 className="text-zinc-500 text-sm">Carefull Created Collections</h4>
-            <h5 className="text-2xl">Browse Our Categories</h5>
-            <div className={classes['categories-grid']}>
+            <SectionTitle h4="Browse Our Categories" h5='Carefull Created Collections' />
+            <div className={`${classes['categories-grid']}`}>
                 {
                     categoriesCollections.map(i => (
-                        <Link to={`/shop/${i[0]}`} className={classes[i[1]]}>
+                        <Link to={`/shop/${i[0]}`} className={classes[i[1]]} key={i[2]}>
                             <img src={i[2]} alt={i[3]} />
                         </Link>
                     ))
                 }
-
             </div>
         </Container>
     );

@@ -1,13 +1,17 @@
+import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './pages/1Root'
 import Error from './pages/2Error'
 import Home from './pages/Home'
-import Shop from './pages/Shop'
-import Detail from './pages/Detail'
-import Cart from './pages/Cart'
-import Checkout from './pages/Checkout'
-import Login from './pages/Login'
-import Register from './pages/Register'
+import { Fallback } from './components/layout/Fallback'
+
+const Shop = lazy(() => import('./pages/Shop'))
+const Detail = lazy(() => import('./pages/Detail'))
+const Cart = lazy(() => import('./pages/Cart'))
+const Checkout = lazy(() => import('./pages/Checkout'))
+const Login = lazy(() => import('./pages/Login'))
+const Register = lazy(() => import('./pages/Register'))
+
 
 const router = createBrowserRouter([
   {
@@ -17,43 +21,52 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
+        id: 'home-page',
+        loader: () => import('./pages/Home').then(i => i.loader())
       },
       {
         path: 'shop',
-        element: <Shop />
+        element: <Suspense fallback={<Fallback />}>
+          <Shop />
+        </Suspense>
       },
       {
         path: 'detail/:productId',
-        element: <Detail />
+        element: <Suspense fallback={<Fallback />}>
+          <Detail />
+        </Suspense>
       },
       {
         path: 'cart',
-        element: <Cart />
+        element: <Suspense fallback={<Fallback />}>
+          <Cart />
+        </Suspense>
       },
       {
         path: 'checkout',
-        element: <Checkout />
+        element: <Suspense fallback={<Fallback />}>
+          <Checkout />
+        </Suspense>
       },
       {
         path: 'login',
-        element: <Login />
+        element: <Suspense fallback={<Fallback />}>
+          <Login />
+        </Suspense>
       },
       {
         path: 'register',
-        element: <Register />
+        element: <Suspense fallback={<Fallback />}>
+          <Register />
+        </Suspense>
       }
     ]
   }
 ])
 
 function App() {
-  return <RouterProvider router={router} fallbackElement={<FallBack />} />
+  return <RouterProvider router={router} fallbackElement={<Fallback />} />
 }
 
 export default App
-
-
-function FallBack() {
-  return <div className='text-center'>Loading ...</div>
-}

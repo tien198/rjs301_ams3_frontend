@@ -1,6 +1,6 @@
 export enum BackendAPI {
-    base = 'https://rjs301ams3backend-production.up.railway.app',
-    products = 'https://rjs301ams3backend-production.up.railway.app/products',
+    base = 'https://rjs301ams3backend-production.up.railway.app/',
+    products = 'https://rjs301ams3backend-production.up.railway.app/products/',
 }
 
 export enum PageUrlsList {

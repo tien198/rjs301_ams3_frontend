@@ -1,0 +1,14 @@
+.product-img{
+    height: 147.5px;
+}
+
+@media (min-width: 768px){
+    .product-img{
+        height: 192px;
+    }   
+}
+@media (min-width: 1024px){
+    .product-img{
+        height: 284px;
+    }
+}

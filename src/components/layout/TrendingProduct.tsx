@@ -3,7 +3,8 @@ import { Fallback } from './Fallback';
 import { Await, useRouteLoaderData } from 'react-router-dom';
 import Container from '../UI/Container';
 import { SectionTitle } from '../UI/SectionTitle';
-import { IProduct } from '../../ultil/dataModels/Product';
+import { IProduct } from '../../ultil/Models/Product';
+import classes from './TrendingProduct.module.css'
 
 
 function ProductsContainer({ children }: PropsWithChildren) {
@@ -27,11 +28,12 @@ function ProductItem({ product }: IProductItemProp) {
         name = '',
         price = 'NAN'
     } = product
+
     return (
-        <section className="flex flex-col gap-2">
-            <img src={img1} alt={name} />
+        <section className="flex flex-col gap-2 items-center">
+            <img src={img1} alt={name} className={classes['product-img']} />
             <p>{name}</p>
-            <span className='text-zinc-500'>{price} VND</span>
+            <span className='text-zinc-500'>{price.replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VND</span>
         </section>
     )
 }

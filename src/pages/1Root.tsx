@@ -9,7 +9,6 @@ function Root() {
                 <MainNav />
                 <Outlet />
             </>
-            <div className='h-screen'></div>
             <Footer />
         </>
     );

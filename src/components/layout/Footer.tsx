@@ -54,7 +54,7 @@ function Row_3() {
 
 function Footer() {
     return (
-        <footer className='bg-black text-white italic py-8 md:py-10 lg:py-14'>
+        <footer className='bg-black text-white italic py-8 md:py-10 lg:py-28 mt-20'>
             <Container className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 <Row_1 />
                 <Row_2 />

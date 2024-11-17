@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Container from "../UI/Container";
-import classes from './CategoriesBrowser.module.css'
 import { SectionTitle } from "../UI/SectionTitle";
+import classes from './CategoriesBrowser.module.css'
 
 
 function CategoriesBrowser() {

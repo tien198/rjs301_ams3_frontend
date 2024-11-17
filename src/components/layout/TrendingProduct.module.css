@@ -1,14 +1,20 @@
-.product-img{
+.product-item img {
     height: 147.5px;
 }
 
-@media (min-width: 768px){
-    .product-img{
-        height: 192px;
-    }   
+.product-item:hover {
+    cursor: pointer;
+    filter: brightness(.9) opacity(.8);
 }
-@media (min-width: 1024px){
-    .product-img{
+
+@media (min-width: 768px) {
+    .product-item img {
+        height: 192px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-item img {
         height: 284px;
     }
 }

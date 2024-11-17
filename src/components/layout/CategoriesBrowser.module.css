@@ -35,5 +35,5 @@
 }
 
 .categories-grid img:hover {
-    filter: brightness(103%) grayscale(10%);
+  filter: brightness(.9)  opacity(.8); 
 }

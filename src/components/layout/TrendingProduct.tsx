@@ -1,9 +1,10 @@
 import { PropsWithChildren, Suspense } from 'react';
 import { Fallback } from './Fallback';
-import { Await, useRouteLoaderData } from 'react-router-dom';
+import { Await, defer, useRouteLoaderData } from 'react-router-dom';
 import Container from '../UI/Container';
 import { SectionTitle } from '../UI/SectionTitle';
 import { IProduct } from '../../ultil/Models/Product';
+import { BackendAPI } from '../../ultil/UltilEnums';
 import classes from './TrendingProduct.module.css'
 
 
@@ -30,8 +31,8 @@ function ProductItem({ product }: IProductItemProp) {
     } = product
 
     return (
-        <section className="flex flex-col gap-2 items-center">
-            <img src={img1} alt={name} className={classes['product-img']} />
+        <section className={`flex flex-col gap-2 items-center ${classes['product-item']}`}>
+            <img src={img1} alt={name} />
             <p>{name}</p>
             <span className='text-zinc-500'>{price.replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VND</span>
         </section>
@@ -53,4 +54,17 @@ export default function TrendingProduct() {
             </ProductsContainer>
         </Suspense>
     );
+}
+
+
+async function trendingProductsLoader() {
+    const response = await fetch(BackendAPI.products)
+    return await response.json()
+}
+
+
+export function loader() {
+    return defer({
+        trendingProducts: trendingProductsLoader()
+    })
 }

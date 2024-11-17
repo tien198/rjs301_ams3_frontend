@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         id: 'home-page',
-        loader: () => import('./pages/Home').then(i => i.loader())
+        loader: () => import('./components/layout/TrendingProduct').then(i => i.loader())
       },
       {
         path: 'shop',

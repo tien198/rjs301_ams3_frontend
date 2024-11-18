@@ -2,10 +2,11 @@ import { PropsWithChildren, Suspense } from 'react';
 import { Fallback } from './Fallback';
 import { Await, defer, useRouteLoaderData } from 'react-router-dom';
 import Container from '../UI/Container';
-import { SectionTitle } from '../UI/SectionTitle';
+import { SectionTitle } from '../UI/SectionWithTitle';
 import { IProduct } from '../../ultil/Models/Product';
 import { BackendAPI } from '../../ultil/UltilEnums';
 import classes from './TrendingProduct.module.css'
+import Modal from '../UI/Modal';
 
 
 function ProductsContainer({ children }: PropsWithChildren) {
@@ -45,6 +46,7 @@ export default function TrendingProduct() {
     const { trendingProducts } = loader
     return (
         <Suspense fallback={<Fallback />}>
+            <Modal />
             <ProductsContainer>
                 <Await resolve={trendingProducts}>
                     {

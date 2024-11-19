@@ -1,40 +1,32 @@
 import { forwardRef, PropsWithChildren, useEffect, useImperativeHandle, useState } from "react";
 import classes from './Modal.module.css'
 import { createPortal } from "react-dom";
+import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
+import { show as showAction, hide as hideAction } from "../../store/modalSlice";
 
-const Modal = forwardRef(
-    function ({ children }: PropsWithChildren, ref) {
-        const [hidden, setHidden] = useState('hidden')
+function Modal({ children }: PropsWithChildren) {
+    const hidden = useAppSelector(({ modal }) => modal.hiddenClass)
+    const hiddenDispath = useAppDispath()
 
-        const show = () => setHidden('')
-        const hide = () => setHidden('hidden')
+    const show = () => hiddenDispath(showAction())
+    const hide = () => hiddenDispath(hideAction())
 
-        useImperativeHandle(ref, () => {
-            return {
-                open: () => show(),
-                close: () => hide()
-            }
+    useEffect(() => {
+        window.addEventListener('keydown', e => {
+            if (e.key.toLowerCase() === 'escape')
+                hide()
         })
+    }, [])
 
-        useEffect(() => {
-            window.addEventListener('keydown', e => {
-                if (e.key.toLowerCase() === 'escape')
-                    hide()
-            })
-        }, [])
-
-        return createPortal(
-            <div className={hidden}>
-                <div className={classes['backdrop']} onClick={hide}></div>
-                <div className={classes['modal']}>
-                    {children}
-                    <div className="flex flex-row-reverse">
-                        <button onClick={hide}>Close</button>
-                    </div>
-                </div>
-            </div>,
-            document.getElementById('modal')!
-        );
-    })
+    return createPortal(
+        <div className={hidden}>
+            <div className={classes['backdrop']} onClick={hide}></div>
+            <div className={classes['modal']}>
+                {children}
+            </div>
+        </div>,
+        document.getElementById('modal')!
+    );
+}
 
 export default Modal;

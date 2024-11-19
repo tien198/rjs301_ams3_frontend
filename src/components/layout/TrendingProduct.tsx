@@ -1,4 +1,4 @@
-import { PropsWithChildren, Suspense } from 'react';
+import { PropsWithChildren, Suspense, useRef } from 'react';
 import { Fallback } from './Fallback';
 import { Await, defer, useRouteLoaderData } from 'react-router-dom';
 import Container from '../UI/Container';
@@ -6,7 +6,7 @@ import { SectionTitle } from '../UI/SectionWithTitle';
 import { IProduct } from '../../ultil/Models/Product';
 import { BackendAPI } from '../../ultil/UltilEnums';
 import classes from './TrendingProduct.module.css'
-import Modal from '../UI/Modal';
+import ProductModal from './ProductModal';
 
 
 function ProductsContainer({ children }: PropsWithChildren) {
@@ -44,17 +44,21 @@ function ProductItem({ product }: IProductItemProp) {
 export default function TrendingProduct() {
     const loader: any = useRouteLoaderData('home-page')
     const { trendingProducts } = loader
+    const modalRef = useRef()
+
     return (
-        <Suspense fallback={<Fallback />}>
-            <Modal />
-            <ProductsContainer>
-                <Await resolve={trendingProducts}>
-                    {
-                        (loaded: IProduct[]) => loaded.map(i => <ProductItem product={i} key={i._id.$oid} />)
-                    }
-                </Await>
-            </ProductsContainer>
-        </Suspense>
+        <>
+            <ProductModal ref={modalRef} />
+            <Suspense fallback={<Fallback />}>
+                <ProductsContainer>
+                    <Await resolve={trendingProducts}>
+                        {
+                            (loaded: IProduct[]) => loaded.map(i => <ProductItem product={i} key={i._id.$oid} />)
+                        }
+                    </Await>
+                </ProductsContainer>
+            </Suspense>
+        </>
     );
 }
 

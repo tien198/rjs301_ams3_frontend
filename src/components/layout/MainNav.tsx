@@ -1,6 +1,8 @@
 import styles from "./MainNav.module.css";
 import { useEffect, useState } from "react";
 import { NavLink, NavLinkRenderProps } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid-svg-icons";
 // import Logo from "../../assets/Logo";
 import Logo from "../../assets/Logo.svg";
 import Container from "../UI/Container";
@@ -14,10 +16,16 @@ function NavLeftUl() {
     return (
         <ul className="flex gap-4">
             <li>
-                <NavLink to='/' className={navLinkStateClass}>Home</NavLink>
+                <NavLink to='/' className={navLinkStateClass}>
+                    <FontAwesomeIcon icon={faHouse} className="mr-1" />
+                    <span>Home</span>
+                </NavLink>
             </li>
             <li>
-                <NavLink to='/shop' className={navLinkStateClass}>Shop</NavLink>
+                <NavLink to='/shop' className={navLinkStateClass}>
+                    <FontAwesomeIcon icon={faShop} className="mr-1" />
+                    <span>Shop</span>
+                </NavLink>
             </li>
         </ul>
     )
@@ -25,12 +33,18 @@ function NavLeftUl() {
 
 function NavRightUl() {
     return (
-        <ul className="flex gap-4">
+        <ul className="flex gap-6">
             <li>
-                <NavLink to='/cart' className={navLinkStateClass}>Cart</NavLink>
+                <NavLink to='/cart' className={navLinkStateClass}>
+                    <FontAwesomeIcon icon={faCartShopping} className="mr-1" />
+                    <span className="hidden md:inline">Cart</span>
+                </NavLink>
             </li>
             <li>
-                <NavLink to='/user' className={navLinkStateClass}>User</NavLink>
+                <NavLink to='/user' className={navLinkStateClass}>
+                    <FontAwesomeIcon icon={faUser} className="mr-1" />
+                    <span className="hidden md:inline">User</span>
+                </NavLink>
             </li>
             <li>
                 <NavLink to='/logout' className={navLinkStateClass}>( Logout )</NavLink>
@@ -46,6 +60,8 @@ export default function MainNav() {
     // const [color, setColor] = useState('#000')
 
     useEffect(() => {
+        if (window.scrollY > 0)
+            setLogoState('scroll-down')
         window.addEventListener('scroll', () => {
             if (window.scrollY > 0)
                 setLogoState('scroll-down')

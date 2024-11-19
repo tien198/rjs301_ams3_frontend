@@ -6,7 +6,7 @@ interface ModalState {
 }
 
 const initialState: ModalState = {
-    hiddenClass: ''
+    hiddenClass: 'hidden'
 }
 
 const modalSlice = createSlice({

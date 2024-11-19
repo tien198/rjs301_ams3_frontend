@@ -1,14 +1,14 @@
 import { PropsWithChildren, useEffect } from "react";
-import classes from './Modal.module.css'
 import { createPortal } from "react-dom";
 import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
-import { show as showAction, hide as hideAction } from "../../store/modalSlice";
+import { hide as hideAction } from "../../store/modalSlice";
+// css
+import classes from './Modal.module.css'
 
 function Modal({ children }: PropsWithChildren) {
     const hidden = useAppSelector(({ modal }) => modal.hiddenClass)
     const hiddenDispath = useAppDispath()
 
-    const show = () => hiddenDispath(showAction())
     const hide = () => hiddenDispath(hideAction())
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function Modal({ children }: PropsWithChildren) {
     return createPortal(
         <div className={hidden}>
             <div className={classes['backdrop']} onClick={hide}></div>
-            <div className={`${classes['modal']} overflow-auto h-96`}>
+            <div className={`${classes['modal']} `}>
                 {children}
             </div>
         </div>,

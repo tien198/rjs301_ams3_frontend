@@ -7,10 +7,10 @@ import { IProduct } from '../../ultil/Models/interfaces/IProduct';
 import { BackendAPI } from '../../ultil/UltilEnums';
 import classes from './TrendingProduct.module.css'
 import ProductModal from './ProductModal';
-import { useSelector } from 'react-redux';
 import { useAppDispath, useAppSelector } from '../../hooks/reduxHooks';
 import { show as showAction } from '../../store/modalSlice';
-import { setProduct } from '../../store/ProductModal';
+import { setProduct } from '../../store/ProductModalSlice';
+import convertToFraction from '../../ultil/convertToFraction';
 
 
 function ProductsContainer({ children }: PropsWithChildren) {
@@ -29,13 +29,7 @@ interface IProductItemProp {
     product: IProduct
 }
 function ProductItem({ product }: IProductItemProp) {
-    const {
-        img1 = '',
-        name = '',
-        price = 'NAN'
-    } = product
 
-    const modalState = useAppSelector(({ modal }) => modal.hiddenClass)
     const dispath = useAppDispath()
 
     const show = () => {
@@ -43,14 +37,12 @@ function ProductItem({ product }: IProductItemProp) {
         dispath(setProduct(product))
     }
 
-
-
     return (
         <section className={`flex flex-col gap-2 items-center ${classes['product-item']}`}
             onClick={show}>
-            <img src={img1} alt={name} />
-            <p>{name}</p>
-            <span className='text-zinc-500'>{price.replace(/\B(?=(\d{3})+(?!\d))/g, ".")} VND</span>
+            <img src={product.img1} alt={product.name} />
+            <p>{product.name}</p>
+            <span className='text-zinc-500'>{convertToFraction(product.price)} VND</span>
         </section>
     )
 }

@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren, useEffect, useImperativeHandle, useState } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import classes from './Modal.module.css'
 import { createPortal } from "react-dom";
 import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
@@ -21,7 +21,7 @@ function Modal({ children }: PropsWithChildren) {
     return createPortal(
         <div className={hidden}>
             <div className={classes['backdrop']} onClick={hide}></div>
-            <div className={classes['modal']}>
+            <div className={`${classes['modal']} overflow-auto h-96`}>
                 {children}
             </div>
         </div>,

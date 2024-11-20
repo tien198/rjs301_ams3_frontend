@@ -5,13 +5,13 @@ import Container from '../UI/Container';
 import { SectionTitle } from '../UI/SectionWithTitle';
 import { IProduct } from '../../ultil/Models/interfaces/IProduct';
 import { BackendAPI } from '../../ultil/UltilEnums';
-import classes from './TrendingProduct.module.css'
 import ProductModal from './ProductModal';
 import { useAppDispath } from '../../hooks/reduxHooks';
 import { show as showAction } from '../../store/modalSlice';
 import { setProduct } from '../../store/ProductModalSlice';
 import convertToFraction from '../../ultil/convertToFraction';
-
+// css
+import classes from './TrendingProduct.module.css'
 
 function ProductsContainer({ children }: PropsWithChildren) {
     return (

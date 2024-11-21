@@ -4,13 +4,16 @@ import Root from './pages/1Root'
 import Error from './pages/2Error'
 import Home from './pages/Home'
 import { Fallback } from './components/layout/Fallback'
+//routes
+import shopRoute from './routes/shopRoute'
 
-const Shop = lazy(() => import('./pages/Shop'))
+
 const Detail = lazy(() => import('./pages/Detail'))
 const Cart = lazy(() => import('./pages/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
+
 
 
 const router = createBrowserRouter([
@@ -25,12 +28,7 @@ const router = createBrowserRouter([
         id: 'home-page',
         loader: () => import('./components/layout/TrendingProduct').then(i => i.loader())
       },
-      {
-        path: 'shop',
-        element: <Suspense fallback={<Fallback />}>
-          <Shop />
-        </Suspense>
-      },
+      shopRoute,
       {
         path: 'detail/:productId',
         element: <Suspense fallback={<Fallback />}>

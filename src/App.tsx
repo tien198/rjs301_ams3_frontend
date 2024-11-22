@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import { Fallback } from './components/layout/Fallback'
 //routes
 import shopRoute from './routes/shopRoute'
+import Test from './pages/0Test'
 
 
 const Detail = lazy(() => import('./pages/Detail'))
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<Fallback />}>
           <Register />
         </Suspense>
+      },
+      {
+        path: 'test',
+        element: <Test />
       }
     ]
   }

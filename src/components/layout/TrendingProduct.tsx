@@ -7,6 +7,9 @@ import { IProduct } from '../../ultil/Models/interfaces/IProduct';
 import { BackendAPI } from '../../ultil/UltilEnums';
 import ProductModal from './ProductModal';
 import ProductItem from './ProductIem';
+import store from '../../store';
+import { setProducts as productsAction } from '../../store/fetchedProductsSlice';
+import { useAppDispath } from '../../hooks/reduxHooks';
 
 
 
@@ -26,7 +29,10 @@ function ProductsContainer({ children }: PropsWithChildren) {
 export default function TrendingProduct() {
     const loader: any = useRouteLoaderData('home-page')
     const { trendingProducts } = loader
-
+    const dispath = useAppDispath()
+    function dispathProducts(products: IProduct[]) {
+        dispath(productsAction(products))
+    }
 
     return (
         <>
@@ -35,7 +41,10 @@ export default function TrendingProduct() {
                 <ProductsContainer>
                     <Await resolve={trendingProducts}>
                         {
-                            (loaded: IProduct[]) => loaded.map(i => <ProductItem product={i} key={i._id?.$oid} />)
+                            (loaded: IProduct[]) => {
+                                dispathProducts(loaded)
+                                return loaded.map(i => <ProductItem product={i} key={i._id?.$oid} />)
+                            }
                         }
                     </Await>
                 </ProductsContainer>
@@ -52,7 +61,14 @@ async function trendingProductsLoader() {
 
 
 export function loader() {
-    return defer({
-        trendingProducts: trendingProductsLoader()
-    })
+    const fetchedProducts = store.getState().fetchedProducts.products
+
+    if (fetchedProducts.length > 0)
+        return defer({
+            trendingProducts: fetchedProducts
+        })
+    else
+        return defer({
+            trendingProducts: trendingProductsLoader()
+        })
 }

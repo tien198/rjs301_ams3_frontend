@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../ultil/Models/implementations/Product";
 import { IProduct } from "../ultil/Models/interfaces/IProduct";
 
-interface ProdState {
+interface productModalState {
     product: IProduct
 }
-const initialState: ProdState = {
+const initialState: productModalState = {
     product: new Product()
 }
 

@@ -1,6 +1,6 @@
 import { useAppDispath } from '../../hooks/reduxHooks';
 import { show as showAction } from '../../store/modalSlice';
-import { setProduct } from '../../store/ProductModalSlice';
+import { setProduct } from '../../store/productModalSlice';
 import convertToFraction from '../../ultil/convertToFraction';
 import { IProduct } from '../../ultil/Models/interfaces/IProduct';
 // css

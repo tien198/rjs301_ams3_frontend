@@ -1,13 +1,22 @@
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { MouseEventHandler, PropsWithChildren, useState } from "react"
 import { NavLink, NavLinkRenderProps } from "react-router-dom"
 
 interface HeadingProps extends PropsWithChildren {
     onclick: MouseEventHandler<HTMLHeadingElement>
     className: string
+    isActive: boolean
 }
-function Heading({ children, className, onclick }: HeadingProps) {
+function Heading({ children, className, isActive, onclick }: HeadingProps) {
     return (
-        <h3 className={`bg-zinc-100 py-2 px-4 uppercase ${className}`} onClick={onclick}>{children}</h3>
+        <h3 className={`flex justify-between items-center bg-zinc-100 py-2 px-4 uppercase ${className}`} onClick={onclick}>
+            <span>{children}</span>
+            {!isActive ?
+                <FontAwesomeIcon icon={faCaretDown} /> :
+                <FontAwesomeIcon icon={faCaretUp} />
+            }
+        </h3>
     )
 }
 
@@ -17,6 +26,7 @@ function navLinkStateClass({ isActive }: NavLinkRenderProps) {
 
 function Categories_1() {
     const [height, setHeight] = useState('h-0')
+    const isActive = height === 'h-0' ? false : true
     function toggle() {
         setHeight(prev => {
             if (prev === 'h-0') return 'h-28'
@@ -25,7 +35,7 @@ function Categories_1() {
     }
     return (
         <>
-            <Heading onclick={toggle} className="hover:cursor-pointer">Iphone & Mac</Heading>
+            <Heading onclick={toggle} className="hover:cursor-pointer" isActive={isActive} >Iphone & Mac</Heading>
             <div className={`flex flex-col gap-4 overflow-hidden duration-150 ${height}`}>
                 <NavLink to='Iphone' className={navLinkStateClass}>Iphone</NavLink>
                 <NavLink to='Ipad' className={navLinkStateClass}>Ipad</NavLink>
@@ -37,6 +47,8 @@ function Categories_1() {
 
 function Categories_2() {
     const [height, setHeight] = useState('h-0')
+    const isActive = height === 'h-0' ? false : true
+
     function toggle() {
         setHeight(prev => {
             if (prev === 'h-0') return 'h-28'
@@ -45,7 +57,7 @@ function Categories_2() {
     }
     return (
         <>
-            <Heading onclick={toggle} className="hover:cursor-pointer">Wireless</Heading>
+            <Heading onclick={toggle} className="hover:cursor-pointer" isActive={isActive}>Wireless</Heading>
             <div className={`flex flex-col gap-4 overflow-hidden duration-150 ${height}`}>
                 <NavLink to='Airpod' className={navLinkStateClass}>Airpod</NavLink>
                 <NavLink to='Watch' className={navLinkStateClass}>Watch</NavLink>
@@ -56,6 +68,8 @@ function Categories_2() {
 
 function Categories_3() {
     const [height, setHeight] = useState('h-0')
+    const isActive = height === 'h-0' ? false : true
+
     function toggle() {
         setHeight(prev => {
             if (prev === 'h-0') return 'h-28'
@@ -64,7 +78,7 @@ function Categories_3() {
     }
     return (
         <>
-            <Heading onclick={toggle} className="hover:cursor-pointer">Other</Heading>
+            <Heading onclick={toggle} className="hover:cursor-pointer" isActive={isActive}>Other</Heading>
             <div className={`flex flex-col gap-4 overflow-hidden duration-150 ${height}`}>
                 <NavLink to='Mouse' className={navLinkStateClass}>Mouse</NavLink>
                 <NavLink to='Keyboard' className={navLinkStateClass}>Keyboard</NavLink>

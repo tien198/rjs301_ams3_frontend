@@ -10,7 +10,7 @@ export default function Shop() {
     const { products } = loader
 
     return (
-        <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4 justify-center bg-zinc-100 italic uppercase ">
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4 justify-center italic uppercase ">
             <Suspense fallback={<Fallback />}>
                 <Await resolve={products}>
                     {(loaded: IProduct[]) => loaded.map(i => <ProductItem product={i} key={i._id?.$oid} />)}

@@ -1,4 +1,4 @@
-import { RouteObject } from "react-router-dom";
+import { redirect, RouteObject } from "react-router-dom";
 import { Fallback } from "../components/layout/Fallback";
 import { lazy, Suspense } from "react";
 
@@ -11,6 +11,10 @@ const shopRoute: RouteObject = {
         <ShopRoot />
     </Suspense>,
     children: [
+        {
+            index: true,
+            loader: () => redirect('all')
+        },
         {
             path: 'all',
             element: <Suspense fallback={<Fallback />}>

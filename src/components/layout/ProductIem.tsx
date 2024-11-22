@@ -21,7 +21,7 @@ export default function ProductItem({ product }: IProductItemProp) {
     return (
         <section className={`flex flex-col gap-2 items-center ${classes['product-item']}`}
             onClick={show}>
-            <img src={product.img1} alt={product.name} />
+            <img src={product.img1} alt={product.name} className='object-contain' />
             <p>{product.name}</p>
             <span className='text-zinc-500'>{convertToFraction(product.price)} VND</span>
         </section>

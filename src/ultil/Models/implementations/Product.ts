@@ -1,7 +1,18 @@
 import { IProduct } from "../interfaces/IProduct";
 
 export class Product implements IProduct {
-    constructor() { }
+    constructor() {
+        this._id = { $oid: '' }
+        this.category = ''
+        this.name = ''
+        this.img1 = ''
+        this.img2 = ''
+        this.img3 = ''
+        this.img4 = ''
+        this.short_desc = ''
+        this.long_desc = ''
+        this.price = ''
+    }
     _id?: { $oid?: string; };
     category?: string;
     name?: string;

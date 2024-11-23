@@ -1,4 +1,5 @@
 import Container from "../../components/UI/Container";
+import ProductModal from "../../components/layout/ProductModal";
 import CategoriesDashboard from "./CategoriesDashboard";
 
 function Banner() {
@@ -13,6 +14,7 @@ function Banner() {
 function ShopRoot() {
     return (
         <Container className="flex flex-col gap-4">
+            <ProductModal />
             <Banner />
             <CategoriesDashboard /> {/* Outlet in here */}
         </Container>

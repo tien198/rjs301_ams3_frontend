@@ -15,7 +15,7 @@ function ProductsContainer({ children }: PropsWithChildren) {
   return (
     <Container className="italic">
       <SectionTitle h4="Top Trending Products" h5="Made The Hard Way" />
-      <div className="grid gap-10 items-center justify-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-center">
+      <div className="grid gap-10 justify-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-center">
         {children}
       </div>
     </Container>

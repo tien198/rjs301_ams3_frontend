@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { useAppDispath } from "../../hooks/reduxHooks";
 import { show as showAction } from "../../store/modalSlice";
 import { setProduct } from "../../store/productModalSlice";
@@ -13,32 +12,21 @@ interface IProductItemProp {
 }
 export default function ProductItem({ product, className }: IProductItemProp) {
   const dispath = useAppDispath();
-  const [hidden, setHidden] = useState("hidden");
-  const imgRef = useRef<HTMLImageElement>(null);
 
   const show = () => {
     dispath(showAction());
     dispath(setProduct(product));
   };
-  useEffect(() => {
-    if (imgRef.current?.complete) setHidden("");
-    else
-      imgRef.current?.addEventListener("load", () => {
-        setHidden("");
-      });
-  }, [hidden]);
 
   return (
     <section
-      className={`flex flex-col gap-2 items-center 
+      className={`flex flex-col h-full justify-between gap-2 items-center text-center
         ${classes["product-item"]} 
         ${classes["fade-out"]}
-        ${hidden} 
         ${className}`}
       onClick={show}
     >
       <img
-        ref={imgRef}
         src={product.img1}
         alt={product.name}
         className="object-contain"

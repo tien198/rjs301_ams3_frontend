@@ -1,13 +1,13 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Root from './pages/1Root'
-import Error from './pages/2Error'
-import Home from './pages/Home'
+import Root from './routes/1Root'
+import Error from './routes/2Error'
+import Home from './pages/home/Home'
 import { Fallback } from './components/layout/Fallback'
 //routes
 import shopRoute from './routes/shopRoute'
+// use for testing
 import Test from './pages/0Test'
-
 
 const Detail = lazy(() => import('./pages/Detail'))
 const Cart = lazy(() => import('./pages/Cart'))
@@ -27,14 +27,15 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         id: 'home-page',
-        loader: () => import('./components/layout/TrendingProduct').then(i => i.loader())
+        loader: () => import('./pages/home/TrendingProduct').then(i => i.loader())
       },
       shopRoute,
       {
         path: 'detail/:productId',
         element: <Suspense fallback={<Fallback />}>
           <Detail />
-        </Suspense>
+        </Suspense>,
+        loader: () => null
       },
       {
         path: 'cart',

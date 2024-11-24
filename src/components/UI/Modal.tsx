@@ -1,15 +1,20 @@
 import { PropsWithChildren, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
-import { hide as hideAction } from "../../store/modalSlice";
+import { hide as hideAction, hideCustom as fadingHide } from "../../store/modalSlice";
 // css
 import classes from './Modal.module.css'
 
 function Modal({ children }: PropsWithChildren) {
     const hidden = useAppSelector(({ modal }) => modal.hiddenClass)
-    const hiddenDispath = useAppDispath()
+    const dispath = useAppDispath()
 
-    const hide = () => hiddenDispath(hideAction())
+    const hide = () => {
+        dispath(fadingHide(classes['fading-hidden']))
+        setTimeout(() => {
+            dispath(hideAction())
+        }, 300);
+    }
 
     useEffect(() => {
         window.addEventListener('keydown', e => {

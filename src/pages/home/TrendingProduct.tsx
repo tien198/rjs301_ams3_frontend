@@ -1,15 +1,16 @@
 import { PropsWithChildren, Suspense } from "react";
-import { Fallback } from "./Fallback";
+import { Fallback } from "../../components/layout/Fallback";
 import { Await, defer, useRouteLoaderData } from "react-router-dom";
-import Container from "../UI/Container";
-import { SectionTitle } from "../UI/SectionWithTitle";
+import Container from "../../components/UI/Container";
+import { SectionTitle } from "../../components/UI/SectionWithTitle";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
-import ProductModal from "./ProductModal";
-import ProductItem from "./ProductIem";
+import ProductModal from "../../components/layout/ProductModal";
+import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
 import { setProducts as productsAction } from "../../store/fetchedProductsSlice";
 import { useAppDispath } from "../../hooks/reduxHooks";
 import productsLoader from "../../routes/loaders/products";
+import { hideModalDispath } from "../../routes/loaders/hideModalDispath";
 
 function ProductsContainer({ children }: PropsWithChildren) {
   return (
@@ -51,7 +52,7 @@ export default function TrendingProduct() {
 
 export function loader() {
   const fetchedProducts = store.getState().fetchedProducts.products;
-
+  hideModalDispath()
   if (fetchedProducts.length > 0)
     return defer({
       trendingProducts: fetchedProducts,

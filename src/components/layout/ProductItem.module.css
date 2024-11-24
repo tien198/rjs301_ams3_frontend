@@ -1,35 +1,35 @@
 .product-item img {
-    height: 147.5px;
+  height: 147.5px;
 }
 
 .product-item:hover {
-    cursor: pointer;
-    filter: brightness(.9) opacity(.8);
+  cursor: pointer;
+  filter: brightness(0.9) opacity(0.8);
 }
 
 @media (min-width: 768px) {
-    .product-item img {
-        height: 192px;
-    }
+  .product-item img {
+    height: 161px;
+  }
 }
 
-@media (min-width: 1024px) {
-    .product-item img {
-        height: 284px;
-    }
+@media (min-width: 1536px) {
+  .product-item img {
+    height: 284px;
+  }
 }
 
 .fade-out {
-    animation: fade-out 500ms ease-out forwards;
+  animation: fade-out 500ms ease-out forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
   }
-  
-  @keyframes fade-out {
-    0% {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
+}

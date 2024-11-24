@@ -5,7 +5,8 @@ import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
 import productsLoader from "../../routes/loaders/products";
-import redirectToLowercaseUrl from "../../ultil/redirectToLowercaseUrl";
+import redirectToLowercaseUrl from "../../routes/loaders/redirectToLowercaseUrl";
+import { hideModalDispath } from "../../routes/loaders/hideModalDispath";
 
 export default function ProductsBoard() {
   const loader: any = useLoaderData();
@@ -26,6 +27,7 @@ export default function ProductsBoard() {
 
 export function allLoader() {
   const fetchedProducts = store.getState().fetchedProducts.products;
+  hideModalDispath()
 
   if (fetchedProducts.length > 0)
     return defer({
@@ -38,6 +40,8 @@ export function allLoader() {
 
 export function categorizedProductsLoader({ params, request }: LoaderFunctionArgs) {
   redirectToLowercaseUrl(request.url)
+  hideModalDispath()
+
   const fetchedProducts = store.getState().fetchedProducts.products
   if (fetchedProducts.length > 0)
     return defer({

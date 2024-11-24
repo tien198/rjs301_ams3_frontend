@@ -7,6 +7,7 @@ import store from "../../store";
 import productsLoader from "../../routes/loaders/products";
 import redirectToLowercaseUrl from "../../routes/loaders/redirectToLowercaseUrl";
 import { hideModalDispath } from "../../routes/loaders/hideModalDispath";
+import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 
 export default function ProductsBoard() {
   const loader: any = useLoaderData();
@@ -25,9 +26,10 @@ export default function ProductsBoard() {
   );
 }
 
-export function allLoader() {
+export function allLoader(loaderArgs: LoaderFunctionArgs) {
+  loaderInitiation(loaderArgs)
+
   const fetchedProducts = store.getState().fetchedProducts.products;
-  hideModalDispath()
 
   if (fetchedProducts.length > 0)
     return defer({

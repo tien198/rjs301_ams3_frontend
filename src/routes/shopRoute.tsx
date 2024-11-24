@@ -2,7 +2,7 @@ import { redirect, RouteObject } from "react-router-dom";
 import { Fallback } from "../components/layout/Fallback";
 import { lazy, Suspense } from "react";
 
-const ShopRoot = lazy(() => import("../pages/shop/1ShopRoot"));
+const ShopRoot = lazy(() => import("../pages/shop"));
 const ProductsBoard = lazy(() => import("../pages/shop/ProductsBoard"));
 
 const shopRoute: RouteObject = {
@@ -24,7 +24,7 @@ const shopRoute: RouteObject = {
                     <ProductsBoard />
                 </Suspense>
             ),
-            loader: () => import("../pages/shop/ProductsBoard").then(i => i.allLoader()),
+            loader: (args) => import("../pages/shop/ProductsBoard").then(i => i.allLoader(args)),
         },
         {
             path: ":category",
@@ -33,7 +33,7 @@ const shopRoute: RouteObject = {
                     <ProductsBoard />
                 </Suspense>
             ),
-            loader: (loaderArgs) => import("../pages/shop/ProductsBoard").then(i => i.categorizedProductsLoader(loaderArgs)),
+            loader: (args) => import("../pages/shop/ProductsBoard").then(i => i.categorizedProductsLoader(args)),
         },
     ],
 };

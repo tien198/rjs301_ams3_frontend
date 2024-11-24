@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Root from './routes/1Root'
-import Error from './routes/2Error'
-import Home from './pages/home/Home'
+import Root from './routes/0Root'
+import Error from './routes/1Error'
+import Home from './pages/home'
 import { Fallback } from './components/layout/Fallback'
 //routes
 import shopRoute from './routes/shopRoute'
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         id: 'home-page',
-        loader: () => import('./pages/home/TrendingProduct').then(i => i.loader())
+        loader: (args) => import('./pages/home/TrendingProduct').then(i => i.loader(args))
       },
       shopRoute,
       {

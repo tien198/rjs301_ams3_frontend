@@ -7,9 +7,7 @@ import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import ProductModal from "../../components/layout/ProductModal";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
-import { setProducts as productsAction } from "../../store/fetchedProductsSlice";
-import { useAppDispath } from "../../hooks/reduxHooks";
-import productsLoader from "../../routes/loaders/products";
+import { productsLoader } from "../../routes/loaders/productsLoaders";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 
 function ProductsContainer({ children }: PropsWithChildren) {
@@ -26,10 +24,7 @@ function ProductsContainer({ children }: PropsWithChildren) {
 export default function TrendingProduct() {
   const loader: any = useRouteLoaderData("home-page");
   const { trendingProducts } = loader;
-  const dispath = useAppDispath();
-  function dispathProducts(products: IProduct[]) {
-    dispath(productsAction(products));
-  }
+
 
   return (
     <>
@@ -38,7 +33,6 @@ export default function TrendingProduct() {
         <ProductsContainer>
           <Await resolve={trendingProducts}>
             {(loaded: IProduct[]) => {
-              dispathProducts(loaded);
               return loaded.map((i) => (
                 <ProductItem product={i} key={i._id?.$oid} />
               ));

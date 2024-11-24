@@ -11,11 +11,14 @@ const fetchedProductsSlice = createSlice({
     name: 'fetched-products',
     initialState,
     reducers: {
-        setProducts(state, action: PayloadAction<IProduct[]>) {
-            state.products = action.payload
+        addManyProducts(state, action: PayloadAction<IProduct[]>) {
+            state.products = [...state.products, ...action.payload]
+        },
+        addOneProduct(state, action: PayloadAction<IProduct>) {
+            state.products = [...state.products, action.payload]
         }
     }
 })
 
-export const { setProducts } = fetchedProductsSlice.actions
+export const { addManyProducts, addOneProduct } = fetchedProductsSlice.actions
 export default fetchedProductsSlice.reducer

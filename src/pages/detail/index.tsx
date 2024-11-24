@@ -48,13 +48,18 @@ export default function Detail() {
 export function loader(args: LoaderFunctionArgs) {
     loaderInitiation(args)
     const paramName = Object.keys(args.params)[0]
-    const product = store.getState().fetchedProducts.products.find(i => i._id?.$oid === args.params[paramName])
+    // find in `fetchedDetailProducts` then `fetchedProducts` if not found
+    const product =
+        store.getState().fetchedDetailProducts.products.find(i => i._id === args.params[paramName])
+        || store.getState().fetchedProducts.products.find(i => i._id?.$oid === args.params[paramName])
+
     if (product)
         return defer({
             product: product
         })
     else
         return defer({
+            // call api to get `product` and dispath this `product` to `fetchedDetailProducts`
             product: productLoader(args.params[paramName]!)
         })
 }

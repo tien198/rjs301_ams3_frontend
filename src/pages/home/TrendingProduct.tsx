@@ -10,7 +10,6 @@ import store from "../../store";
 import { setProducts as productsAction } from "../../store/fetchedProductsSlice";
 import { useAppDispath } from "../../hooks/reduxHooks";
 import productsLoader from "../../routes/loaders/products";
-import { hideModalDispath } from "../../routes/loaders/hideModalDispath";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 
 function ProductsContainer({ children }: PropsWithChildren) {

@@ -20,7 +20,7 @@ export default function ProductItem({ product, className }: IProductItemProp) {
 
   return (
     <section
-      className={`flex flex-col h-full justify-between gap-2 items-center text-center
+      className={`flex flex-col gap-2 h-full justify-between items-center text-center
         ${classes["product-item"]} 
         ${classes["fade-out"]}
         ${className}`}

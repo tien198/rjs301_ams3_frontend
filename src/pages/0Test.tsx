@@ -1,11 +1,12 @@
 import ProductItem from "../components/layout/ProductIem";
+import Container from "../components/UI/Container";
 
 const product = {
   _id: {
     $oid: "62ccd4665eefc71539bb6b4c",
   },
   category: "iphone",
-  img1: "https://firebasestorage.googleapis.com/v0/b/funix-way.appspot.com/o/xSeries%2FCCDN%2FReactJS%2FAssignment_Images%2FASM03_Resources%2Fiphone_13_4.jpeg?alt=media&token=dc72dde3-cfa4-4710-9493-ac2aa0ecf249",
+  // img1: "https://firebasestorage.googleapis.com/v0/b/funix-way.appspot.com/o/xSeries%2FCCDN%2FReactJS%2FAssignment_Images%2FASM03_Resources%2Fiphone_13_4.jpeg?alt=media&token=dc72dde3-cfa4-4710-9493-ac2aa0ecf249",
   img2: "https://firebasestorage.googleapis.com/v0/b/funix-way.appspot.com/o/xSeries%2FCCDN%2FReactJS%2FAssignment_Images%2FASM03_Resources%2Fiphone_13_3.jpeg?alt=media&token=b3417ab8-33b9-4b52-a980-8f9afe4e0896",
   img3: "https://firebasestorage.googleapis.com/v0/b/funix-way.appspot.com/o/xSeries%2FCCDN%2FReactJS%2FAssignment_Images%2FASM03_Resources%2Fiphone_13_2.jpeg?alt=media&token=74aac3de-0c55-490e-9601-30829de7879f",
   img4: "https://firebasestorage.googleapis.com/v0/b/funix-way.appspot.com/o/xSeries%2FCCDN%2FReactJS%2FAssignment_Images%2FASM03_Resources%2Fiphone_13_4.jpeg?alt=media&token=dc72dde3-cfa4-4710-9493-ac2aa0ecf249",
@@ -19,9 +20,17 @@ const product = {
 
 function Test() {
   return (
-    <div className="p-10">
-      <ProductItem product={product} />
-    </div>
+    <Container className="flex flex-col gap-4">
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-zinc-300 h-10"></div>
+        <div className="bg-zinc-300 h-10"></div>
+        <div className="bg-zinc-300 h-10"></div>
+      </div>
+      <div className="grid grid-cols-5 gap-4">
+        <div className="bg-zinc-300 h-10 col-start-1 col-end-3"></div>
+        <div className="bg-zinc-300 h-10 col-start-3 col-end-6"></div>
+      </div>
+    </Container>
   );
 }
 

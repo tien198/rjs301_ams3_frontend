@@ -1,4 +1,5 @@
 .product-item img {
+  width: 147.5px;
   height: 147.5px;
 }
 
@@ -9,12 +10,14 @@
 
 @media (min-width: 768px) {
   .product-item img {
+    width: 161px;
     height: 161px;
   }
 }
 
 @media (min-width: 1536px) {
   .product-item img {
+    width: 284px;
     height: 284px;
   }
 }

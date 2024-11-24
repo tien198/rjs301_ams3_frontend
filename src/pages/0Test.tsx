@@ -1,4 +1,3 @@
-import ProductItem from "../components/layout/ProductIem";
 import Container from "../components/UI/Container";
 
 const product = {

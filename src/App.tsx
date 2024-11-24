@@ -9,7 +9,7 @@ import shopRoute from './routes/shopRoute'
 // use for testing
 import Test from './pages/0Test'
 
-const Detail = lazy(() => import('./pages/Detail'))
+const Detail = lazy(() => import('./pages/detail'))
 const Cart = lazy(() => import('./pages/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const Login = lazy(() => import('./pages/Login'))

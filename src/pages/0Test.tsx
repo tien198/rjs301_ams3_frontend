@@ -18,6 +18,8 @@ const product = {
 };
 
 function Test() {
+  console.log(product);
+
   return (
     <Container className="flex flex-col gap-4">
       <div className="grid grid-cols-3 gap-4">

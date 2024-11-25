@@ -6,7 +6,7 @@ import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
 import { productsLoader } from "../../routes/loaders/productsLoaders";
 import redirectToLowercaseUrl from "../../routes/loaders/redirectToLowercaseUrl";
-import { hideModalDispath } from "../../routes/loaders/hideModalDispath";
+import { hideModalDispath } from "../../routes/dispaths/hideModalDispath";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 
 export default function ProductsBoard() {

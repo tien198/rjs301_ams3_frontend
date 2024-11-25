@@ -10,6 +10,7 @@ import ImgSide from "./ImgSide";
 import InforSide from "./InforSide";
 import DetailDescriptionSide from "./DetailDescriptionSide";
 import RelatedProducts from "./RelatedProducts";
+import useScrollToTopPage from "../../hooks/useScrollToTopPage";
 
 // DetailProps interface is used for `ImgSide.tsx` & `InforSide.tsx`
 export interface DetailProps {
@@ -18,10 +19,11 @@ export interface DetailProps {
 }
 
 export default function DetailIndex() {
+    useScrollToTopPage()
     const { product }: IProduct | any = useLoaderData()
     return (
-        <Container>
-            <div className="grid md:grid-cols-5 gap-4 italic text-zinc-500 text-xs">
+        <Container className="italic text-zinc-500 text-xs xl:text-sm 2xl:text-xl">
+            <div className="grid md:grid-cols-5 gap-4 2xl:gap-10">
                 <Suspense fallback={<Fallback />}>
                     <Await resolve={product}>
                         {(loaded: IProduct) => (
@@ -40,7 +42,7 @@ export default function DetailIndex() {
 }
 
 export function loader(args: LoaderFunctionArgs) {
-    loaderInitiation(args)
+    loaderInitiation(args, false)
     const paramName = Object.keys(args.params)[0]
     // find in `fetchedDetailProducts` then `fetchedProducts` if not found
     const product =

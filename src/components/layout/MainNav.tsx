@@ -1,11 +1,13 @@
 import classes from "./MainNav.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavLink, NavLinkRenderProps } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid-svg-icons";
 // import Logo from "../../assets/Logo";
 import Logo from "../../assets/Logo.svg";
 import Container from "../UI/Container";
+import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
+import { setLogoState } from "../../store/logoSlice";
 
 
 function navLinkStateClass({ isActive }: NavLinkRenderProps) {
@@ -56,17 +58,20 @@ function NavRightUl() {
 
 // EXPORT DEFAULT ----------------------------------------------
 export default function MainNav() {
-    const [logoState, setLogoState] = useState('base')
+    // const [logoState, setLogoState] = useState('base')
+    const { state: logoState, animationAccept } = useAppSelector(({ logoState }) => logoState)
+    const dispath = useAppDispath()
     // const [color, setColor] = useState('#000')
 
+    !animationAccept && dispath(setLogoState('scroll-down'))
     useEffect(() => {
         if (window.scrollY > 0)
-            setLogoState('scroll-down')
+            animationAccept && dispath(setLogoState('scroll-down'))
         window.addEventListener('scroll', () => {
             if (window.scrollY > 0)
-                setLogoState('scroll-down')
+                animationAccept && dispath(setLogoState('scroll-down'))
             else
-                setLogoState('scroll-up')
+                animationAccept && dispath(setLogoState('scroll-up'))
         })
     }, [])
 
@@ -75,7 +80,7 @@ export default function MainNav() {
             <header className="fixed w-full font-medium h-16 bg-white z-50">
                 <span className={`${classes['logo-container']} ${classes[logoState]} z-0`}>
                     {/* <Logo color={color} /> */}
-                    <img src={Logo} alt="" />
+                    <img src={Logo} alt="Boutique logo" />
                 </span>
                 <Container className=" py-4 relative z-10">
                     <nav className={`flex items-center justify-between w-full h-full ${classes['nav']}`}>

@@ -13,3 +13,7 @@
 .link-active {
   color: #DDB34D;
 }
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

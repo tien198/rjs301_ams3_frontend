@@ -1,6 +1,7 @@
 import Container from "../../components/UI/Container";
 import ProductModal from "../../components/layout/ProductModal";
 import CategoriesDashboard from "./CategoriesDashboard";
+import useScrollToTopPage from "../../hooks/useScrollToTopPage";
 
 function Banner() {
     return (
@@ -12,6 +13,7 @@ function Banner() {
 }
 
 export default function ShopRoot() {
+    useScrollToTopPage()
     return (
         <Container className="flex flex-col gap-4">
             <ProductModal />

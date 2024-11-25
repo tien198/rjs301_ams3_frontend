@@ -6,41 +6,35 @@ import store from "../../store";
 import { productLoader } from "../../routes/loaders/productsLoaders";
 import { Suspense } from "react";
 import { Fallback } from "../../components/layout/Fallback";
+import ImgSide from "./ImgSide";
+import InforSide from "./InforSide";
+import DetailDescriptionSide from "./DetailDescriptionSide";
+import RelatedProducts from "./RelatedProducts";
 
-interface DetailProps {
+// DetailProps interface is used for `ImgSide.tsx` & `InforSide.tsx`
+export interface DetailProps {
     product: IProduct
+    className?: string
 }
 
-function ImgSide({ product }: DetailProps) {
-    product
-    return (
-        <div className="bg-zinc-300 h-10 md:col-start-1 md:col-end-3">
-
-        </div>
-    )
-}
-
-function DetailSide({ product }: DetailProps) {
-    product
-    return (
-        <div className="bg-zinc-300 h-10 md:col-start-3 md:col-end-6"></div>
-    )
-}
-
-export default function Detail() {
+export default function DetailIndex() {
     const { product }: IProduct | any = useLoaderData()
     return (
-        <Container className="grid md:grid-cols-5 gap-4">
-            <Suspense fallback={<Fallback />}>
-                <Await resolve={product}>
-                    {(loaded: IProduct) => (
-                        <>
-                            <ImgSide product={loaded} />
-                            <DetailSide product={loaded} />
-                        </>)
-                    }
-                </Await>
-            </Suspense>
+        <Container>
+            <div className="grid md:grid-cols-5 gap-4 italic text-zinc-500 text-xs">
+                <Suspense fallback={<Fallback />}>
+                    <Await resolve={product}>
+                        {(loaded: IProduct) => (
+                            <>
+                                <ImgSide product={loaded} className="md:col-start-1 md:col-end-3" />
+                                <InforSide product={loaded} className="md:col-start-3 md:col-end-6" />
+                                <DetailDescriptionSide product={loaded} className="mt-6 md:col-start-1 md:col-end-6" />
+                            </>)
+                        }
+                    </Await>
+                </Suspense>
+            </div>
+            <RelatedProducts />
         </Container>
     );
 }

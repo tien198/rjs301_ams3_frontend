@@ -11,7 +11,7 @@ function Banner() {
     )
 }
 
-function ShopRoot() {
+export default function ShopRoot() {
     return (
         <Container className="flex flex-col gap-4">
             <ProductModal />
@@ -20,5 +20,3 @@ function ShopRoot() {
         </Container>
     );
 }
-
-export default ShopRoot;

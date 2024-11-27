@@ -21,7 +21,7 @@ export default function RelatedProducts({ className }: Props) {
     );
 }
 
-export function loader(args: LoaderFunctionArgs) {
+export function relatedoader(args: LoaderFunctionArgs) {
     const related = store.getState().fetchedProducts.products.filter(i => i.category)
 
 }

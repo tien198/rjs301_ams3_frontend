@@ -1,11 +1,9 @@
-import { Await, defer, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { defer, LoaderFunctionArgs } from "react-router-dom";
 import Container from "../../components/UI/Container";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 import store from "../../store";
 import { productLoader } from "../../routes/loaders/productsLoaders";
-import { Suspense } from "react";
-import { Fallback } from "../../components/layout/Fallback";
 import ImgSide from "./ImgSide";
 import InforSide from "./InforSide";
 import DetailDescriptionSide from "./DetailDescriptionSide";
@@ -26,19 +24,8 @@ export default function DetailIndex() {
             <div className="grid md:grid-cols-5 gap-4 2xl:gap-10">
                 <ImgSide className="md:col-start-1 md:col-end-3" />
                 <InforSide className="md:col-start-3 md:col-end-6" />
-                {/* <DetailDescriptionSide className="mt-8 md:col-start-1 md:col-end-6" /> */}
-                {/* </>)
-                        }
-                    </Await>
-                </Suspense> */}
-
-                {/* <Suspense fallback={<Fallback />}>
-                    <Await resolve={product}>
-                        {(loaded: IProduct) => (
-                            <RelatedProducts className="mt-8 md:col-start-1 md:col-end-6" />
-                        )}
-                    </Await>
-                </Suspense> */}
+                <DetailDescriptionSide className="mt-8 md:col-start-1 md:col-end-6" />
+                <RelatedProducts className="mt-8 md:col-start-1 md:col-end-6" />
             </div>
         </Container>
     );

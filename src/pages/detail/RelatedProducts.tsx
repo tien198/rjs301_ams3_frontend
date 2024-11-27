@@ -3,30 +3,26 @@ import ProductsContainer from "../../components/layout/ProductsContainer";
 import store from "../../store";
 import { DetailProps } from ".";
 import { Suspense, useEffect, useState } from "react";
-import { Fallback } from "../../components/layout/Fallback";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
-import { Product } from "../../ultil/Models/implementations/Product";
 import ProductItem from "../../components/layout/ProductIem";
+import ProductsFallback from "../../components/layout/ProductsFallback";
 
-function RelatedProducts({ product, className, isFallback }: DetailProps) {
-    const [relatedProds, setRelatedProds] = useState<IProduct[]>(new Array('', '', '').map(i => new Product()))
-    console.log(relatedProds);
+function RelatedProducts({ product, className, isFallback = false }: DetailProps) {
+    const [relatedProds, setRelatedProds] = useState<IProduct[]>()
+    console.log(isFallback);
+
 
     useEffect(() => {
         // fetch Related Products in here 
         // then dispath to `relatedProds` state
+
     }, [])
     return (
         <div className={className}>
-            <h4 className="text-2xl uppercase">Related Products</h4>
-            <div>
-                <button className="text-xl text-red-600 mt-6">Add Related Products in here (don't forget)</button>
-                <p className="text-zinc-500 italic">Reuse `ProductContainer` in `Home`</p>
-
-            </div>
+            <h4 className="text-2xl uppercase mb-6">Related Products</h4>
             <ProductsContainer >
-                {isFallback && relatedProds.map((_, i) => <div className="h-32"><Fallback key={i} /></div>)}
-                {!isFallback && relatedProds.map(i => <ProductItem product={i} key={i._id?.$oid} />)}
+                {isFallback && <ProductsFallback />}
+                {relatedProds?.map(i => <ProductItem product={i} key={i._id?.$oid} />)}
             </ProductsContainer>
         </div>
     );
@@ -45,7 +41,7 @@ export default function RelatedProductsSuspense({ className }: DetailProps) {
     )
 }
 
-export function relatedoader(args: LoaderFunctionArgs) {
+function relatedLoader(args: LoaderFunctionArgs) {
     const related = store.getState().fetchedProducts.products.filter(i => i.category)
 
 }

@@ -1,15 +1,16 @@
 import { Suspense } from "react";
-import { Fallback } from "../../components/layout/Fallback";
 import { Await, defer, LoaderFunctionArgs, useRouteLoaderData } from "react-router-dom";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import ProductModal from "../../components/layout/ProductModal";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
-import { productsLoader } from "../../routes/loaders/productsLoaders";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 import ProductsContainer from "../../components/layout/ProductsContainer";
 import Container from "../../components/UI/Container";
-import { SectionTitle } from "../../components/UI/SectionWithTitle";
+import SectionTitle from "../../components/UI/SectionWithTitle";
+import ProductsFallback from "../../components/layout/ProductsFallback";
+
+import { productsLoader } from "../../routes/loaders/productsLoaders";
 
 
 export default function TrendingProduct() {
@@ -20,8 +21,8 @@ export default function TrendingProduct() {
     <Container className="italic">
       <ProductModal />
       <SectionTitle h4="Top Trending Products" h5="Made The Hard Way" />
-      <Suspense fallback={<Fallback />}>
-        <ProductsContainer>
+      <ProductsContainer>
+        <Suspense fallback={<ProductsFallback />}>
           <Await resolve={trendingProducts}>
             {(loaded: IProduct[]) => {
               return loaded.map((i) => (
@@ -29,8 +30,8 @@ export default function TrendingProduct() {
               ));
             }}
           </Await>
-        </ProductsContainer>
-      </Suspense>
+        </Suspense>
+      </ProductsContainer>
     </Container>
   );
 }

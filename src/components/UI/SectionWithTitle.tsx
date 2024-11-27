@@ -3,7 +3,7 @@ interface ISectionTileProps {
     h4: string
     h5: string
 }
-export function SectionTitle(props: ISectionTileProps) {
+export default function SectionTitle(props: ISectionTileProps) {
     const { h4 = null, h5 = null } = props
     return (
         <div className="mb-10">

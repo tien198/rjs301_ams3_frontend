@@ -3,14 +3,16 @@ import { show as showAction } from "../../store/modalSlice";
 import { setProduct } from "../../store/productModalSlice";
 import convertToFraction from "../../ultil/convertToFraction";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
+import { Fallback } from "./Fallback";
 // css
 import classes from "./ProductItem.module.css";
 
-interface IProductItemProp {
+interface DetailProps {
   product: IProduct;
   className?: string;
+  isFallback?: boolean;
 }
-export default function ProductItem({ product, className }: IProductItemProp) {
+export default function ProductItem({ product, className, isFallback = false }: DetailProps) {
   const dispath = useAppDispath();
 
   const show = () => {
@@ -24,16 +26,19 @@ export default function ProductItem({ product, className }: IProductItemProp) {
         ${classes["product-item"]} 
         ${classes["fade-out"]}
         ${className}`}
-      onClick={show}
-    >
-      <img
-        src={product.img1}
-        alt={product.name}
-        className="object-contain"
-      />
-      <p>{product.name}</p>
+      onClick={show}>
+      {isFallback
+        ? <Fallback className={classes['img']} />
+        : <img src={product.img1} alt={product.name}
+          className={`object-contain ${classes['img']}`} />
+      }
+      <p>{isFallback ?
+        product.name
+        : product.name}</p>
       <span className="text-zinc-500">
-        {convertToFraction(product.price)} VND
+        {isFallback ?
+          <Fallback />
+          : convertToFraction(product.price)} VND
       </span>
     </section>
   );

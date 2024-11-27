@@ -1,6 +1,5 @@
 import { Await, defer, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
-import { Fallback } from "../../components/layout/Fallback";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
@@ -8,6 +7,7 @@ import { productsLoader } from "../../routes/loaders/productsLoaders";
 import redirectToLowercaseUrl from "../../routes/loaders/redirectToLowercaseUrl";
 import { hideModalDispath } from "../../routes/dispaths/hideModalDispath";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
+import ProductsFallback from "../../components/layout/ProductsFallback";
 
 export default function ProductsBoard() {
   const loader: any = useLoaderData();
@@ -15,7 +15,7 @@ export default function ProductsBoard() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-center italic">
-      <Suspense fallback={<Fallback />}>
+      <Suspense fallback={<ProductsFallback />}>
         <Await resolve={products}>
           {(loaded: IProduct[]) =>
             loaded.map(i => <ProductItem product={i} key={i._id?.$oid} />)

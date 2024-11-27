@@ -9,12 +9,14 @@ import ProductsFallback from "../../components/layout/ProductsFallback";
 
 function RelatedProducts({ product, className, isFallback = false }: DetailProps) {
     const [relatedProds, setRelatedProds] = useState<IProduct[]>()
+    product
     console.log(isFallback);
 
 
     useEffect(() => {
         // fetch Related Products in here 
         // then dispath to `relatedProds` state
+        setRelatedProds([])
 
     }, [])
     return (
@@ -41,7 +43,9 @@ export default function RelatedProductsSuspense({ className }: DetailProps) {
     )
 }
 
-function relatedLoader(args: LoaderFunctionArgs) {
+export function relatedLoader(args: LoaderFunctionArgs) {
+    args
     const related = store.getState().fetchedProducts.products.filter(i => i.category)
+    related
 
 }

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { DetailProps } from "."
 import { Await, useAsyncValue, useLoaderData } from "react-router-dom"
 import { Fallback } from "../../components/layout/Fallback"

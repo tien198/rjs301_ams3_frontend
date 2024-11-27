@@ -14,7 +14,7 @@ export default function ProductsBoard() {
   const { products } = loader;
 
   return (
-    <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4 justify-center italic uppercase ">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-center italic">
       <Suspense fallback={<Fallback />}>
         <Await resolve={products}>
           {(loaded: IProduct[]) =>

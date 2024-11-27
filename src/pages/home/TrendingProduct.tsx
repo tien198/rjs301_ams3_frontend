@@ -1,34 +1,25 @@
-import { PropsWithChildren, Suspense } from "react";
+import { Suspense } from "react";
 import { Fallback } from "../../components/layout/Fallback";
 import { Await, defer, LoaderFunctionArgs, useRouteLoaderData } from "react-router-dom";
-import Container from "../../components/UI/Container";
-import { SectionTitle } from "../../components/UI/SectionWithTitle";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import ProductModal from "../../components/layout/ProductModal";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
 import { productsLoader } from "../../routes/loaders/productsLoaders";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
+import ProductsContainer from "../../components/layout/ProductsContainer";
+import Container from "../../components/UI/Container";
+import { SectionTitle } from "../../components/UI/SectionWithTitle";
 
-function ProductsContainer({ children }: PropsWithChildren) {
-  return (
-    <Container className="italic">
-      <SectionTitle h4="Top Trending Products" h5="Made The Hard Way" />
-      <div className="grid gap-7 w-full justify-between grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-center">
-        {children}
-      </div>
-    </Container>
-  );
-}
 
 export default function TrendingProduct() {
   const loader: any = useRouteLoaderData("home-page");
   const { trendingProducts } = loader;
 
-
   return (
-    <>
+    <Container className="italic">
       <ProductModal />
+      <SectionTitle h4="Top Trending Products" h5="Made The Hard Way" />
       <Suspense fallback={<Fallback />}>
         <ProductsContainer>
           <Await resolve={trendingProducts}>
@@ -40,7 +31,7 @@ export default function TrendingProduct() {
           </Await>
         </ProductsContainer>
       </Suspense>
-    </>
+    </Container>
   );
 }
 

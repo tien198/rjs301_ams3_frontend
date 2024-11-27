@@ -30,13 +30,19 @@ export default function DetailIndex() {
                             <>
                                 <ImgSide product={loaded} className="md:col-start-1 md:col-end-3" />
                                 <InforSide product={loaded} className="md:col-start-3 md:col-end-6" />
-                                <DetailDescriptionSide product={loaded} className="mt-6 md:col-start-1 md:col-end-6" />
+                                <DetailDescriptionSide product={loaded} className="mt-8 md:col-start-1 md:col-end-6" />
                             </>)
                         }
                     </Await>
                 </Suspense>
+                <Suspense fallback={<Fallback />}>
+                    <Await resolve={product}>
+                        {(loaded: IProduct) => (
+                            <RelatedProducts className="mt-8 md:col-start-1 md:col-end-6" />
+                        )}
+                    </Await>
+                </Suspense>
             </div>
-            <RelatedProducts />
         </Container>
     );
 }

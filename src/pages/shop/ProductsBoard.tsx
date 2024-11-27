@@ -40,9 +40,9 @@ export function allLoader(loaderArgs: LoaderFunctionArgs) {
   });
 }
 
-export function categorizedProductsLoader({ params, request }: LoaderFunctionArgs) {
-  redirectToLowercaseUrl(request.url)
-  hideModalDispath()
+export function categorizedProductsLoader(args: LoaderFunctionArgs) {
+  loaderInitiation(args)
+  const { params } = args
 
   const fetchedProducts = store.getState().fetchedProducts.products
   if (fetchedProducts.length > 0)

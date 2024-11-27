@@ -1,4 +1,4 @@
-import { defer, LoaderFunctionArgs, useNavigation } from "react-router-dom";
+import { defer, LoaderFunctionArgs } from "react-router-dom";
 import Container from "../../components/UI/Container";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";

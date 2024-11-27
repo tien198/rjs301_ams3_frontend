@@ -9,7 +9,7 @@ import { IProduct } from "../../ultil/Models/interfaces/IProduct"
 
 function InforSide({ product = {}, className, isFallback = false }: DetailProps) {
     return (
-        <div className={`${className} flex flex-col gap-4 h-full justify-between`}>
+        <div className={`${className} flex flex-col gap-4 h-full justify-between left-in`}>
             <h1 className="uppercase text-black text-3xl 2xl:text-5xl">{isFallback ? <Fallback /> : product!.name}</h1>
             <span className="text-xl">{isFallback ? <Fallback /> : convertToFraction(product!.price) + ' VNĐ'}</span>
             <p>{isFallback ? <Fallback /> : product!.short_desc}</p>

@@ -24,7 +24,8 @@ export default function ProductItem({ product, className, isFallback = false }: 
     <section
       className={`flex flex-col gap-2 h-full justify-between items-center text-center
         ${classes["product-item"]} 
-        ${classes["fade-out"]}
+        // fade-out is definded in index.css
+        fade-out
         ${className}`}
       onClick={show}>
       {isFallback

@@ -7,7 +7,7 @@ function AddToCartBtn() {
     const increase = () => setVal(prev => ++prev)
     const decrease = () => setVal(prev => --prev)
     return (
-        <div className="flex">
+        <div className="flex fade-out">
             <div className="flex gap-4 items-center border border-zinc-950">
                 <span className="px-4 py-2 uppercase">Quantity</span>
                 <span className="flex items-center">

@@ -1,4 +1,4 @@
-import { defer, LoaderFunctionArgs } from "react-router-dom";
+import { defer, LoaderFunctionArgs, useNavigation } from "react-router-dom";
 import Container from "../../components/UI/Container";
 import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
@@ -19,9 +19,10 @@ export interface DetailProps {
 
 export default function DetailIndex() {
     useScrollToTopPage()
+
     return (
         <Container className="italic text-zinc-500 text-xs xl:text-sm 2xl:text-xl">
-            <div className="grid md:grid-cols-5 gap-4 2xl:gap-10">
+            <div className="grid md:grid-cols-5 gap-4 2xl:gap-10 w-full">
                 <ImgSide className="md:col-start-1 md:col-end-3" />
                 <InforSide className="md:col-start-3 md:col-end-6" />
                 <DetailDescriptionSide className="mt-8 md:col-start-1 md:col-end-6" />

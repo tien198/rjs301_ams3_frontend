@@ -12,7 +12,7 @@ interface ThumbnailProps {
 function Thumbnail({ imgSrc, imgAlt, onHandleThumbnail }: ThumbnailProps) {
     return <img src={imgSrc} alt={imgAlt}
         onClick={onHandleThumbnail?.bind(null, [imgSrc])}
-        className="cursor-pointer h-full" />
+        className="cursor-pointer h-16 md:h-14 lg:h-16 2xl:h-24 object-cover fade-out" />
 }
 
 interface ThumbnailListProps extends DetailProps, ThumbnailProps { }
@@ -33,10 +33,11 @@ interface ImageProps {
 }
 function Image({ currentImg, setCurrentImg }: ImageProps) {
     const loaded: any = useAsyncValue()
+
     useEffect(() => {
         setCurrentImg(loaded.img1)
-    }, [])
-    return <img src={currentImg} alt={loaded.name} className="h-full w-full object-cover" />
+    }, [loaded])
+    return <img src={currentImg} alt={loaded.name} className="h-full w-full object-cover fade-out" />
 }
 
 export default function ImgSide({ className }: DetailProps) {
@@ -50,9 +51,9 @@ export default function ImgSide({ className }: DetailProps) {
             <div className="col-start-1 col-end-2">
                 <Suspense fallback={<Fallback />}>
                     <Await resolve={product}
-                        children={(loaded: IProduct) => {
-                            return <ThumbnailList product={loaded} onHandleThumbnail={setCurrentImg} />
-                        }}>
+                        children={(loaded: IProduct) =>
+                            <ThumbnailList product={loaded} onHandleThumbnail={setCurrentImg} />
+                        }>
                     </Await>
                 </Suspense>
             </div>

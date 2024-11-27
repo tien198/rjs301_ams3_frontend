@@ -39,7 +39,7 @@ export default function Banner() {
 
     return (
         <div style={{ backgroundImage: `url('${bannerUrl}')` }}
-            className={`${classes['banner']} ${classes['banner-h']} ${classes['position']} bg md:mx-14 lg:mx-40 xl:mx-72 2xl:mx-80 relative`}>
+            className={`${classes['banner']} ${classes['banner-h']} ${classes['position']} bg md:mx-14 lg:mx-40 xl:mx-72 2xl:mx-80 relative bot-up`}>
             <BannerContents />
         </div >
     );

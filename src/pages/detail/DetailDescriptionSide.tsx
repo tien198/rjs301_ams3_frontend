@@ -8,7 +8,7 @@ function DetailDescriptionSide({ product = {}, className, isFallback = false }: 
     const article = product!.long_desc?.split('\n') || new Array<string>('', '', '')
 
     return (
-        <div className={`${className} flex flex-col gap-4 2xl:gap-6`}>
+        <div className={`${className} flex flex-col gap-4 2xl:gap-6 left-in`}>
             <div >
                 <span className="inline-block bg-zinc-900 text-white px-5 py-3 uppercase">
                     Description

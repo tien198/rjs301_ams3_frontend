@@ -1,18 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import convertToFraction from "../../ultil/convertToFraction";
 import Modal from "../UI/Modal";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { PageUrlsList } from "../../ultil/UltilEnums";
-import { hide as hideModalAction } from "../../store/modalSlice";
 
 function ProductModal() {
     const prodState = useAppSelector(({ productModal }) => productModal.product)
-    const dispath = useAppDispath()
     const navigate = useNavigate()
     function navigateToDetail(productId: string) {
-        dispath(hideModalAction())
         navigate(`${PageUrlsList.Detail}/${productId}`)
     }
     return (

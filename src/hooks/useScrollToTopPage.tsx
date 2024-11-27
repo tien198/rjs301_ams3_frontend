@@ -7,10 +7,18 @@ export default function useScrollToTopPage() {
     const animationAccept = useAppSelector(({ logoState }) => logoState.animationAccept)
     const dispath = useAppDispath()
 
-    useNavigation().state === 'idle' && scrollTo(0, 0)
+    useNavigation().state === 'idle' && scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
     useEffect(() => {
         if (window.scrollY > 0)
-            scrollTo(0, 0)
+            scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth"
+            })
         if (window.scrollY === 0)
             animationAccept && dispath(setLogoState('scroll-up'))
     }, [])

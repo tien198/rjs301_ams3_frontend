@@ -4,8 +4,6 @@ import { IProduct } from "../../ultil/Models/interfaces/IProduct";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";
 import { productsLoader } from "../../routes/loaders/productsLoaders";
-import redirectToLowercaseUrl from "../../routes/loaders/redirectToLowercaseUrl";
-import { hideModalDispath } from "../../routes/dispaths/hideModalDispath";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 import ProductsFallback from "../../components/layout/ProductsFallback";
 

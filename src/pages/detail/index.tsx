@@ -14,34 +14,31 @@ import useScrollToTopPage from "../../hooks/useScrollToTopPage";
 
 // DetailProps interface is used for `ImgSide.tsx` & `InforSide.tsx`
 export interface DetailProps {
-    product: IProduct
+    product?: IProduct
     className?: string
+    isFallback?: boolean
 }
 
 export default function DetailIndex() {
     useScrollToTopPage()
-    const { product }: IProduct | any = useLoaderData()
     return (
         <Container className="italic text-zinc-500 text-xs xl:text-sm 2xl:text-xl">
             <div className="grid md:grid-cols-5 gap-4 2xl:gap-10">
-                <Suspense fallback={<Fallback />}>
-                    <Await resolve={product}>
-                        {(loaded: IProduct) => (
-                            <>
-                                <ImgSide product={loaded} className="md:col-start-1 md:col-end-3" />
-                                <InforSide product={loaded} className="md:col-start-3 md:col-end-6" />
-                                <DetailDescriptionSide product={loaded} className="mt-8 md:col-start-1 md:col-end-6" />
-                            </>)
+                <ImgSide className="md:col-start-1 md:col-end-3" />
+                <InforSide className="md:col-start-3 md:col-end-6" />
+                {/* <DetailDescriptionSide className="mt-8 md:col-start-1 md:col-end-6" /> */}
+                {/* </>)
                         }
                     </Await>
-                </Suspense>
-                <Suspense fallback={<Fallback />}>
+                </Suspense> */}
+
+                {/* <Suspense fallback={<Fallback />}>
                     <Await resolve={product}>
                         {(loaded: IProduct) => (
                             <RelatedProducts className="mt-8 md:col-start-1 md:col-end-6" />
                         )}
                     </Await>
-                </Suspense>
+                </Suspense> */}
             </div>
         </Container>
     );

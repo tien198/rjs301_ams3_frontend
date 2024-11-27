@@ -1,4 +1,4 @@
 
 export function Fallback() {
-    return <div className='text-center text-2xl italic mt-56'>Loading ...</div>
+    return <span className="inline-block rounded-md bg-zinc-200 animate-pulse w-full h-full"></span>
 }

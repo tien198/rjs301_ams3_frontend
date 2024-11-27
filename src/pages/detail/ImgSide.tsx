@@ -1,5 +1,8 @@
-import { useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { DetailProps } from "."
+import { Await, useAsyncValue, useLoaderData } from "react-router-dom"
+import { Fallback } from "../../components/layout/Fallback"
+import { IProduct } from "../../ultil/Models/interfaces/IProduct"
 
 interface ThumbnailProps {
     imgSrc?: string
@@ -16,24 +19,49 @@ interface ThumbnailListProps extends DetailProps, ThumbnailProps { }
 function ThumbnailList({ product, onHandleThumbnail }: ThumbnailListProps) {
     return (
         <div className="flex flex-col gap-2 h-full">
-            {product.img1 && <Thumbnail imgSrc={product.img1} imgAlt={product.name!} onHandleThumbnail={onHandleThumbnail} />}
-            {product.img2 && <Thumbnail imgSrc={product.img2} imgAlt={product.name!} onHandleThumbnail={onHandleThumbnail} />}
-            {product.img3 && <Thumbnail imgSrc={product.img3} imgAlt={product.name!} onHandleThumbnail={onHandleThumbnail} />}
-            {product.img4 && <Thumbnail imgSrc={product.img4} imgAlt={product.name!} onHandleThumbnail={onHandleThumbnail} />}
+            {product!.img1 && <Thumbnail imgSrc={product!.img1} imgAlt={product!.name!} onHandleThumbnail={onHandleThumbnail} />}
+            {product!.img2 && <Thumbnail imgSrc={product!.img2} imgAlt={product!.name!} onHandleThumbnail={onHandleThumbnail} />}
+            {product!.img3 && <Thumbnail imgSrc={product!.img3} imgAlt={product!.name!} onHandleThumbnail={onHandleThumbnail} />}
+            {product!.img4 && <Thumbnail imgSrc={product!.img4} imgAlt={product!.name!} onHandleThumbnail={onHandleThumbnail} />}
         </div>
     )
 }
 
-export default function ImgSide({ product, className }: DetailProps) {
-    const [currentImg, setCurrentImg] = useState<string>(product.img1!)
+interface ImageProps {
+    currentImg: string
+    setCurrentImg: Function
+}
+function Image({ currentImg, setCurrentImg }: ImageProps) {
+    const loaded: any = useAsyncValue()
+    useEffect(() => {
+        setCurrentImg(loaded.img1)
+    }, [])
+    return <img src={currentImg} alt={loaded.name} className="h-full w-full object-cover" />
+}
+
+export default function ImgSide({ className }: DetailProps) {
+    const { product }: any = useLoaderData()
+    const [currentImg, setCurrentImg] = useState<string>('')
 
     return (
+        // Grid template (4 cols) 1fr - 3fr
         <div className={`${className} grid grid-cols-4 gap-4`}>
+
             <div className="col-start-1 col-end-2">
-                <ThumbnailList product={product} onHandleThumbnail={setCurrentImg} />
+                <Suspense fallback={<Fallback />}>
+                    <Await resolve={product}
+                        children={(loaded: IProduct) => {
+                            return <ThumbnailList product={loaded} onHandleThumbnail={setCurrentImg} />
+                        }}>
+                    </Await>
+                </Suspense>
             </div>
             <div className="col-start-2 col-end-5">
-                <img src={currentImg} alt={product.name} className="h-full w-full object-cover" />
+                <Suspense fallback={<Fallback />}>
+                    <Await resolve={product}>
+                        <Image currentImg={currentImg} setCurrentImg={setCurrentImg} />
+                    </Await>
+                </Suspense>
             </div>
         </div>
     )

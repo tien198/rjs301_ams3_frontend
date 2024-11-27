@@ -1,7 +1,7 @@
 import { DetailProps } from ".";
 
 function DetailDescriptionSide({ product, className }: DetailProps) {
-    const article = product.long_desc?.split('\n')
+    const article = product!.long_desc?.split('\n')
 
     return (
         <div className={`${className} flex flex-col gap-4 2xl:gap-6`}>

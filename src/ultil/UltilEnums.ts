@@ -1,7 +1,8 @@
 export enum BackendAPI {
     base = 'https://rjs301ams3backend-production.up.railway.app/',
-    products = 'https://rjs301ams3backend-production.up.railway.app/products/',
+    products = base + 'products/',
     // products = 'http://localhost:8080/products/'
+    signup = base + 'signup/'
 }
 
 export enum PageUrlsList {
@@ -14,6 +15,6 @@ export enum PageUrlsList {
     Signup = '/signup'
 }
 
-export enum BannerUrl{
-    url='/banner1.png'
+export enum BannerUrl {
+    url = '/banner1.png'
 }

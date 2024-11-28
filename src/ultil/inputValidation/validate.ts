@@ -1,4 +1,5 @@
-export function isNotNull(inputTitle: string, inputVal: string) {
+
+export function isNotNull(inputTitle: string, inputVal: string): [boolean, string?] {
     if (inputVal !== '')
         return [true]
     else
@@ -8,7 +9,7 @@ export function isNotNull(inputTitle: string, inputVal: string) {
         ]
 }
 
-export function isMinLength(inputTitle: string, inputVal: string, minLength = 8) {
+export function isMinLength(inputTitle: string, inputVal: string, minLength = 8): [boolean, string?] {
     if (inputVal.length >= 8)
         return [true]
     else return [
@@ -21,6 +22,7 @@ export default function validate(inputTitle: string, inputVal: string | number, 
     let msg = ''
     for (const func of funcArr) {
         const result = func(inputTitle, inputVal)
+        // result of functions is an Array [boolean, string?] - boolean indicate valid or not - string? is error message
         if (!result[0]) {
             msg = result[1]
             break

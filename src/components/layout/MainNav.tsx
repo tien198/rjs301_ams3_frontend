@@ -67,12 +67,15 @@ export default function MainNav() {
         !animationAccept && dispath(setLogoState('scroll-down'))
         if (window.scrollY > 0)
             animationAccept && dispath(setLogoState('scroll-down'))
-        window.addEventListener('scroll', () => {
+        function navBarAnimate()  {
             if (window.scrollY > 0)
-                animationAccept && dispath(setLogoState('scroll-down'))
+                 dispath(setLogoState('scroll-down'))
             else
-                animationAccept && dispath(setLogoState('scroll-up'))
-        })
+                 dispath(setLogoState('scroll-up'))
+        }
+        
+        if(animationAccept) window.addEventListener('scroll',navBarAnimate)
+        else window.removeEventListener('scroll', navBarAnimate)
     }, [animationAccept])
 
     return (

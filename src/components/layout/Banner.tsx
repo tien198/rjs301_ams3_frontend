@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import classes from './Banner.module.css'
-import { PageUrlsList } from '../../ultil/UltilEnums'
+import { BannerUrl, PageUrlsList } from '../../ultil/UltilEnums'
 
 interface IMainButton {
     children?: any
@@ -35,10 +35,8 @@ function BannerContents() {
 // -------------------------------------------------------------------------------------------------------------------------------------------
 
 export default function Banner() {
-    const bannerUrl = '/banner1.png'
-
     return (
-        <div style={{ backgroundImage: `url('${bannerUrl}')` }}
+        <div style={{ backgroundImage: `url('${BannerUrl.url}')` }}
             className={`${classes['banner']} ${classes['banner-h']} ${classes['position']} bg md:mx-14 lg:mx-40 xl:mx-72 2xl:mx-80 relative bot-up`}>
             <BannerContents />
         </div >

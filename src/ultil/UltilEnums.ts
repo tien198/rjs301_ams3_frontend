@@ -11,5 +11,9 @@ export enum PageUrlsList {
     Cart = '/cart',
     Checkout = '/checkout',
     Login = '/login',
-    Register = '/register'
+    Signup = '/signup'
+}
+
+export enum BannerUrl{
+    url='/banner1.png'
 }

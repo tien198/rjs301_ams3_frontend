@@ -6,8 +6,9 @@ import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid
 // import Logo from "../../assets/Logo";
 import Logo from "../../assets/Logo.svg";
 import Container from "../UI/Container";
-import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { setLogoState } from "../../store/logoSlice";
+import store from "../../store";
 
 
 function navLinkStateClass({ isActive }: NavLinkRenderProps) {
@@ -54,27 +55,26 @@ function NavRightUl() {
         </ul>
     )
 }
-
+function navBarAnimate() {
+    if (window.scrollY > 0)
+        store.dispatch(setLogoState('scroll-down'))
+    else
+        store.dispatch(setLogoState('scroll-up'))
+}
 
 // EXPORT DEFAULT ----------------------------------------------
 export default function MainNav() {
     // const [logoState, setLogoState] = useState('base')
     const { state: logoState, animationAccept } = useAppSelector(({ logoState }) => logoState)
-    const dispath = useAppDispath()
+    const dispath = useAppDispatch()
     // const [color, setColor] = useState('#000')
 
     useEffect(() => {
         !animationAccept && dispath(setLogoState('scroll-down'))
         if (window.scrollY > 0)
             animationAccept && dispath(setLogoState('scroll-down'))
-        function navBarAnimate()  {
-            if (window.scrollY > 0)
-                 dispath(setLogoState('scroll-down'))
-            else
-                 dispath(setLogoState('scroll-up'))
-        }
-        
-        if(animationAccept) window.addEventListener('scroll',navBarAnimate)
+
+        if (animationAccept) window.addEventListener('scroll', navBarAnimate)
         else window.removeEventListener('scroll', navBarAnimate)
     }, [animationAccept])
 

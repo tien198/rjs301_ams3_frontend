@@ -7,7 +7,7 @@ import TrendingProduct from './TrendingProduct';
 export default function HomeIndex() {
     useScrollToTopPage()
     return (
-        <div className='flex flex-col gap-24'>
+        <div className='flex flex-col gap-24 mb-12'>
             <Banner />
             <CategoriesBrowser />
             <TrendingProduct />

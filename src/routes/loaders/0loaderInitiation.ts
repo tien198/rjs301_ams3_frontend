@@ -6,8 +6,5 @@ import { logoAnimationAcceptDispath } from "../dispaths/logoAnimationAcceptDispa
 export default function loaderInitiation(loaderArgs: LoaderFunctionArgs, logoAnimationAccept = true) {
     redirectToLowercaseUrl(loaderArgs.request.url)
     hideModalDispath()
-    if (logoAnimationAccept)
-        logoAnimationAcceptDispath(true)
-    else
-        logoAnimationAcceptDispath(false)
+    logoAnimationAcceptDispath(logoAnimationAccept)
 }

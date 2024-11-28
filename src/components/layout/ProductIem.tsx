@@ -1,4 +1,4 @@
-import { useAppDispath } from "../../hooks/reduxHooks";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 import { show as showAction } from "../../store/modalSlice";
 import { setProduct } from "../../store/productModalSlice";
 import convertToFraction from "../../ultil/convertToFraction";
@@ -13,7 +13,7 @@ interface DetailProps {
   isFallback?: boolean;
 }
 export default function ProductItem({ product, className, isFallback = false }: DetailProps) {
-  const dispath = useAppDispath();
+  const dispath = useAppDispatch();
 
   const show = () => {
     dispath(showAction());

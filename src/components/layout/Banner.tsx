@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import classes from './Banner.module.css'
 import { BannerUrl, PageUrlsList } from '../../ultil/UltilEnums'
+// css
+import classes from './Banner.module.css'
 
 interface IMainButton {
     children?: any

@@ -1,11 +1,11 @@
 import { useEffect } from "react"
-import { useAppDispath, useAppSelector } from "./reduxHooks"
+import { useAppDispatch, useAppSelector } from "./reduxHooks"
 import { setLogoState } from "../store/logoSlice"
 import { useNavigation } from "react-router-dom"
 
 export default function useScrollToTopPage() {
     const animationAccept = useAppSelector(({ logoState }) => logoState.animationAccept)
-    const dispath = useAppDispath()
+    const dispath = useAppDispatch()
 
     useNavigation().state === 'idle' && scrollTo({
         top: 0,

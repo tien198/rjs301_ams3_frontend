@@ -1,13 +1,13 @@
 import { PropsWithChildren, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useAppDispath, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { hide as hideAction, hideCustom as fadingHide } from "../../store/modalSlice";
 // css
 import classes from './Modal.module.css'
 
 function Modal({ children }: PropsWithChildren) {
     const hidden = useAppSelector(({ modal }) => modal.hiddenClass)
-    const dispath = useAppDispath()
+    const dispath = useAppDispatch()
 
     const hide = () => {
         dispath(fadingHide(classes['fading-hidden']))

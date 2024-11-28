@@ -3,7 +3,7 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import useTwoWayBinding from "../../hooks/useTwoWayBinding";
 
 function AddToCartBtn() {
-    const { val, setVal, onChangeVal } = useTwoWayBinding<number>(1)
+    const [val, onChangeVal, setVal] = useTwoWayBinding<number>(1)
     const increase = () => setVal(prev => ++prev)
     const decrease = () => setVal(prev => --prev)
     return (

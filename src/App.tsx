@@ -12,8 +12,8 @@ import Test from './pages/2Test'
 const Detail = lazy(() => import('./pages/detail'))
 const Cart = lazy(() => import('./pages/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
-const Login = lazy(() => import('./pages/Login'))
-const Register = lazy(() => import('./pages/Register'))
+const Login = lazy(() => import('./pages/authentication/Login'))
+const Signup = lazy(() => import('./pages/authentication/Signup'))
 
 
 
@@ -54,13 +54,15 @@ const router = createBrowserRouter([
         path: 'login',
         element: <Suspense fallback={<Fallback />}>
           <Login />
-        </Suspense>
+        </Suspense>,
+        loader: (args) => import('./pages/authentication/Signup').then(i => i.loader(args))
       },
       {
-        path: 'register',
+        path: 'signup',
         element: <Suspense fallback={<Fallback />}>
-          <Register />
-        </Suspense>
+          <Signup />
+        </Suspense>,
+        loader: (args) => import('./pages/authentication/Signup').then(i => i.loader(args))
       },
       {
         path: 'test',

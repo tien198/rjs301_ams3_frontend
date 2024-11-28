@@ -43,7 +43,7 @@ function NavRightUl() {
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/user' className={navLinkStateClass}>
+                <NavLink to='/signup' className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faUser} className="mr-1" />
                     <span className="hidden md:inline">User</span>
                 </NavLink>
@@ -63,8 +63,8 @@ export default function MainNav() {
     const dispath = useAppDispath()
     // const [color, setColor] = useState('#000')
 
-    !animationAccept && dispath(setLogoState('scroll-down'))
     useEffect(() => {
+        !animationAccept && dispath(setLogoState('scroll-down'))
         if (window.scrollY > 0)
             animationAccept && dispath(setLogoState('scroll-down'))
         window.addEventListener('scroll', () => {
@@ -73,7 +73,7 @@ export default function MainNav() {
             else
                 animationAccept && dispath(setLogoState('scroll-up'))
         })
-    }, [])
+    }, [animationAccept])
 
     return (
         <>

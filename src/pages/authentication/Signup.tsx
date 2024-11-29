@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useActionData, useLocation, useSubmit } from 'react-router-dom';
+import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useActionData, useSubmit } from 'react-router-dom';
 
 import loaderInitiation from '../../routes/loaders/0loaderInitiation';
 import { BackendAPI, BannerUrl, PageUrlsList } from '../../ultil/ultilEnums';
@@ -18,15 +18,14 @@ import { addJwt } from '../../ultil/authenTokenUltil';
 
 // css
 import classes from './Authen.module.scss'
+import NameInput from './formInputs/NameInput';
+import EmailInput from './formInputs/EmailInput';
+import PasswordInput from './formInputs/PasswordInput';
+import PhoneInput from './formInputs/PhoneInput';
 
 
 function Authenticate() {
     useScrollToTopPage()
-    const location = useLocation()
-    let isLogin: boolean
-
-    if (location.pathname === PageUrlsList.Login) isLogin = true
-    else isLogin = false
 
     const [name, onChangeName] = useTwoWayBinding<string>()
     const [email, onChangeEmail] = useTwoWayBinding<string>()
@@ -74,35 +73,28 @@ function Authenticate() {
         <div style={{ backgroundImage: `url(${BannerUrl.url})`, backgroundRepeat: 'repeat', backgroundPosition: '0% 50%', backgroundSize: 'contain' }}>
             <Container className="text-zinc-500 text-center italic py-10">
                 <div className={`${classes['authen-form']} bg-white mx-auto rounded-2xl`}>
-                    <h1 className="py-16 capitalize text-2xl font-thin">
-                        {isLogin ? 'Log In' : 'Sign Up'}
-                    </h1>
+                    <h1 className="py-16 capitalize text-2xl font-thin">Sign Up</h1>
                     <form onSubmit={submitHandler} className={`px-3 md:px-6`}>
                         <div className='flex flex-col'>
-                            {!isLogin && <input type="text" placeholder='Full Name' value={name} onChange={onChangeName} />}
-                            {!isLogin && <ErrorMsg msg={isSubmited ? nameErrorMsg : ''} />}
+                            <NameInput value={name} onChangeVal={onChangeName} />
+                            <ErrorMsg msg={isSubmited ? nameErrorMsg : ''} />
 
-                            <input type="text" placeholder='Email' value={email} onChange={onChangeEmail} />
+                            <EmailInput value={email} onChangeVal={onChangeEmail} />
                             <ErrorMsg msg={isSubmited ? emailErrorMsg : ''} />
-                            {!isLogin && <ErrorMsg msg={isSubmited ? uniqueEmailMsg : ''} />}
+                            <ErrorMsg msg={isSubmited ? uniqueEmailMsg : ''} />
 
-                            <input type="password" placeholder='Password' value={password} onChange={onChangePassword} />
-                            {!isLogin && <ErrorMsg msg={isSubmited ? passwordErrorMsg : ''} />}
+                            <PasswordInput value={password} onChangeVal={onChangePassword} />
+                            <ErrorMsg msg={isSubmited ? passwordErrorMsg : ''} />
 
-                            {!isLogin && <input type="number" placeholder='Phone' value={phone} onChange={onChangePhone} />}
-                            {!isLogin && <ErrorMsg msg={isSubmited ? phoneErrorMsg : ''} />}
+                            <PhoneInput value={phone} onChangeVal={onChangePhone} />
+                            <ErrorMsg msg={isSubmited ? phoneErrorMsg : ''} />
 
                         </div>
-                        <button className='w-full py-4 mt-8 bg-zinc-900 text-white capitalize'>
-                            {
-                                isLogin ? 'Sign in' : 'Sign up'
-                            }
-                        </button>
+                        <button className='w-full py-4 mt-8 bg-zinc-900 text-white capitalize'>Sign up</button>
                     </form>
                     <span className='inline-block py-14'>
-                        <Link to={isLogin ? PageUrlsList.Signup : PageUrlsList.Login}>
-                            {isLogin ? 'Create an account?' : 'Login?'}
-                            <span className='text-blue-500'> Click</span>
+                        <Link to={PageUrlsList.Login}>
+                            Login? <span className='text-blue-500'> Click</span>
                         </Link>
                     </span>
                 </div>

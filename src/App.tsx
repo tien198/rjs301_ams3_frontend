@@ -8,11 +8,13 @@ import { Fallback } from './components/layout/Fallback'
 import shopRoute from './routes/shopRoute'
 // use for testing
 import Test from './pages/2Test'
+import { PageUrlsList } from './ultil/ultilEnums'
 
 const Detail = lazy(() => import('./pages/detail'))
 const Cart = lazy(() => import('./pages/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
-const Authenticate = lazy(() => import('./pages/authentication'))
+const Signup = lazy(() => import('./pages/authentication/Signup'))
+const Login = lazy(() => import('./pages/authentication/Login'))
 
 
 
@@ -31,38 +33,39 @@ const router = createBrowserRouter([
       },
       shopRoute,
       {
-        path: 'detail/:productId',
+        path: `${PageUrlsList.Detail}/:productId`,
         element: <Suspense fallback={<Fallback />}>
           <Detail />
         </Suspense>,
         loader: (args) => import('./pages/detail').then(i => i.loader(args))
       },
       {
-        path: 'cart',
+        path: PageUrlsList.Cart,
         element: <Suspense fallback={<Fallback />}>
           <Cart />
         </Suspense>
       },
       {
-        path: 'checkout',
+        path: PageUrlsList.Checkout,
         element: <Suspense fallback={<Fallback />}>
           <Checkout />
         </Suspense>
       },
       {
-        path: 'login',
+        path: PageUrlsList.Login,
         element: <Suspense fallback={<Fallback />}>
-          <Authenticate />
+          <Login />
         </Suspense>,
-        loader: (args) => import('./pages/authentication').then(i => i.loader(args))
+        loader: (args) => import('./pages/authentication/Login').then(i => i.loader(args)),
+        action: (args) => import('./pages/authentication/Login').then(i => i.action(args))
       },
       {
-        path: 'signup',
+        path: PageUrlsList.Signup,
         element: <Suspense fallback={<Fallback />}>
-          <Authenticate />
+          <Signup />
         </Suspense>,
-        loader: (args) => import('./pages/authentication').then(i => i.loader(args)),
-        action: (args) => import('./pages/authentication').then(i => i.action(args))
+        loader: (args) => import('./pages/authentication/Signup').then(i => i.loader(args)),
+        action: (args) => import('./pages/authentication/Signup').then(i => i.action(args))
       },
       {
         path: 'test',

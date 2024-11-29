@@ -3,7 +3,7 @@ export enum BackendAPI {
     products = base + 'products/',
     // products = 'http://localhost:8080/products/'
     signup = base + 'signup/',
-    signin = base + 'login/'
+    login = base + 'login/'
 }
 
 export enum PageUrlsList {

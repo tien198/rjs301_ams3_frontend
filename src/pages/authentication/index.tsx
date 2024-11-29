@@ -1,5 +1,5 @@
 
-import { ActionFunctionArgs, Form, Link, LoaderFunctionArgs, useActionData, useLocation, useSubmit } from 'react-router-dom';
+import { ActionFunctionArgs, Link, LoaderFunctionArgs, useActionData, useLocation, useSubmit } from 'react-router-dom';
 import loaderInitiation from '../../routes/loaders/0loaderInitiation';
 import { BackendAPI, BannerUrl, PageUrlsList } from '../../ultil/UltilEnums';
 import Container from '../../components/UI/Container';
@@ -21,25 +21,31 @@ function Authenticate() {
     if (location.pathname === PageUrlsList.Login) isLogin = true
     else isLogin = false
 
-    const resData = useActionData()
     const submit = useSubmit()
+    const resData = useActionData()
+    resData
 
-    const [name, onChangeName] = useTwoWayBinding()
-    const [email, onChangeEmail] = useTwoWayBinding()
-    const [password, onChangePassword] = useTwoWayBinding()
-    const [phone, onChangePhone] = useTwoWayBinding()
+    const [name, onChangeName] = useTwoWayBinding<string>()
+    const [email, onChangeEmail] = useTwoWayBinding<string>()
+    const [password, onChangePassword] = useTwoWayBinding<string>()
+    const [phone, onChangePhone] = useTwoWayBinding<number>()
 
     // useValidate was attached useMemo()
     const nameErrorMsg = useValidate('Name', name, [isNotNull])
     const emailErrorMsg = useValidate('Email', email, [isNotNull])
-    const passwordErrorMsg = useValidate('Password', password, [isNotNull, isMinLength.bind(undefined, '', '', 8)])
+    const passwordErrorMsg = useValidate('Password', password, [isNotNull, isMinLength.bind(null, 8)])
     const phoneErrorMsg = useValidate('Phone', phone, [isNotNull])
 
     const [isSubmited, setIsSubmited] = useState(false)
     function submitHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsSubmited(true)
-        submit({})
+
+        submit(null, {})
+        // submit({}, {
+        //     action: location.pathname,
+        //     method: 'POST'
+        // })
     }
 
     return (
@@ -90,6 +96,7 @@ export function loader(args: LoaderFunctionArgs) {
 }
 
 export async function action(args: ActionFunctionArgs) {
+    args
     const response = await fetch(BackendAPI.signup)
     return response
 }

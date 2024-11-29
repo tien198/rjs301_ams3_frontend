@@ -6,10 +6,10 @@ import { ChangeEvent, ChangeEventHandler, useState } from "react"
  * @returns Array [val, onChangeVal, setVal]
  */
 
-export default function useTwoWayBinding(initialState = ''): [string, ChangeEventHandler<HTMLInputElement>, React.Dispatch<React.SetStateAction<string>>] {
-    const [val, setVal] = useState(initialState!)
+export default function useTwoWayBinding<T>(initialState?:T): [T, ChangeEventHandler<HTMLInputElement>, React.Dispatch<React.SetStateAction<T>>] {
+    const [val, setVal] = useState<T>(initialState|| <T>(''))
     function onChangeVal(e: ChangeEvent<HTMLInputElement>) {
-        setVal((e.target.value))
+        setVal(<T>(e.target.value))
     }
     return [
         val,

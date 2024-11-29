@@ -6,13 +6,14 @@ import { useNavigation } from "react-router-dom"
 export default function useScrollToTopPage() {
     const animationAccept = useAppSelector(({ logoState }) => logoState.animationAccept)
     const dispath = useAppDispatch()
+    const navigationState = useNavigation().state
 
-    useNavigation().state === 'idle' && scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-    })
     useEffect(() => {
+        navigationState === 'idle' && scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        })
         if (window.scrollY > 0)
             scrollTo({
                 top: 0,

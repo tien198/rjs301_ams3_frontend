@@ -99,8 +99,8 @@ export async function action(args: ActionFunctionArgs) {
     if (response.status === 422)
         return response
     if (response.status === 200) {
-        const jwt = new AuthenResponse(await response.json())
-        addJwt(jwt.token)
+        const authenRes = new AuthenResponse(await response.json())
+        addJwt(authenRes.token)
     }
 
     return redirect('/')

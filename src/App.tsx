@@ -61,7 +61,8 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<Fallback />}>
           <Authenticate />
         </Suspense>,
-        loader: (args) => import('./pages/authentication').then(i => i.loader(args))
+        loader: (args) => import('./pages/authentication').then(i => i.loader(args)),
+        action: (args) => import('./pages/authentication').then(i => i.action(args))
       },
       {
         path: 'test',

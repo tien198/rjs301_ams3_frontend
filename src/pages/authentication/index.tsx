@@ -1,17 +1,22 @@
-
+import { useEffect, useState } from 'react';
 import { ActionFunctionArgs, Link, LoaderFunctionArgs, useActionData, useLocation, useSubmit } from 'react-router-dom';
+
 import loaderInitiation from '../../routes/loaders/0loaderInitiation';
 import { BackendAPI, BannerUrl, PageUrlsList } from '../../ultil/UltilEnums';
-import Container from '../../components/UI/Container';
 import useTwoWayBinding from '../../hooks/useTwoWayBinding';
+import useScrollToTopPage from '../../hooks/useScrollToTopPage';
+import Container from '../../components/UI/Container';
+import ErrorMsg from '../../components/UI/ErrorMsg';
+import useValidate from '../../hooks/useValidate';
+
+import { isMinLength, isNotNull } from '../../ultil/inputValidation/validate';
+import User from '../../ultil/Models/implementations/User';
 
 // css
 import classes from './Authen.module.scss'
-import useScrollToTopPage from '../../hooks/useScrollToTopPage';
-import ErrorMsg from '../../components/UI/ErrorMsg';
-import useValidate from '../../hooks/useValidate';
-import { isMinLength, isNotNull } from '../../ultil/inputValidation/validate';
-import { useState } from 'react';
+import AuthenError from '../../ultil/Models/implementations/AuthenError';
+import { faL } from '@fortawesome/free-solid-svg-icons';
+
 
 function Authenticate() {
     useScrollToTopPage()
@@ -21,9 +26,7 @@ function Authenticate() {
     if (location.pathname === PageUrlsList.Login) isLogin = true
     else isLogin = false
 
-    const submit = useSubmit()
-    const resData = useActionData()
-    resData
+
 
     const [name, onChangeName] = useTwoWayBinding<string>()
     const [email, onChangeEmail] = useTwoWayBinding<string>()
@@ -36,16 +39,28 @@ function Authenticate() {
     const passwordErrorMsg = useValidate('Password', password, [isNotNull, isMinLength.bind(null, 8)])
     const phoneErrorMsg = useValidate('Phone', phone, [isNotNull])
 
+    // Validate that email is unique
+    const submit = useSubmit()
+    const actionData = useActionData()
+    const authenError = new AuthenError(actionData)
+    const [isUniqueEmail, setIsUniqueEmail] = useState(true)
+    useEffect(() => {
+        if (authenError) {
+            authenError.email && setIsUniqueEmail(false)
+        }
+    }, [authenError])
+
     const [isSubmited, setIsSubmited] = useState(false)
     function submitHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsSubmited(true)
 
-        submit(null, {})
-        // submit({}, {
-        //     action: location.pathname,
-        //     method: 'POST'
-        // })
+        const user = new User(email, password, name, phone)
+
+        submit(Object(user), {
+            action: location.pathname,
+            method: 'POST'
+        })
     }
 
     return (
@@ -96,7 +111,18 @@ export function loader(args: LoaderFunctionArgs) {
 }
 
 export async function action(args: ActionFunctionArgs) {
-    args
-    const response = await fetch(BackendAPI.signup)
-    return response
+    // args
+    const data = Object.fromEntries((await args.request.formData()).entries())
+
+    const response = await fetch(BackendAPI.signup, {
+        method: args.request.method,
+        headers: {
+            // MIME type (media type || content type)
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+    if (response.status === 442)
+        return response
+
 }

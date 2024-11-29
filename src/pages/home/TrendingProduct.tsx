@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Await, defer, LoaderFunctionArgs, useRouteLoaderData } from "react-router-dom";
-import { IProduct } from "../../ultil/Models/interfaces/IProduct";
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 import ProductModal from "../../components/layout/ProductModal";
 import ProductItem from "../../components/layout/ProductIem";
 import store from "../../store";

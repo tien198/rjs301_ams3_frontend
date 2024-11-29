@@ -1,6 +1,6 @@
 import { defer, LoaderFunctionArgs } from "react-router-dom";
 import Container from "../../components/UI/Container";
-import { IProduct } from "../../ultil/Models/interfaces/IProduct";
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 import loaderInitiation from "../../routes/loaders/0loaderInitiation";
 import store from "../../store";
 import { productLoader } from "../../routes/loaders/productsLoaders";

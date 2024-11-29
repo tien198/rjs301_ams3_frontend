@@ -11,8 +11,8 @@ import Container from '../../components/UI/Container';
 import ErrorMsg from '../../components/UI/ErrorMsg';
 import useValidate from '../../hooks/useValidate';
 import { isMinLength, isNotNull } from '../../ultil/inputValidation/validate';
-import User from '../../ultil/Models/implementations/User';
-import ErrrorObj from '../../ultil/Models/implementations/Error';
+import User from '../../ultil/DataModels/implementations/User';
+import ErrrorObj from '../../ultil/DataModels/implementations/Error';
 
 // css
 import classes from './Authen.module.scss'

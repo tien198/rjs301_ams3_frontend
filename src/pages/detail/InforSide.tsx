@@ -4,7 +4,7 @@ import convertToFraction from "../../ultil/convertToFraction"
 import AddToCartBtn from "./AddToCartBtn"
 import { Suspense } from "react"
 import { Fallback } from "../../components/layout/Fallback"
-import { IProduct } from "../../ultil/Models/interfaces/IProduct"
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct"
 
 
 function InforSide({ product = {}, className, isFallback = false }: DetailProps) {

@@ -3,7 +3,7 @@ import ProductsContainer from "../../components/layout/ProductsContainer";
 import store from "../../store";
 import { DetailProps } from ".";
 import { Suspense, useEffect, useState } from "react";
-import { IProduct } from "../../ultil/Models/interfaces/IProduct";
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 import ProductItem from "../../components/layout/ProductIem";
 import ProductsFallback from "../../components/layout/ProductsFallback";
 import { getProducts } from "../../routes/loaders/productsLoaders";

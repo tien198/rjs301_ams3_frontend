@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { DetailProps } from ".";
 import { Fallback } from "../../components/layout/Fallback";
 import { Await, useLoaderData } from "react-router-dom";
-import { IProduct } from "../../ultil/Models/interfaces/IProduct";
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 
 function DetailDescriptionSide({ product = {}, className, isFallback = false }: DetailProps) {
     const article = product!.long_desc?.split('\n') || new Array<string>('', '', '')

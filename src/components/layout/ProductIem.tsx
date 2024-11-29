@@ -2,7 +2,7 @@ import { useAppDispatch } from "../../hooks/reduxHooks";
 import { show as showAction } from "../../store/modalSlice";
 import { setProduct } from "../../store/productModalSlice";
 import convertToFraction from "../../ultil/convertToFraction";
-import { IProduct } from "../../ultil/Models/interfaces/IProduct";
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 import { Fallback } from "./Fallback";
 // css
 import classes from "./ProductItem.module.css";

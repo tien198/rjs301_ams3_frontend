@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from "react"
 import { DetailProps } from "."
 import { Await, useAsyncValue, useLoaderData } from "react-router-dom"
 import { Fallback } from "../../components/layout/Fallback"
-import { IProduct } from "../../ultil/Models/interfaces/IProduct"
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct"
 
 interface ThumbnailProps {
     imgSrc?: string

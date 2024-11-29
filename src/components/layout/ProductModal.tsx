@@ -4,7 +4,7 @@ import convertToFraction from "../../ultil/convertToFraction";
 import Modal from "../UI/Modal";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { PageUrlsList } from "../../ultil/UltilEnums";
+import { PageUrlsList } from "../../ultil/ultilEnums";
 
 function ProductModal() {
     const prodState = useAppSelector(({ productModal }) => productModal.product)

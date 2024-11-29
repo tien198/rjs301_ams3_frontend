@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { BannerUrl, PageUrlsList } from '../../ultil/UltilEnums'
+import { BannerUrl, PageUrlsList } from '../../ultil/ultilEnums'
 // css
 import classes from './Banner.module.css'
 

@@ -19,3 +19,7 @@ export enum PageUrlsList {
 export enum BannerUrl {
     url = '/banner1.png'
 }
+
+export enum StorageEnum {
+    authenToken = 'boutique-authen-token'
+}

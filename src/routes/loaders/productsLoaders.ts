@@ -2,7 +2,7 @@ import store from "../../store"
 import { addManyProducts } from "../../store/fetchedProductsSlice";
 import { addOneProduct as addOneProductToDetailProducts } from "../../store/fetchedDetailProductsSlice";
 import { IProduct } from "../../ultil/DataModels/interfaces/IProduct"
-import { BackendAPI } from "../../ultil/UltilEnums"
+import { BackendAPI } from "../../ultil/ultilEnums"
 
 async function dispatchProductsToStore(products: IProduct[] | IProduct) {
     if (Array.isArray(products))

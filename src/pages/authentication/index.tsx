@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
-import { ActionFunctionArgs, Link, LoaderFunctionArgs, useActionData, useLocation, useSubmit } from 'react-router-dom';
+import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useActionData, useLocation, useSubmit } from 'react-router-dom';
 
 import loaderInitiation from '../../routes/loaders/0loaderInitiation';
 import { BackendAPI, BannerUrl, PageUrlsList } from '../../ultil/UltilEnums';
 import useTwoWayBinding from '../../hooks/useTwoWayBinding';
 import useScrollToTopPage from '../../hooks/useScrollToTopPage';
 import Container from '../../components/UI/Container';
+
+// validate inputs
 import ErrorMsg from '../../components/UI/ErrorMsg';
 import useValidate from '../../hooks/useValidate';
-
 import { isMinLength, isNotNull } from '../../ultil/inputValidation/validate';
 import User from '../../ultil/Models/implementations/User';
+import ErrrorObj from '../../ultil/Models/implementations/Error';
 
 // css
 import classes from './Authen.module.scss'
-import AuthenError from '../../ultil/Models/implementations/AuthenError';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 
 
 function Authenticate() {
@@ -42,18 +42,27 @@ function Authenticate() {
     // Validate that email is unique
     const submit = useSubmit()
     const actionData = useActionData()
-    const authenError = new AuthenError(actionData)
-    const [isUniqueEmail, setIsUniqueEmail] = useState(true)
-    useEffect(() => {
-        if (authenError) {
-            authenError.email && setIsUniqueEmail(false)
-        }
-    }, [authenError])
 
+    const [uniqueEmailMsg, setUniqueEmailMsg] = useState('')
+    useEffect(() => {
+        if (actionData) {
+            const authenError = new ErrrorObj(actionData)
+            authenError.errors.email && setUniqueEmailMsg(authenError.errors.email)
+        }
+    }, [actionData])
+
+    useEffect(() => {
+        setUniqueEmailMsg('')
+    }, [email])
     const [isSubmited, setIsSubmited] = useState(false)
     function submitHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsSubmited(true)
+
+        if (nameErrorMsg || emailErrorMsg || passwordErrorMsg || phoneErrorMsg)
+            return null
+
+        console.log('after validate');
 
         const user = new User(email, password, name, phone)
 
@@ -77,6 +86,7 @@ function Authenticate() {
 
                             <input type="text" placeholder='Email' value={email} onChange={onChangeEmail} />
                             {!isLogin && isSubmited && <ErrorMsg msg={emailErrorMsg} />}
+                            {!isLogin && isSubmited && <ErrorMsg msg={uniqueEmailMsg} />}
 
                             <input type="password" placeholder='Password' value={password} onChange={onChangePassword} />
                             {!isLogin && isSubmited && <ErrorMsg msg={passwordErrorMsg} />}
@@ -122,7 +132,7 @@ export async function action(args: ActionFunctionArgs) {
         },
         body: JSON.stringify(data),
     })
-    if (response.status === 442)
+    if (response.status === 422)
         return response
-
+    return redirect('/')
 }

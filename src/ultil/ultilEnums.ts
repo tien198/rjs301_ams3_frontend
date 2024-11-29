@@ -1,7 +1,7 @@
 export enum BackendAPI {
+    // base = 'http://localhost:8080/',
     base = 'https://rjs301ams3backend-production.up.railway.app/',
     products = base + 'products/',
-    // products = 'http://localhost:8080/products/'
     signup = base + 'signup/',
     login = base + 'login/'
 }

@@ -115,8 +115,6 @@ export async function action(args: ActionFunctionArgs) {
     // args
     const data = Object.fromEntries((await args.request.formData()).entries())
 
-    console.log(new URL(args.request.url).pathname)
-
     const response = await fetch(BackendAPI.signup, {
         method: args.request.method,
         headers: {

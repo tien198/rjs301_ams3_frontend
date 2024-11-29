@@ -88,7 +88,6 @@ export async function action(args: ActionFunctionArgs) {
     // args
     const data = Object.fromEntries((await args.request.formData()).entries())
 
-
     const response = await fetch(BackendAPI.login, {
         method: args.request.method,
         headers: {

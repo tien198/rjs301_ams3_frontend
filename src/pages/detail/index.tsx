@@ -9,6 +9,7 @@ import InforSide from "./InforSide";
 import DetailDescriptionSide from "./DetailDescriptionSide";
 import RelatedProducts from "./RelatedProducts";
 import useScrollToTopPage from "../../hooks/useScrollToTopPage";
+import useScrollToTopWhenPageIdle from "../../hooks/useScrollToTopWhenPageIdle";
 
 // DetailProps interface is used for `ImgSide.tsx` & `InforSide.tsx`
 export interface DetailProps {
@@ -19,6 +20,7 @@ export interface DetailProps {
 
 export default function DetailIndex() {
     useScrollToTopPage()
+    useScrollToTopWhenPageIdle()
 
     return (
         <Container className="italic text-zinc-500 text-xs xl:text-sm 2xl:text-xl">

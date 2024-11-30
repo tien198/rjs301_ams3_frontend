@@ -40,6 +40,7 @@ function NavLeftUl() {
 function NavRightUl() {
     const isLogin = getJwt()
     const userInfo = useMemo(() => getUserInfor(), [isLogin])
+
     const submit = useFetcher().submit
 
     const logout = useCallback(function logout() {

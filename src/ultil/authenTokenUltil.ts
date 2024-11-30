@@ -11,7 +11,7 @@ export function getJwt() {
     return localStorage.getItem(StorageEnum.authenToken)
 }
 
-export function getUserInfor() {
+export function getUserInfor(): User | undefined {
     const inforJson = localStorage.getItem(StorageEnum.userInfor)
     return User.fromObject(JSON.parse(inforJson!))
 }

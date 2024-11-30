@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, NavLink, NavLinkRenderProps, useFetcher } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -41,6 +41,11 @@ function NavRightUl() {
     const isLogin = getJwt()
     const userInfo = useMemo(() => getUserInfor(), [isLogin])
 
+    // set user name to re-render
+    const [userName, setUserName] = useState(userInfo?.name)
+    useEffect(() => setUserName(userInfo?.name), [userInfo])
+
+    // submit to logout
     const submit = useFetcher().submit
 
     const logout = useCallback(function logout() {
@@ -64,7 +69,7 @@ function NavRightUl() {
             {isLogin && <li>
                 <NavLink to={PageUrlsList.Login} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faUser} className="mr-1" />
-                    <span className="hidden md:inline capitalize">{userInfo.name}</span>
+                    <span className="hidden md:inline capitalize">{userName}</span>
                 </NavLink>
             </li>}
             {isLogin && <li>

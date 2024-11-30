@@ -113,7 +113,7 @@ export async function action(args: ActionFunctionArgs) {
         },
         body: JSON.stringify(data),
     })
-    if (response.status === 422)
+    if (response.status === 422 || response.status === 401)
         return response
     if (response.status === 200) {
         const authenRes = new AuthenResponse(await response.json())

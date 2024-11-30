@@ -13,7 +13,8 @@ export enum PageUrlsList {
     Cart = '/cart',
     Checkout = '/checkout',
     Login = '/login',
-    Signup = '/signup'
+    Signup = '/signup',
+    Logout = '/logout',
 }
 
 export enum BannerUrl {

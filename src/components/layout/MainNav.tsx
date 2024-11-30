@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, NavLink, NavLinkRenderProps } from "react-router-dom";
+import { Link, NavLink, NavLinkRenderProps, useFetcher } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid-svg-icons";
 // import Logo from "../../assets/Logo";
@@ -39,6 +39,11 @@ function NavLeftUl() {
 
 function NavRightUl() {
     const isLogin = getJwt()
+    const submit = useFetcher().submit
+    function logout() {
+        submit(null, { action: PageUrlsList.Logout, method: 'POST' })
+    }
+
     return (
         <ul className="flex gap-6">
             <li>
@@ -60,7 +65,7 @@ function NavRightUl() {
                 </NavLink>
             </li>}
             {isLogin && <li>
-                <NavLink to='/logout' className={navLinkStateClass}>( Logout )</NavLink>
+                <button onClick={logout}>( Logout )</button>
             </li>}
         </ul>
     )

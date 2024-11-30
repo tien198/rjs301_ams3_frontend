@@ -7,3 +7,7 @@ export function addJwt(token: string) {
 export function getJwt() {
     return localStorage.getItem(StorageEnum.authenToken)
 }
+
+export function removeJwt() {
+    return localStorage.removeItem(StorageEnum.authenToken)
+}

@@ -22,5 +22,6 @@ export enum BannerUrl {
 }
 
 export enum StorageEnum {
-    authenToken = 'boutique-authen-token'
+    authenToken = 'boutique-authen-token',
+    userInfor = 'user-infor'
 }

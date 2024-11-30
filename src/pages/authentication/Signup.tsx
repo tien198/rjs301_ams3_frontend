@@ -131,7 +131,7 @@ export async function action(args: ActionFunctionArgs) {
 
     if (response.status === 201) {
         const authenRes = new AuthenResponse(await response.json())
-        addJwt(authenRes.token)
+        addJwt(authenRes)
     }
     return redirect('/')
 }

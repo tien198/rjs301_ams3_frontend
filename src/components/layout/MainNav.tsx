@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { Link, NavLink, NavLinkRenderProps, useFetcher } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import Container from "../UI/Container";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { setLogoState } from "../../store/logoSlice";
 import store from "../../store";
-import { getJwt } from "../../ultil/authenTokenUltil";
+import { getJwt, getUserInfor } from "../../ultil/authenTokenUltil";
 import { PageUrlsList } from "../../ultil/ultilEnums";
 
 // css
@@ -39,10 +39,12 @@ function NavLeftUl() {
 
 function NavRightUl() {
     const isLogin = getJwt()
+    const userInfo = useMemo(() => getUserInfor(), [isLogin])
     const submit = useFetcher().submit
-    function logout() {
+
+    const logout = useCallback(function logout() {
         submit(null, { action: PageUrlsList.Logout, method: 'POST' })
-    }
+    }, [])
 
     return (
         <ul className="flex gap-6">
@@ -61,7 +63,7 @@ function NavRightUl() {
             {isLogin && <li>
                 <NavLink to={PageUrlsList.Login} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faUser} className="mr-1" />
-                    <span className="hidden md:inline">User</span>
+                    <span className="hidden md:inline capitalize">{userInfo.name}</span>
                 </NavLink>
             </li>}
             {isLogin && <li>

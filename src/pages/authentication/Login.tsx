@@ -58,7 +58,6 @@ function Login() {
             return null
 
         const user = new User(email, password)
-
         submit(Object(user), {
             action: location.pathname,
             method: 'POST'
@@ -118,7 +117,7 @@ export async function action(args: ActionFunctionArgs) {
         return response
     if (response.status === 200) {
         const authenRes = new AuthenResponse(await response.json())
-        addJwt(authenRes.token)
+        addJwt(authenRes)
     }
 
     return redirect('/')

@@ -69,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: PageUrlsList.Logout,
-        action: () => import('./pages/authentication/Logout').then(i => i.logout())
+        action: () => import('./pages/authentication/Logout').then(i => i.action())
       },
       {
         path: 'test',

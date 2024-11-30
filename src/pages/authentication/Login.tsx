@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useSubmit } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useActionData, useNavigate, useNavigation, useSubmit } from 'react-router-dom';
 
 import loaderInitiation from '../../routes/loaders/0loaderInitiation';
 import { BackendAPI, BannerUrl, PageUrlsList } from '../../ultil/ultilEnums';
@@ -19,6 +19,7 @@ import { addJwt } from '../../ultil/authenTokenUltil';
 import classes from './Authen.module.scss'
 import EmailInput from './formInputs/EmailInput';
 import PasswordInput from './formInputs/PasswordInput';
+import AuthenError from '../../ultil/DataModels/implementations/AuthenError';
 
 
 function Login() {
@@ -33,13 +34,27 @@ function Login() {
 
     // Validate input before submit
     const submit = useSubmit()
+    const actionData = useActionData()
+    const [loginErrorMsg, setLoginErrorMsg] = useState('')
+
+    useEffect(() => {
+        if (actionData) {
+            const authenError = new AuthenError(actionData)
+            setLoginErrorMsg(authenError.errors.credentials!)
+        }
+    }, [actionData])
+
+    useEffect(() => {
+        setLoginErrorMsg('')
+    }, [email, password])
+
 
     const [isSubmited, setIsSubmited] = useState(false)
     function submitHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsSubmited(true)
 
-        if (emailErrorMsg || passwordErrorMsg)
+        if (emailErrorMsg || passwordErrorMsg || loginErrorMsg)
             return null
 
         const user = new User(email, password)
@@ -49,6 +64,9 @@ function Login() {
             method: 'POST'
         })
     }
+
+    // unable submit button while submitting
+    const isSubmitting = useNavigation().state === 'submitting'
 
     return (
         <div style={{ backgroundImage: `url(${BannerUrl.url})`, backgroundRepeat: 'repeat', backgroundPosition: '0% 50%', backgroundSize: 'contain' }}>
@@ -61,9 +79,9 @@ function Login() {
                             <ErrorMsg msg={isSubmited ? emailErrorMsg : ''} />
 
                             <PasswordInput value={password} onChangeVal={onChangePassword} />
-                            <ErrorMsg msg={isSubmited ? passwordErrorMsg : ''} />
+                            <ErrorMsg msg={isSubmited ? passwordErrorMsg || loginErrorMsg : ''} />
                         </div>
-                        <button className='w-full py-4 mt-8 bg-zinc-900 text-white capitalize'>Sign in</button>
+                        <button disabled={isSubmitting} className={`w-full py-4 mt-8 bg-zinc-900 capitalize ${isSubmitting ? 'text-zinc-700' : 'text-white'}`}>Sign in</button>
                     </form>
                     <span className='inline-block py-14'>
                         <Link to={PageUrlsList.Signup}>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useActionData, useSubmit } from 'react-router-dom';
+import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useActionData, useNavigation, useSubmit } from 'react-router-dom';
 
 import loaderInitiation from '../../routes/loaders/0loaderInitiation';
 import { BackendAPI, BannerUrl, PageUrlsList } from '../../ultil/ultilEnums';
@@ -69,6 +69,9 @@ function Authenticate() {
         })
     }
 
+    // unable submit button while submitting
+    const isSubmitting = useNavigation().state === 'submitting'
+
     return (
         <div style={{ backgroundImage: `url(${BannerUrl.url})`, backgroundRepeat: 'repeat', backgroundPosition: '0% 50%', backgroundSize: 'contain' }}>
             <Container className="text-zinc-500 text-center italic py-10">
@@ -90,7 +93,7 @@ function Authenticate() {
                             <ErrorMsg msg={isSubmited ? phoneErrorMsg : ''} />
 
                         </div>
-                        <button className='w-full py-4 mt-8 bg-zinc-900 text-white capitalize'>Sign up</button>
+                        <button disabled={isSubmitting} className={`w-full py-4 mt-8 bg-zinc-900 capitalize ${isSubmitting ? 'text-zinc-700' : 'text-white'}`}>Sign up</button>
                     </form>
                     <span className='inline-block py-14'>
                         <Link to={PageUrlsList.Login}>

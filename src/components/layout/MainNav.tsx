@@ -1,6 +1,5 @@
-import classes from "./MainNav.module.css";
 import { useEffect } from "react";
-import { NavLink, NavLinkRenderProps } from "react-router-dom";
+import { Link, NavLink, NavLinkRenderProps } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHouse, faShop, faUser } from "@fortawesome/free-solid-svg-icons";
 // import Logo from "../../assets/Logo";
@@ -9,7 +8,11 @@ import Container from "../UI/Container";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { setLogoState } from "../../store/logoSlice";
 import store from "../../store";
+import { getJwt } from "../../ultil/authenTokenUltil";
+import { PageUrlsList } from "../../ultil/ultilEnums";
 
+// css
+import classes from "./MainNav.module.css";
 
 function navLinkStateClass({ isActive }: NavLinkRenderProps) {
     return isActive ? 'link-active' : ''
@@ -19,13 +22,13 @@ function NavLeftUl() {
     return (
         <ul className="flex gap-4">
             <li>
-                <NavLink to='/' className={navLinkStateClass}>
+                <NavLink to={PageUrlsList.Home} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faHouse} className="mr-1" />
                     <span>Home</span>
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/shop' className={navLinkStateClass}>
+                <NavLink to={PageUrlsList.Shop} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faShop} className="mr-1" />
                     <span>Shop</span>
                 </NavLink>
@@ -35,23 +38,30 @@ function NavLeftUl() {
 }
 
 function NavRightUl() {
+    const isLogin = getJwt()
     return (
         <ul className="flex gap-6">
             <li>
-                <NavLink to='/cart' className={navLinkStateClass}>
+                <NavLink to={PageUrlsList.Cart} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faCartShopping} className="mr-1" />
                     <span className="hidden md:inline">Cart</span>
                 </NavLink>
             </li>
-            <li>
-                <NavLink to='/signup' className={navLinkStateClass}>
+            {!isLogin && <li>
+                <NavLink to={PageUrlsList.Login} className={navLinkStateClass}>
+                    <FontAwesomeIcon icon={faUser} className="mr-1" />
+                    <span className="hidden md:inline">Sign in</span>
+                </NavLink>
+            </li>}
+            {isLogin && <li>
+                <NavLink to={PageUrlsList.Login} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faUser} className="mr-1" />
                     <span className="hidden md:inline">User</span>
                 </NavLink>
-            </li>
-            <li>
+            </li>}
+            {isLogin && <li>
                 <NavLink to='/logout' className={navLinkStateClass}>( Logout )</NavLink>
-            </li>
+            </li>}
         </ul>
     )
 }
@@ -81,10 +91,10 @@ export default function MainNav() {
     return (
         <>
             <header className="fixed w-full font-medium h-16 bg-white z-50">
-                <span className={`${classes['logo-container']} ${classes[logoState]} z-0`}>
+                <Link to={PageUrlsList.Home} className={`${classes['logo-container']} ${classes[logoState]} z-0`}>
                     {/* <Logo color={color} /> */}
                     <img src={Logo} alt="Boutique logo" />
-                </span>
+                </Link>
                 <Container className=" py-4 relative z-10">
                     <nav className={`flex items-center justify-between w-full h-full ${classes['nav']}`}>
                         <span className="block md:hidden"></span>

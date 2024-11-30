@@ -13,7 +13,7 @@ export function isNotNull(inputTitle: string, inputVal: string): [boolean, strin
  * using Function.bind(null, minLength) before using in validate
  * @returns 
  */
-export function isMinLength( minLength = 8,inputTitle: string, inputVal: string): [boolean, string?] {
+export function isMinLength(minLength = 8, inputTitle: string, inputVal: string): [boolean, string?] {
     if (inputVal.length >= 8)
         return [true]
     else return [

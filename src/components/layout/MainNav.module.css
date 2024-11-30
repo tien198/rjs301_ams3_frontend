@@ -1,12 +1,8 @@
 .logo-container {
-  display: block;
-  position: absolute;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .logo-container.base {
-  left: 50%;
-  top: 150%;
   width: 100%;
 }
 
@@ -28,135 +24,60 @@
 
 @keyframes scroll-down {
   0% {
-    left: 50%;
-    top: 150%;
+    transform: translate3d(0, 0, 0);
     width: 100%;
   }
 
   100% {
-    left: 23%;
-    top: 50%;
+    transform: translate3d(1rem, -3.75rem, 0);
     width: 9rem;
   }
 }
 
 @keyframes scroll-up {
   0% {
-    left: 23%;
-    top: 50%;
+    transform: translate3d(1rem, -3.75rem, 0);
     width: 9rem;
   }
 
   100% {
-    left: 50%;
-    top: 150%;
+    transform: translate3d(0, 0, 0);
     width: 100%;
   }
 }
 
 @media (min-width: 768px) {
   .logo-container.base {
-    left: 50%;
-    top: 180%;
     width: 40%;
+  }
+
+  .logo-align {
+    margin: 0 auto;
   }
 
   @keyframes scroll-down {
     0% {
-      left: 50%;
-      top: 180%;
       width: 40%;
     }
 
     100% {
-      left: 50%;
-      top: 50%;
+      transform: translate3d(0px, -2.75rem, 0px);
       width: 9rem;
+      top: 0;
+      left: 0;
     }
   }
 
   @keyframes scroll-up {
     0% {
-      left: 50%;
-      top: 50%;
+      transform: translate3d(0px, -2.75rem, 0px);
       width: 9rem;
+      top: 0;
+      left: 0;
     }
 
     100% {
-      left: 50%;
-      top: 180%;
-      width: 40%;
-    }
-  }
-}
-
-@media (min-width: 1024px) {
-  .logo-container.base {
-    left: 50%;
-    top: 200%;
-    width: 40%;
-  }
-
-  @keyframes scroll-down {
-    0% {
-      left: 50%;
-      top: 200%;
-      width: 40%;
-    }
-
-    100% {
-      left: 50%;
-      top: 50%;
-      width: 9rem;
-    }
-  }
-
-  @keyframes scroll-up {
-    0% {
-      left: 50%;
-      top: 50%;
-      width: 9rem;
-    }
-
-    100% {
-      left: 50%;
-      top: 200%;
-      width: 40%;
-    }
-  }
-}
-
-@media (min-width: 1536px) {
-  .logo-container.base {
-    left: 50%;
-    top: 230%;
-    width: 40%;
-  }
-
-  @keyframes scroll-down {
-    0% {
-      left: 50%;
-      top: 230%;
-      width: 40%;
-    }
-
-    100% {
-      left: 50%;
-      top: 50%;
-      width: 9rem;
-    }
-  }
-
-  @keyframes scroll-up {
-    0% {
-      left: 50%;
-      top: 50%;
-      width: 9rem;
-    }
-
-    100% {
-      left: 50%;
-      top: 230%;
+      transform: translate3d(0px, 0px, 0px);
       width: 40%;
     }
   }

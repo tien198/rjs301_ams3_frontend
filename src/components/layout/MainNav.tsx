@@ -53,7 +53,7 @@ function NavRightUl() {
     }, [])
 
     return (
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 w-full justify-end md:w-auto">
             <li>
                 <NavLink to={PageUrlsList.Cart} className={navLinkStateClass}>
                     <FontAwesomeIcon icon={faCartShopping} className="mr-1" />

@@ -1,5 +1,5 @@
 .logo-container {
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 1.25rem, 0);
 }
 
 .logo-container.base {

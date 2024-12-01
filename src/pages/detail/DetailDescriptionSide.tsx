@@ -4,7 +4,7 @@ import { Fallback } from "../../components/layout/Fallback";
 import { Await, useLoaderData } from "react-router-dom";
 import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 
-function DetailDescriptionSide({ product = {}, className, isFallback = false }: DetailProps) {
+function DetailDescriptionSide({ product, className, isFallback = false }: DetailProps) {
     const article = product!.long_desc?.split('\n') || new Array<string>('', '', '')
 
     return (

@@ -7,7 +7,7 @@ import { Fallback } from "../../components/layout/Fallback"
 import { IProduct } from "../../ultil/DataModels/interfaces/IProduct"
 
 
-function InforSide({ product = {}, className, isFallback = false }: DetailProps) {
+function InforSide({ product, className, isFallback = false }: DetailProps) {
     return (
         <div className={`${className} flex flex-col gap-4 h-full justify-between left-in`}>
             <h1 className="uppercase text-black text-3xl 2xl:text-5xl">{isFallback ? <Fallback /> : product!.name}</h1>

@@ -8,7 +8,7 @@ import { Fallback } from "./Fallback";
 import classes from "./ProductItem.module.css";
 
 interface DetailProps {
-  product: IProduct;
+  product: IProduct | any;
   className?: string;
   isFallback?: boolean;
 }
@@ -39,7 +39,7 @@ export default function ProductItem({ product, className, isFallback = false }: 
       <span className="text-zinc-500">
         {isFallback ?
           <Fallback />
-          : convertToFraction(product.price)} VND
+          : convertToFraction(String(product?.price!))} VND
       </span>
     </section>
   );

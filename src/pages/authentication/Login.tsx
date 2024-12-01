@@ -19,7 +19,7 @@ import { addJwt } from '../../ultil/authenTokenUltil';
 import classes from './Authen.module.scss'
 import EmailInput from './formInputs/EmailInput';
 import PasswordInput from './formInputs/PasswordInput';
-import AuthenError from '../../ultil/DataModels/implementations/AuthenError';
+import ErrorResponse from '../../ultil/DataModels/implementations/ErrorResponse';
 
 
 function Login() {
@@ -39,8 +39,8 @@ function Login() {
 
     useEffect(() => {
         if (actionData) {
-            const authenError = new AuthenError(actionData)
-            setLoginErrorMsg(authenError.errors.credentials!)
+            const ErrorRes = ErrorResponse.fromObj(actionData)
+            setLoginErrorMsg(ErrorRes.errors?.credentials!)
         }
     }, [actionData])
 

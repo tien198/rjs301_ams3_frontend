@@ -12,7 +12,7 @@ import ErrorMsg from '../../components/UI/ErrorMsg';
 import useValidate from '../../hooks/useValidate';
 import { isMinLength, isNotNull } from '../../ultil/inputValidation/validate';
 import User from '../../ultil/DataModels/implementations/User';
-import AuthenError from '../../ultil/DataModels/implementations/AuthenError';
+import ErrorResponse from '../../ultil/DataModels/implementations/ErrorResponse';
 import AuthenResponse from '../../ultil/DataModels/implementations/AuthenRespone';
 import { addJwt } from '../../ultil/authenTokenUltil';
 
@@ -45,8 +45,8 @@ function Authenticate() {
     const [uniqueEmailMsg, setUniqueEmailMsg] = useState('')
     useEffect(() => {
         if (actionData) {
-            const authenError = new AuthenError(actionData)
-            authenError.errors.email && setUniqueEmailMsg(authenError.errors.email)
+            const authenError = ErrorResponse.fromObj(actionData)
+            authenError?.errors?.email && setUniqueEmailMsg(authenError.errors.email)
         }
     }, [actionData])
 

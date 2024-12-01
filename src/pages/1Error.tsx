@@ -5,9 +5,6 @@ function Error() {
     const error: any = useRouteError()
     let title = 'An error has occurred!'
     let message = 'Something went wrong!'
-    console.error(error);
-
-
 
     // message = JSON.parse(error.data).message
     if (error.status === 404) {

@@ -43,7 +43,8 @@ const router = createBrowserRouter([
         path: PageUrlsList.Cart,
         element: <Suspense fallback={<Fallback />}>
           <Cart />
-        </Suspense>
+        </Suspense>,
+        loader: () => import('./pages/cart/Cart').then(i => i.loader())
       },
       {
         path: PageUrlsList.Checkout,

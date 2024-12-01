@@ -5,6 +5,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { removeItem } from "../../store/cartSlice";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { ICartItem } from "../../store/storeModels/interfaces/ICartState";
+import { getJwt } from "../../ultil/authenTokenUltil";
+import { json } from "react-router-dom";
+import ErrorRes from "../../ultil/DataModels/implementations/ErrorResponse";
 
 function CartItemsTable() {
     const cartItems = useAppSelector(({ cart }) => cart.items)
@@ -63,3 +66,11 @@ function Cart() {
 }
 
 export default Cart;
+
+export function loader() {
+    const isAuthen = getJwt()
+    if (!isAuthen)
+        throw json(new ErrorRes('please login to order cart'), { status: 401 })
+    return null
+}
+

@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logoReducer from "./logoSlice";
 import modalReducer from "./modalSlice";
-import ProductModalReducer from "./productModalSlice";
+import productModalReducer from "./productModalSlice";
 import fetchedProductsReducer from "./fetchedProductsSlice";
 import fetchedDetailProductsReducer from "./fetchedDetailProductsSlice";
+import cartSlice from "./cartSlice";
 
 
 const store = configureStore({
@@ -12,7 +13,8 @@ const store = configureStore({
         fetchedProducts: fetchedProductsReducer,
         fetchedDetailProducts: fetchedDetailProductsReducer,
         modal: modalReducer,
-        productModal: ProductModalReducer
+        productModal: productModalReducer,
+        cart: cartSlice
     }
 })
 

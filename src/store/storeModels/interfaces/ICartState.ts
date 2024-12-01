@@ -5,7 +5,7 @@ export default interface ICartState {
 }
 
 export interface ICartItem extends IProduct {
-    quatity: number
+    quatity: number | string
 }
 
 export interface IUpdatePayload {

@@ -11,7 +11,7 @@ import Test from './pages/2Test'
 import { PageUrlsList } from './ultil/ultilEnums'
 
 const Detail = lazy(() => import('./pages/detail'))
-const Cart = lazy(() => import('./pages/Cart'))
+const Cart = lazy(() => import('./pages/cart/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const Signup = lazy(() => import('./pages/authentication/Signup'))
 const Login = lazy(() => import('./pages/authentication/Login'))

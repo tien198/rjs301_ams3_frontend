@@ -1,45 +1,12 @@
-import { useNavigate } from 'react-router-dom'
-import { BannerUrl, PageUrlsList } from '../../ultil/ultilEnums'
-// css
-import classes from './Banner.module.css'
 
-interface IMainButton {
-    children?: any
-    className?: string
-    onClick?: any
+interface Props {
+    pageTitle: string
 }
-function MainButton({ children, className, onClick }: IMainButton) {
-    className = className || 'bg-zinc-800 text-white p-2'
+export default function Banner({ pageTitle }: Props) {
     return (
-        <button className={className} onClick={onClick}>
-            {children}
-        </button>
+        <div className="flex justify-between items-center bg-zinc-100 h-48 italic uppercase px-6 md:px-16">
+            <span className="text-3xl font-medium capitalize">{pageTitle}</span>
+            <span className="text-zinc-600 capitalize">{pageTitle}</span>
+        </div>
     )
-}
-
-// absolute according Banner
-function BannerContents() {
-    const navigate = useNavigate()
-    return (
-        <section className={`${classes['absolute-center']} flex flex-col gap-4 italic max-w-[11rem] md:max-w-[20rem] lg:max-w-[25rem]`}>
-            <h5 className='uppercase text-zinc-500'>New Inspiration 2024</h5>
-            <h4 className='uppercase text-4xl'>20% Of New Season</h4>
-            <MainButton className='bg-zinc-800 text-white p-2 italic font-thin' onClick={() => navigate(PageUrlsList.Shop)}>
-                Browse Collections
-            </MainButton>
-        </section >
-    )
-}
-
-
-// EXPORT DEFAULT ----------------------------------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------------------------------------------------
-
-export default function Banner() {
-    return (
-        <div style={{ backgroundImage: `url('${BannerUrl.url}')` }}
-            className={`${classes['banner']} ${classes['banner-h']} ${classes['position']} bg md:mx-14 lg:mx-40 xl:mx-72 2xl:mx-80 relative bot-up`}>
-            <BannerContents />
-        </div >
-    );
 }

@@ -5,7 +5,6 @@ import IProductState from "./storeModels/interfaces/IProductState";
 const initialState: IProductState = {
     product: {}
 }
-
 const productModalSlice = createSlice({
     name: 'product-modal',
     initialState,

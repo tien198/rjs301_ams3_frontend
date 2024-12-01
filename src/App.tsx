@@ -11,7 +11,7 @@ import Test from './pages/2Test'
 import { PageUrlsList } from './ultil/ultilEnums'
 
 const Detail = lazy(() => import('./pages/detail'))
-const Cart = lazy(() => import('./pages/cart/Cart'))
+const Cart = lazy(() => import('./pages/cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const Signup = lazy(() => import('./pages/authentication/Signup'))
 const Login = lazy(() => import('./pages/authentication/Login'))
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<Fallback />}>
           <Cart />
         </Suspense>,
-        loader: () => import('./pages/cart/Cart').then(i => i.loader())
+        loader: () => import('./pages/cart').then(i => i.loader())
       },
       {
         path: PageUrlsList.Checkout,

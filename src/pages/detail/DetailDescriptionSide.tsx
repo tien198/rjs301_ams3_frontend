@@ -5,7 +5,7 @@ import { Await, useLoaderData } from "react-router-dom";
 import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
 
 function DetailDescriptionSide({ product, className, isFallback = false }: DetailProps) {
-    const article = product!.long_desc?.split('\n') || new Array<string>('', '', '')
+    const article = product?.long_desc?.split('\n') || new Array<string>('', '', '')
 
     return (
         <div className={`${className} flex flex-col gap-4 2xl:gap-6 left-in`}>

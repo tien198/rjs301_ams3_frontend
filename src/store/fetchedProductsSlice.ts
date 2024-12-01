@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../ultil/DataModels/interfaces/IProduct";
+import IProductsListState from "./storeModels/interfaces/IProductsListState";
 
-interface ProductsState {
-    products: IProduct[]
-}
-const initialState: ProductsState = {
+const initialState: IProductsListState = {
     products: []
 }
 const fetchedProductsSlice = createSlice({

@@ -3,15 +3,12 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import convertToFraction from "../../ultil/convertToFraction";
 import Modal from "../UI/Modal";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { PageUrlsList } from "../../ultil/ultilEnums";
 
 function ProductModal() {
     const prodState = useAppSelector(({ productModal }) => productModal.product)
-    const navigate = useNavigate()
-    function navigateToDetail(productId: string) {
-        navigate(`${PageUrlsList.Detail}/${productId}`)
-    }
+
     return (
         <Modal >
             <div className="grid md:grid-cols-2 justify-center items-center gap-4 py-4">
@@ -24,10 +21,10 @@ function ProductModal() {
                         <p>{prodState.short_desc}</p>
                     </div>
                     <div>
-                        <button onClick={() => navigateToDetail(prodState._id?.$oid!)} className="py-4 pl-5 pr-8 text-white bg-slate-800">
+                        <Link to={`${PageUrlsList.Detail}/${prodState._id?.$oid}`} className="inline-block py-4 pl-5 pr-8 text-white bg-slate-800">
                             <FontAwesomeIcon icon={faCartShopping} className="mr-4" />
                             View Detail
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

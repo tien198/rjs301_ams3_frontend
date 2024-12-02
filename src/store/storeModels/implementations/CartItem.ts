@@ -1,20 +1,29 @@
 import { IProduct } from "../../../ultil/DataModels/interfaces/IProduct";
-import { ICartItem } from "../interfaces/ICartState";
+import ICartItem from "../interfaces/ICartItem";
+
 
 export default class CartItem implements ICartItem {
-    quatity: number | string;
-    constructor(product: IProduct, quantiy?: number) {
-        Object.assign(this, product)
-        this.quatity = quantiy || '1'
+    quatity?: string | number
+    total?: string | number
+    totalCalc?() {
+        this.total = Number(this.price) * Number(this.quatity)
+        return this.total
     }
-    _id: { $oid: string | undefined; } | undefined;
-    category: string | undefined;
-    img1: string | undefined;
-    img2: string | undefined;
-    img3: string | undefined;
-    img4: string | undefined;
-    long_desc: string | undefined;
-    name: string | undefined;
-    price: string | undefined;
-    short_desc: string | undefined;
+    constructor(product: IProduct, quantiy?: number) {
+        this.quatity = quantiy || '1'
+        Object.assign(this, product)
+        this.totalCalc!()
+    }
+    _id?: {
+        $oid?: string
+    }
+    category?: string
+    img1?: string
+    img2?: string
+    img3?: string
+    img4?: string
+    long_desc?: string
+    name?: string
+    price?: string | number
+    short_desc?: string
 }

@@ -4,23 +4,22 @@ import { removeItem } from "../../store/cartSlice"
 import { ICartItem } from "../../store/storeModels/interfaces/ICartState"
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import convertToFraction from "../../ultil/convertToFraction"
-import ProductModal from "../../components/layout/ProductModal"
 import { setProduct } from "../../store/productModalSlice"
-import { IProduct } from "../../ultil/DataModels/interfaces/IProduct"
 import { show } from "../../store/modalSlice"
+import CartItemModal from "./CartItemModal"
 
 export default function CartItemsTable() {
     const cartItems = useAppSelector(({ cart }) => cart.items)
     const dispatch = useAppDispatch()
     const remove = (i: ICartItem) => dispatch(removeItem(i._id?.$oid!))
-    function showModal(product: IProduct) {
-        dispatch(setProduct(product))
+    function showModal(item: ICartItem) {
+        dispatch(setProduct(item))
         dispatch(show())
     }
 
     return (
         <>
-            <ProductModal />
+            <CartItemModal />
             <table className="text-center border-separate border-spacing-y-4">
                 <thead className="uppercase bg-zinc-50">
                     <tr className="p-4">
@@ -43,7 +42,7 @@ export default function CartItemsTable() {
                             </td>
                             <td className="hidden md:table-cell text-zinc-500">{convertToFraction(i.price)} VNĐ</td>
                             <td>{i.quatity}</td>
-                            <td className="text-zinc-500">{convertToFraction(Number(i.quatity) * Number(i.price))} VNĐ</td>
+                            <td className="text-zinc-500">{convertToFraction(Number(i.total))} VNĐ</td>
                             <td className="hidden md:table-cell">
                                 <button onClick={() => remove(i)}>
                                     <FontAwesomeIcon icon={faTrashCan} className="text-zinc-400" />

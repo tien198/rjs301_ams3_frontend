@@ -1,11 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import useTwoWayBinding from "../../hooks/useTwoWayBinding";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { addItem } from "../../store/cartSlice";
+import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
+import CartItem from "../../store/storeModels/implementations/CartItem";
+import { useNavigate } from "react-router-dom";
+import { PageUrlsList } from "../../ultil/ultilEnums";
 
-function AddToCartBtn() {
+interface Props {
+    productToAdd: IProduct
+}
+function AddToCartBtn({ productToAdd }: Props) {
     const [val, onChangeVal, setVal] = useTwoWayBinding<number>(1)
     const increase = () => setVal(prev => ++prev)
     const decrease = () => setVal(prev => --prev)
+
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const addToCart = () => {
+        const cartItem = new CartItem(productToAdd, val)
+        console.log(cartItem);
+
+        dispatch(addItem(cartItem))
+        navigate(PageUrlsList.Cart)
+    }
     return (
         <div className="flex fade-out">
             <div className="flex gap-4 items-center border border-zinc-950">
@@ -19,7 +38,7 @@ function AddToCartBtn() {
                         <FontAwesomeIcon icon={faCaretRight} color="#000" fontSize="1.25rem" />
                     </button>
                 </span>
-                <button className="px-8 py-2 bg-zinc-900 text-white capitalize italic ">Add to cart</button>
+                <button onClick={addToCart} className="px-8 py-2 bg-zinc-900 text-white capitalize italic ">Add to cart</button>
             </div>
         </div>
     );

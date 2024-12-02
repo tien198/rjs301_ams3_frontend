@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { hide as hideAction, hideCustom as fadingHide } from "../../store/modalSlice";
+import { hide as hideAction, setHideClass as fadingHide } from "../../store/modalSlice";
 // css
 import classes from './Modal.module.css'
 

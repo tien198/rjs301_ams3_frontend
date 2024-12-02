@@ -17,9 +17,9 @@ function CartContent() {
 
 export default function Cart() {
     return (
-        <Container>
+        <Container className="italic">
             <Banner pageTitle="Cart" />
-            <h1 className="uppercase italic text-2xl mt-14">Shopping Cart</h1>
+            <h1 className="uppercase text-2xl mt-14">Shopping Cart</h1>
             <div className="my-4">
                 <CartContent />
             </div>

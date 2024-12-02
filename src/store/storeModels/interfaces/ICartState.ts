@@ -1,11 +1,7 @@
-import { IProduct } from "../../../ultil/DataModels/interfaces/IProduct"
+import ICartItem from "./ICartItem"
 
 export default interface ICartState {
     items: ICartItem[]
-}
-
-export interface ICartItem extends IProduct {
-    quatity: number | string
 }
 
 export interface IUpdatePayload {

@@ -3,12 +3,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './pages/0Root'
 import Error from './pages/1Error'
 import Home from './pages/home'
+import { PageUrlsList } from './ultil/ultilEnums'
 import { Fallback } from './components/layout/Fallback'
 //routes
 import shopRoute from './routes/shopRoute'
-// use for testing
-import Test from './pages/2Test'
-import { PageUrlsList } from './ultil/ultilEnums'
 
 const Detail = lazy(() => import('./pages/detail'))
 const Cart = lazy(() => import('./pages/cart'))
@@ -72,10 +70,6 @@ const router = createBrowserRouter([
         path: PageUrlsList.Logout,
         action: () => import('./pages/authentication/Logout').then(i => i.action())
       },
-      {
-        path: 'test',
-        element: <Test />
-      }
     ]
   }
 ])

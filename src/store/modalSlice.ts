@@ -19,13 +19,13 @@ const modalSlice = createSlice({
         hide(state) {
             state.hiddenClass = 'hidden'
         },
-        hideCustom(state, action: PayloadAction<string>) {
+        setHideClass(state, action: PayloadAction<string>) {
             state.hiddenClass = action.payload
         }
     }
 })
 
-export const { show, hide, hideCustom } = modalSlice.actions
+export const { show, hide, setHideClass } = modalSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const hiddenClass = (state: RootState) => state.modal.hiddenClass

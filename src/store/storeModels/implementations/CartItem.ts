@@ -3,16 +3,21 @@ import ICartItem from "../interfaces/ICartItem";
 
 
 export default class CartItem implements ICartItem {
-    quatity?: string | number
+    quantity?: string | number = 0
     total?: string | number
-    totalCalc?() {
-        this.total = Number(this.price) * Number(this.quatity)
+    totalCalc() {
+        this.total = Number(this.price) * Number(this.quantity)
         return this.total
     }
-    constructor(product: IProduct, quantiy?: number) {
-        this.quatity = quantiy || '1'
+    static createWithQuantity(product: IProduct, quantity?: number | string) {
+        const item = new CartItem(product)
+        item.quantity = quantity || 1
+        item.totalCalc()
+        return item
+    }
+    constructor(product: IProduct) {
         Object.assign(this, product)
-        this.totalCalc!()
+        this.totalCalc()
     }
     _id?: {
         $oid?: string

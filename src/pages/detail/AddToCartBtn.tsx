@@ -2,9 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import useTwoWayBinding from "../../hooks/useTwoWayBinding";
 import { useAppDispatch } from "../../hooks/reduxHooks";
-import { addItem } from "../../store/cartSlice";
+import { addItemWithQuantity } from "../../store/cartSlice";
 import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
-import CartItem from "../../store/storeModels/implementations/CartItem";
 import { useNavigate } from "react-router-dom";
 import { PageUrlsList } from "../../ultil/ultilEnums";
 
@@ -19,10 +18,7 @@ function AddToCartBtn({ productToAdd }: Props) {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const addToCart = () => {
-        const cartItem = new CartItem(productToAdd, val)
-        console.log(cartItem);
-
-        dispatch(addItem(cartItem))
+        dispatch(addItemWithQuantity({ item: productToAdd, quantity: val }))
         navigate(PageUrlsList.Cart)
     }
     return (

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProduct } from '../ultil/DataModels/interfaces/IProduct';
-import ICartState, { IUpdatePayload } from './storeModels/interfaces/ICartState';
+import ICartState, { IAddWithQuantityPayload, IUpdateQuantityPayload } from './storeModels/interfaces/ICartState';
+import ICartItem from './storeModels/interfaces/ICartItem';
 import CartItem from './storeModels/implementations/CartItem';
 
 
@@ -8,38 +9,45 @@ const initialState: ICartState = {
     items: []
 }
 
-function add(state: ICartState, action: PayloadAction<IProduct>) {
+function addWithQuantity(state: ICartState, action: PayloadAction<IAddWithQuantityPayload>) {
     // updItemsList : updated Items List
     const updItemsList = [...state.items]
     // exIndex : existed Index
-    const exIndex = state.items.findIndex(i => i._id?.$oid === action.payload._id?.$oid)
+    const exIndex = state.items.findIndex(i => i._id?.$oid === action.payload.item._id?.$oid)
     const exItem = updItemsList[exIndex]
 
     if (exItem) {
-        const updItem = { ...action.payload }
+        const { item, quantity } = action.payload
+        const addedQuantity = Number(exItem.quantity) + Number(quantity)
+        console.log(addedQuantity);
 
-        console.log(updItem);
-
-        updItemsList[exIndex] = updItem
+        if (addedQuantity > 0) {
+            const updItem = CartItem.createWithQuantity(item, addedQuantity)
+            updItemsList[exIndex] = { ...updItem }
+        }
+        else {
+            updItemsList.splice(exIndex, 1)
+        }
     }
     else {
-        updItemsList.push({ ...action.payload })
+        const newItem = CartItem.createWithQuantity(action.payload.item, action.payload.quantity)
+        updItemsList.push({ ...newItem })
     }
 
     state.items = updItemsList
 }
 
 /** @param action -  payload is an object {id:string, amount:number} */
-function updateQuantity(state: ICartState, action: PayloadAction<IUpdatePayload>) {
+function updateQuantity(state: ICartState, action: PayloadAction<IUpdateQuantityPayload>) {
     const updItemsList = [...state.items]
     const updIndex = state.items.findIndex(i => i._id?.$oid === action.payload.id)
     const updItem = { ...updItemsList[updIndex] }
-    updItem.quatity = Number(updItem.quatity) + Number(action.payload.amount)
+    // updItem.quatity = Number(updItem.quatity) + Number(action.payload.amount)
 
-    if (updItem.quatity <= 0)
-        updItemsList.splice(updIndex, 1)
-    else
-        updItemsList[updIndex] = updItem
+    // if (updItem.quatity <= 0)
+    //     updItemsList.splice(updIndex, 1)
+    // else
+    //     updItemsList[updIndex] = updItem
     state.items = updItemsList
 }
 
@@ -52,11 +60,11 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem: add,
+        addItemWithQuantity: addWithQuantity,
         updateItemQuantity: updateQuantity,
         removeItem: remove
     }
 })
 
-export const { addItem, updateItemQuantity, removeItem } = cartSlice.actions
+export const { addItemWithQuantity, updateItemQuantity, removeItem } = cartSlice.actions
 export default cartSlice.reducer

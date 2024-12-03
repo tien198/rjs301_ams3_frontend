@@ -26,7 +26,7 @@ export default function CartItemModal() {
                 <span className="overflow-hidden col-start-3 -col-end-1">{convertToFraction(prodState.price)} VNĐ</span>
 
                 <span className="overflow-hidden col-start-1 col-end-3 uppercase">Quantity</span>
-                <span className="overflow-hidden col-start-3 -col-end-1">{prodState.quatity}</span>
+                <span className="overflow-hidden col-start-3 -col-end-1">{prodState.quantity}</span>
 
                 <span className="overflow-hidden col-start-1 col-end-3 uppercase">Total</span>
                 <span className="overflow-hidden col-start-3 -col-end-1">{convertToFraction(Number(prodState.total))}</span>

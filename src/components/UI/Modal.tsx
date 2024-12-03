@@ -5,16 +5,20 @@ import { hide as hideAction, setHideClass as fadingHide } from "../../store/moda
 // css
 import classes from './Modal.module.css'
 
-function Modal({ children }: PropsWithChildren) {
-    const hidden = useAppSelector(({ modal }) => modal.hiddenClass)
+export function useHideModal() {
     const dispath = useAppDispatch()
-
-    const hide = () => {
-        dispath(fadingHide(classes['fading-hidden']))
+    return () => {
+        dispath(fadingHide('fading-hidden'))
         setTimeout(() => {
             dispath(hideAction())
         }, 300);
     }
+}
+
+function Modal({ children }: PropsWithChildren) {
+    const hidden = useAppSelector(({ modal }) => modal.hiddenClass)
+
+    const hide = useHideModal()
 
     useEffect(() => {
         window.addEventListener('keydown', e => {

@@ -11,6 +11,8 @@ interface Props {
 }
 function AddToCartBtn({ productToAdd }: Props) {
     const [val, onChangeVal, setVal] = useTwoWayBinding<number>(1)
+    const increment = () => setVal(prev => ++prev)
+    const decrement = () => setVal(prev => --prev)
 
 
     const dispatch = useAppDispatch()
@@ -20,10 +22,10 @@ function AddToCartBtn({ productToAdd }: Props) {
         navigate(PageUrlsList.Cart)
     }
     return (
-        <div className="flex fade-out">
+        <div className="flex fade-in">
             <div className="flex gap-4 items-center border border-zinc-950">
                 <span className="px-4 py-2 uppercase">Quantity</span>
-                <QuantityInput val={val} onChangeVal={onChangeVal} setVal={setVal} />
+                <QuantityInput val={val} onChangeVal={onChangeVal} increment={increment} decrement={decrement} />
                 <button onClick={addToCart} className="px-8 py-2 bg-zinc-900 text-white capitalize italic ">Add to cart</button>
             </div>
         </div>

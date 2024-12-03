@@ -2,14 +2,10 @@ import ICartItem from "./ICartItem"
 
 export default interface ICartState {
     items: ICartItem[]
+    currentItemIndex: number
 }
 
-export interface IAddWithQuantityPayload {
+export interface IItemWithQuantityPayload {
     item: ICartItem
     quantity: number | string
-}
-
-export interface IUpdateQuantityPayload {
-    id: string,
-    amount: number
 }

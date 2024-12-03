@@ -11,7 +11,7 @@ export default class CartItem implements ICartItem {
     }
     static createWithQuantity(product: IProduct, quantity?: number | string) {
         const item = new CartItem(product)
-        item.quantity = quantity || 1
+        item.quantity = Number(quantity) || 1
         item.totalCalc()
         return item
     }

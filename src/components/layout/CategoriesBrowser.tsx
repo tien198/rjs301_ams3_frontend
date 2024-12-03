@@ -23,7 +23,7 @@ function CategoriesBrowser() {
     return (
         <Container className="text-center uppercase italic">
             <SectionTitle h4="Browse Our Categories" h5='Carefull Created Collections' />
-            <div className={`${classes['categories-grid']} fade-out`}>
+            <div className={`${classes['categories-grid']} fade-in`}>
                 {
                     categoriesCollections.map(i => (
                         <Link to={`/shop/${i[0]}`} className={classes[i[1]]} key={i[2]}>

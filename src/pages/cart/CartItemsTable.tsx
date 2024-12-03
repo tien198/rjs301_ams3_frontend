@@ -1,19 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks"
-import { removeItem } from "../../store/cartSlice"
+import { removeItem, setCurrentItemIndex } from "../../store/cartSlice"
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import convertToFraction from "../../ultil/convertToFraction"
 import { setProduct } from "../../store/productModalSlice"
 import { show } from "../../store/modalSlice"
 import CartItemModal from "./CartItemModal"
 import ICartItem from "../../store/storeModels/interfaces/ICartItem"
+import CartItemQuantityInput from "./CartItemQuantityInput"
+
 
 export default function CartItemsTable() {
     const cartItems = useAppSelector(({ cart }) => cart.items)
     const dispatch = useAppDispatch()
     const remove = (i: ICartItem) => dispatch(removeItem(i._id?.$oid!))
-    function showModal(item: ICartItem) {
-        dispatch(setProduct(item))
+
+    function showModal(index: number) {
+        dispatch(setCurrentItemIndex(index))
         dispatch(show())
     }
 
@@ -32,16 +35,18 @@ export default function CartItemsTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cartItems.map(i =>
+                    {cartItems.map((i, index) =>
                         <tr key={i._id?.$oid}>
-                            <td onClick={() => showModal(i)} className="hover:cursor-pointer">
+                            <td onClick={() => showModal(index)} className="hover:cursor-pointer">
                                 <img src={i.img1} alt={i.name} className="mx-auto md:w-48" />
                             </td>
-                            <td onClick={() => showModal(i)} className="hover:cursor-pointer">
+                            <td onClick={() => showModal(index)} className="hover:cursor-pointer">
                                 {i.name}
                             </td>
                             <td className="hidden md:table-cell text-zinc-500">{convertToFraction(i.price)} VNĐ</td>
-                            <td>{i.quantity}</td>
+                            <td>
+                                <CartItemQuantityInput item={i} />
+                            </td>
                             <td className="text-zinc-500">{convertToFraction(Number(i.total))} VNĐ</td>
                             <td className="hidden md:table-cell">
                                 <button onClick={() => remove(i)}>

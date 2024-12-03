@@ -12,7 +12,7 @@ interface ThumbnailProps {
 function Thumbnail({ imgSrc, imgAlt, onHandleThumbnail }: ThumbnailProps) {
     return <img src={imgSrc} alt={imgAlt}
         onClick={onHandleThumbnail?.bind(null, [imgSrc])}
-        className="cursor-pointer h-16 md:h-14 lg:h-16 2xl:h-24 object-cover fade-out" />
+        className="cursor-pointer h-16 md:h-14 lg:h-16 2xl:h-24 object-cover fade-in" />
 }
 
 interface ThumbnailListProps extends DetailProps, ThumbnailProps { }
@@ -37,7 +37,7 @@ function Image({ currentImg, setCurrentImg }: ImageProps) {
     useEffect(() => {
         setCurrentImg(loaded.img1)
     }, [loaded])
-    return <img src={currentImg} alt={loaded.name} className="h-full w-full object-cover fade-out" />
+    return <img src={currentImg} alt={loaded.name} className="h-full w-full object-cover fade-in" />
 }
 
 export default function ImgSide({ className }: DetailProps) {

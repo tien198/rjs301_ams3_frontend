@@ -13,11 +13,10 @@ function addWithQuantity(state: ICartState, action: PayloadAction<IAddWithQuanti
     // exIndex : existed Index
     const exIndex = state.items.findIndex(i => i._id?.$oid === action.payload.item._id?.$oid)
     const exItem = updItemsList[exIndex]
+    const { item, quantity } = action.payload
 
     if (exItem) {
-        const { item, quantity } = action.payload
         const addedQuantity = Number(exItem.quantity) + Number(quantity)
-        console.log(addedQuantity);
 
         if (addedQuantity > 0) {
             const updItem = CartItem.createWithQuantity(item, addedQuantity)
@@ -27,8 +26,8 @@ function addWithQuantity(state: ICartState, action: PayloadAction<IAddWithQuanti
             updItemsList.splice(exIndex, 1)
         }
     }
-    else {
-        const newItem = CartItem.createWithQuantity(action.payload.item, action.payload.quantity)
+    else if (Number(quantity) >= 0) {
+        const newItem = CartItem.createWithQuantity(action.payload.item, quantity)
         updItemsList.push({ ...newItem })
     }
 

@@ -40,15 +40,17 @@ function updateQuantity(state: ICartState, action: PayloadAction<IUpdateQuantity
     const updItemsList = [...state.items]
     const updIndex = state.items.findIndex(i => i._id?.$oid === action.payload.id)
     const updItem = updItemsList[updIndex]
-    const updQuantity = Number(updItem.quantity) + Number(action.payload.amount)
 
-    const itemInstance = CartItem.createWithQuantity(updItem, updQuantity)
+    if (updItem) {
+        const updQuantity = Number(updItem.quantity) + Number(action.payload.amount)
 
-    if (Number(itemInstance.quantity) < 0)
-        updItemsList.splice(updIndex, 1)
-    else
-        updItemsList[updIndex] = itemInstance
-
+        if (updQuantity > 0) {
+            const itemInstance = CartItem.createWithQuantity(updItem, updQuantity)
+            updItemsList[updIndex] = itemInstance
+        }
+        else
+            updItemsList.splice(updIndex, 1)
+    }
     state.items = updItemsList
 }
 

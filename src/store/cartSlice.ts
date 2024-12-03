@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct } from '../ultil/DataModels/interfaces/IProduct';
 import ICartState, { IAddWithQuantityPayload, IUpdateQuantityPayload } from './storeModels/interfaces/ICartState';
-import ICartItem from './storeModels/interfaces/ICartItem';
 import CartItem from './storeModels/implementations/CartItem';
 
 
@@ -41,13 +39,16 @@ function addWithQuantity(state: ICartState, action: PayloadAction<IAddWithQuanti
 function updateQuantity(state: ICartState, action: PayloadAction<IUpdateQuantityPayload>) {
     const updItemsList = [...state.items]
     const updIndex = state.items.findIndex(i => i._id?.$oid === action.payload.id)
-    const updItem = { ...updItemsList[updIndex] }
-    // updItem.quatity = Number(updItem.quatity) + Number(action.payload.amount)
+    const updItem = updItemsList[updIndex]
+    const updQuantity = Number(updItem.quantity) + Number(action.payload.amount)
 
-    // if (updItem.quatity <= 0)
-    //     updItemsList.splice(updIndex, 1)
-    // else
-    //     updItemsList[updIndex] = updItem
+    const itemInstance = CartItem.createWithQuantity(updItem, updQuantity)
+
+    if (Number(itemInstance.quantity) < 0)
+        updItemsList.splice(updIndex, 1)
+    else
+        updItemsList[updIndex] = itemInstance
+
     state.items = updItemsList
 }
 

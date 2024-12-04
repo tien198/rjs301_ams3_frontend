@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { setTotal } from "../../../store/cartTotalSlice";
 import convertToFraction from "../../../ultil/convertToFraction";
 import useTwoWayBinding from "../../../hooks/useTwoWayBinding";
+import DarkButton from "../../../components/UI/DarkButton";
 
 interface Props {
     className: string
@@ -41,10 +42,10 @@ function CartTotal({ className }: Props) {
                 <div className={`overflow-hidden text-sm m-2 duration-150 ${informHeight}`}>
                     Your coupon was applyed
                 </div>
-                <button onClick={() => setInformHeight('h-7')} className="w-full py-3 bg-zinc-900 text-white capitalize italic ">
+                <DarkButton onClick={() => setInformHeight('h-7')} className="w-full py-3 bg-zinc-900 text-white capitalize italic ">
                     <FontAwesomeIcon icon={faGift} className="mr-4" />
                     Apply coupon
-                </button>
+                </DarkButton>
             </div>
         </div>
     );

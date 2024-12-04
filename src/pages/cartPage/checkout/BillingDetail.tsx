@@ -1,8 +1,9 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, MouseEvent, useState } from "react";
 import useTwoWayBinding_Validate from "../../../hooks/useTwoWayBinding_Validate";
 import { isNotNull } from "../../../ultil/inputValidation/validate";
 import { AddressInput, EmailInput, NameInput, PhoneNumberInput } from "./formInputs/Inputs";
 import { useNavigate } from "react-router-dom";
+import DarkButton from "../../../components/UI/DarkButton";
 
 interface Props {
     className: string
@@ -32,8 +33,10 @@ function BillingDetail({ className }: Props) {
             <EmailInput val={email} onChangeVal={onChangeEmail} invalidMsg={isSubmited ? errorEmailMsg : ''} />
             <PhoneNumberInput val={phoneNumber} onChangeVal={onChangePhoneNumber} invalidMsg={isSubmited ? errorPhoneNumberMsg : ''} />
             <AddressInput val={address} onChangeVal={onChangeAddress} invalidMsg={isSubmited ? errorAddressMsg : ''} />
-            <button>submit</button>
-        </form>
+            <div>
+                <DarkButton className="py-3 px-10 italic text-lg">Place order</DarkButton>
+            </div>
+        </form >
     );
 }
 

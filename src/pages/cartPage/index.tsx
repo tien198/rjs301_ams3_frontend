@@ -13,7 +13,7 @@ export default function CartIndex() {
 
     return (
         <Container className="italic">
-            <Banner pageTitle="Cart" pageUrl={`Home${location.pathname}`} />
+            <Banner pageTitle={isCartPage ? 'Cart' : 'Checkout'} pageUrl={`Home${location.pathname}`} />
             <h1 className="uppercase text-2xl mt-14">
                 {isCartPage
                     ? 'Shopping Cart'

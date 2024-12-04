@@ -42,7 +42,7 @@ function CartTotal({ className }: Props) {
                     Your coupon was applyed
                 </div>
                 <button onClick={() => setInformHeight('h-7')} className="w-full py-3 bg-zinc-900 text-white capitalize italic ">
-                    <FontAwesomeIcon icon={faGift} />
+                    <FontAwesomeIcon icon={faGift} className="mr-4" />
                     Apply coupon
                 </button>
             </div>

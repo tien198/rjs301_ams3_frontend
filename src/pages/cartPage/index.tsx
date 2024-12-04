@@ -1,15 +1,24 @@
 import Banner from "../../components/layout/Banner";
 import Container from "../../components/UI/Container";
 import { getJwt } from "../../ultil/authenTokenUltil";
-import { json, Outlet } from "react-router-dom";
+import { json, Outlet, useLocation } from "react-router-dom";
 import ErrorRes from "../../ultil/DataModels/implementations/ErrorResponse";
+import { PageUrlsList } from "../../ultil/ultilEnums";
 
 
 export default function CartIndex() {
+    const location = useLocation()
+    // true if /cart - false if /cart/checkout
+    const isCartPage = location.pathname === PageUrlsList.Cart
+
     return (
         <Container className="italic">
-            <Banner pageTitle="Cart" />
-            <h1 className="uppercase text-2xl mt-14">Shopping Cart</h1>
+            <Banner pageTitle="Cart" pageUrl={`Home${location.pathname}`} />
+            <h1 className="uppercase text-2xl mt-14">
+                {isCartPage
+                    ? 'Shopping Cart'
+                    : 'Billing Detail'}
+            </h1>
             <div className="my-4">
                 <Outlet />  {/* ------------ Outlet in here */}
             </div>

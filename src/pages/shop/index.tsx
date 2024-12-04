@@ -3,6 +3,7 @@ import ProductModal from "../../components/layout/ProductModal";
 import CategoriesDashboard from "./CategoriesDashboard";
 import useScrollToTopPage from "../../hooks/useScrollToTopPage";
 import Banner from "../../components/layout/Banner";
+import { Outlet } from "react-router-dom";
 
 export default function ShopRoot() {
     useScrollToTopPage()
@@ -10,7 +11,9 @@ export default function ShopRoot() {
         <Container className="flex flex-col gap-4 mb-12">
             <ProductModal />
             <Banner pageTitle="Shop" />
-            <CategoriesDashboard /> {/* Outlet in here */}
+            <CategoriesDashboard>
+                <Outlet />  {/* ------------ Outlet in here */}
+            </CategoriesDashboard>
         </Container>
     );
 }

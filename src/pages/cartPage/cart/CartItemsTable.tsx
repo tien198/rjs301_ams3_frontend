@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks"
-import { removeItem, setCurrentItemIndex } from "../../store/cartSlice"
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks"
+import { removeItem, setCurrentItemIndex } from "../../../store/cartSlice"
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
-import convertToFraction from "../../ultil/convertToFraction"
-import { show } from "../../store/modalSlice"
+import convertToFraction from "../../../ultil/convertToFraction"
+import { show } from "../../../store/modalSlice"
 import CartItemModal from "./CartItemModal"
-import ICartItem from "../../store/storeModels/interfaces/ICartItem"
+import ICartItem from "../../../store/storeModels/interfaces/ICartItem"
 import CartItemQuantityInput from "./CartItemQuantityInput"
 
 interface Props {

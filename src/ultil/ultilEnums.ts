@@ -11,7 +11,7 @@ export enum PageUrlsList {
     Shop = '/shop',
     Detail = '/detail',
     Cart = '/cart',
-    Checkout = '/checkout',
+    Checkout = '/cart/checkout',
     Login = '/login',
     Signup = '/signup',
     Logout = '/logout',

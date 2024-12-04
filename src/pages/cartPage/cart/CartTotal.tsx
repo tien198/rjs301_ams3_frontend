@@ -1,10 +1,10 @@
 import { faGift } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { useEffect, useState } from "react";
-import { setTotal } from "../../store/cartTotalSlice";
-import convertToFraction from "../../ultil/convertToFraction";
-import useTwoWayBinding from "../../hooks/useTwoWayBinding";
+import { setTotal } from "../../../store/cartTotalSlice";
+import convertToFraction from "../../../ultil/convertToFraction";
+import useTwoWayBinding from "../../../hooks/useTwoWayBinding";
 
 interface Props {
     className: string

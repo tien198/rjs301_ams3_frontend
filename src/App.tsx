@@ -7,13 +7,11 @@ import { PageUrlsList } from './ultil/ultilEnums'
 import { Fallback } from './components/layout/Fallback'
 //routes
 import shopRoute from './routes/shopRoute'
+import cartRoute from './routes/cartRoute'
 
 const Detail = lazy(() => import('./pages/detail'))
-const Cart = lazy(() => import('./pages/cart'))
-const Checkout = lazy(() => import('./pages/Checkout'))
 const Signup = lazy(() => import('./pages/authentication/Signup'))
 const Login = lazy(() => import('./pages/authentication/Login'))
-
 
 
 
@@ -30,25 +28,13 @@ const router = createBrowserRouter([
         loader: (args) => import('./pages/home/TrendingProduct').then(i => i.loader(args))
       },
       shopRoute,
+      cartRoute,
       {
         path: `${PageUrlsList.Detail}/:productId`,
         element: <Suspense fallback={<Fallback />}>
           <Detail />
         </Suspense>,
         loader: (args) => import('./pages/detail').then(i => i.loader(args))
-      },
-      {
-        path: PageUrlsList.Cart,
-        element: <Suspense fallback={<Fallback />}>
-          <Cart />
-        </Suspense>,
-        loader: () => import('./pages/cart').then(i => i.loader())
-      },
-      {
-        path: PageUrlsList.Checkout,
-        element: <Suspense fallback={<Fallback />}>
-          <Checkout />
-        </Suspense>
       },
       {
         path: PageUrlsList.Login,

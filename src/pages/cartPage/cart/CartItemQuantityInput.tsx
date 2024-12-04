@@ -1,8 +1,8 @@
-import QuantityInput from "../../components/UI/QuantityInput"
+import QuantityInput from "../../../components/UI/QuantityInput"
 import { ChangeEvent } from "react"
-import ICartItem from "../../store/storeModels/interfaces/ICartItem"
-import { useAppDispatch } from "../../hooks/reduxHooks"
-import { updateItemQuantity } from "../../store/cartSlice"
+import ICartItem from "../../../store/storeModels/interfaces/ICartItem"
+import { useAppDispatch } from "../../../hooks/reduxHooks"
+import { updateItemQuantity } from "../../../store/cartSlice"
 
 interface Props {
     item: ICartItem

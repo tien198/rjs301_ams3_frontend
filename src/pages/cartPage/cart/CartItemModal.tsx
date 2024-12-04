@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Modal, { useHideModal } from "../../components/UI/Modal";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { removeItem } from "../../store/cartSlice";
-import { IProduct } from "../../ultil/DataModels/interfaces/IProduct";
+import Modal, { useHideModal } from "../../../components/UI/Modal";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import { removeItem } from "../../../store/cartSlice";
+import { IProduct } from "../../../ultil/DataModels/interfaces/IProduct";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import convertToFraction from "../../ultil/convertToFraction";
-import ICartState from "../../store/storeModels/interfaces/ICartState";
+import convertToFraction from "../../../ultil/convertToFraction";
+import ICartState from "../../../store/storeModels/interfaces/ICartState";
 import CartItemQuantityInput from "./CartItemQuantityInput";
 
 export default function CartItemModal() {

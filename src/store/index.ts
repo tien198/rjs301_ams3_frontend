@@ -4,7 +4,8 @@ import modalReducer from "./modalSlice";
 import productModalReducer from "./productModalSlice";
 import fetchedProductsReducer from "./fetchedProductsSlice";
 import fetchedDetailProductsReducer from "./fetchedDetailProductsSlice";
-import cartSlice from "./cartSlice";
+import cartReducer from "./cartSlice";
+import cartTotalReducer from "./cartTotalSlice";
 
 
 const store = configureStore({
@@ -14,7 +15,8 @@ const store = configureStore({
         fetchedDetailProducts: fetchedDetailProductsReducer,
         modal: modalReducer,
         productModal: productModalReducer,
-        cart: cartSlice
+        cart: cartReducer,
+        cartTotal: cartTotalReducer
     }
 })
 

@@ -8,8 +8,10 @@ import CartItemModal from "./CartItemModal"
 import ICartItem from "../../store/storeModels/interfaces/ICartItem"
 import CartItemQuantityInput from "./CartItemQuantityInput"
 
-
-export default function CartItemsTable() {
+interface Props {
+    className: string
+}
+export default function CartItemsTable({ className }: Props) {
     const cartItems = useAppSelector(({ cart }) => cart.items)
     const dispatch = useAppDispatch()
     const remove = (i: ICartItem) => dispatch(removeItem(i._id?.$oid!))
@@ -22,10 +24,10 @@ export default function CartItemsTable() {
     return (
         <>
             <CartItemModal />
-            <table className="text-center border-separate border-spacing-y-4">
-                <thead className="uppercase bg-zinc-50">
-                    <tr className="p-4">
-                        <th className="font-light">Image</th>
+            <table className={`text-center ${className} `}>
+                <thead className="p-4">
+                    <tr className=" uppercase bg-zinc-50">
+                        <th className="p-4 font-light">Image</th>
                         <th className="font-light">Product</th>
                         <th className="font-light hidden md:table-cell">Price</th>
                         <th className="font-light">Quantity</th>
@@ -35,8 +37,8 @@ export default function CartItemsTable() {
                 </thead>
                 <tbody>
                     {cartItems.map((i, index) =>
-                        <tr key={i._id?.$oid}>
-                            <td onClick={() => showModal(index)} className="hover:cursor-pointer">
+                        <tr key={i._id?.$oid} >
+                            <td onClick={() => showModal(index)} className="hover:cursor-pointer py-4">
                                 <img src={i.img1} alt={i.name} className="mx-auto md:w-48" />
                             </td>
                             <td onClick={() => showModal(index)} className="hover:cursor-pointer">

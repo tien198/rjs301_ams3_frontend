@@ -4,13 +4,17 @@ import { getJwt } from "../../ultil/authenTokenUltil";
 import { json } from "react-router-dom";
 import ErrorRes from "../../ultil/DataModels/implementations/ErrorResponse";
 import CartItemsTable from "./CartItemsTable";
+import CartTotal from "./CartTotal";
+import NavigationAcitons from "./NavigationActions";
 
 
 
 function CartContent() {
     return (
-        <div className="grid">
-            <CartItemsTable />
+        <div className="grid lg:grid-cols-9 gap-5">
+            <CartItemsTable className='lg:col-start-1 lg:col-end-7' />
+            <CartTotal className="lg:col-start-7 lg:col-end-10" />
+            <NavigationAcitons className="lg:col-start-1 lg:col-end-7" />
         </div>
     );
 }

@@ -6,7 +6,12 @@ function urlCutting(str: string) {
     for (let i = 0; i < amout; i++) {
         result.push(
             (i !== amout - 1)
-                ? <><span className="text-black mx-2" key={i}>{arr[i]} </span><span>/</span></>
+                ? <span key={i} className="text-black mx-2">
+                    <span >
+                        {arr[i]}
+                    </span>
+                    <span>/</span>
+                </span>
                 : <span key={i} className="mx-2">{arr[i]}</span>
         )
     }

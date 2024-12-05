@@ -6,6 +6,7 @@ import { setTotal } from "../../../store/cartTotalSlice";
 import convertToFraction from "../../../ultil/convertToFraction";
 import useTwoWayBinding from "../../../hooks/useTwoWayBinding";
 import DarkButton from "../../../components/UI/DarkButton";
+import TotalSideLayout from "../TotalSideLayout";
 
 interface Props {
     className: string
@@ -23,7 +24,7 @@ function CartTotal({ className }: Props) {
     const [informHeight, setInformHeight] = useState<string>('h-0')
 
     return (
-        <div className={`${className} bg-zinc-50 max-w-96 flex flex-col gap-8 uppercase p-8 `}>
+        <TotalSideLayout className={className}>
             <h4 className="text-2xl">Cart total</h4>
             <div>
                 <div className="flex justify-between">
@@ -42,12 +43,12 @@ function CartTotal({ className }: Props) {
                 <div className={`overflow-hidden text-sm m-2 duration-150 ${informHeight}`}>
                     Your coupon was applyed
                 </div>
-                <DarkButton onClick={() => setInformHeight('h-7')} className="w-full py-3 bg-zinc-900 text-white capitalize italic ">
+                <DarkButton onClick={() => setInformHeight('h-10')} className="w-full py-3 bg-zinc-900 text-white capitalize italic ">
                     <FontAwesomeIcon icon={faGift} className="mr-4" />
                     Apply coupon
                 </DarkButton>
             </div>
-        </div>
+        </TotalSideLayout>
     );
 }
 

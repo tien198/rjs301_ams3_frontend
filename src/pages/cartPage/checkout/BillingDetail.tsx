@@ -2,8 +2,9 @@ import { FormEvent, useState } from "react";
 import useTwoWayBinding_Validate from "../../../hooks/useTwoWayBinding_Validate";
 import { isNotNull } from "../../../ultil/inputValidation/validate";
 import { AddressInput, EmailInput, NameInput, PhoneNumberInput } from "./formInputs/Inputs";
-import { useNavigate } from "react-router-dom";
 import DarkButton from "../../../components/UI/DarkButton";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import { show } from "../../../store/modalSlice";
 
 interface Props {
     className: string
@@ -15,7 +16,7 @@ function BillingDetail({ className }: Props) {
     const [address, onChangeAddress, errorAddressMsg] = useTwoWayBinding_Validate<string>('Address', [isNotNull])
 
     const [isSubmited, setIsSubmited] = useState(false)
-    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     function submit(e: FormEvent) {
         e.preventDefault()
         setIsSubmited(true)
@@ -24,7 +25,8 @@ function BillingDetail({ className }: Props) {
 
         if (errorNameMsg || errorEmailMsg || errorPhoneNumberMsg || errorAddressMsg)
             return null
-        navigate('/')
+
+        dispatch(show())
 
     }
     return (

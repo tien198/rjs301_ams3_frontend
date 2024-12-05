@@ -1,12 +1,15 @@
+import BillingDetail from './BillingDetail';
 // css
 import classes from '../CartLayout.module.scss';
-import BillingDetail from './BillingDetail';
+import CheckoutTotal from './CheckoutTotal';
+import SuccessOrderModal from './SuccessOrderModal';
 
 function Checkout() {
     return (
         <div className={classes['cart-layout']}>
+            <SuccessOrderModal />
             <BillingDetail className={classes['cart']} />
-            <div className={classes['total']} />
+            <CheckoutTotal className={classes['total']} />
             <div className={classes['rest']} />
         </div>
     );

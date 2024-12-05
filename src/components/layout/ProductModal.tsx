@@ -17,7 +17,7 @@ function ProductModal() {
                 <div className="flex flex-col gap-2 md:gap-4">
                     <h6 className="text-2xl font-semibold">{prodState.name}</h6>
                     <p className="text-xl text-zinc-600">{convertToFraction(prodState.price)}</p>
-                    <div className=" overflow-auto max-h-80 md:max-h-96">
+                    <div className=" overflow-auto max-h-52 md:max-h-96">
                         <p>{prodState.short_desc}</p>
                     </div>
                     <div>

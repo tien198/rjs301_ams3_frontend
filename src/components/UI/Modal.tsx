@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { hide as hideAction, setHideClass as fadingHide } from "../../store/modalSlice";
 // css
 import classes from './Modal.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export function useHideModal() {
     const dispath = useAppDispatch()
@@ -31,6 +33,7 @@ function Modal({ children }: PropsWithChildren) {
         <div className={hidden}>
             <div className={classes['backdrop']} onClick={hide}></div>
             <div className={`${classes['modal']} `}>
+                <FontAwesomeIcon icon={faXmark} onClick={hide} className="fixed top-4 right-10 text-3xl lg:top-7 lg:text-4xl hover:cursor-pointer" />
                 {children}
             </div>
         </div>,

@@ -4,16 +4,17 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 20;
+  z-index: 50;
   background-color: rgba(0, 0, 0, 0.75);
 }
 
 .modal {
   position: fixed;
-  top: 10vh;
-  left: 5%;
-  width: 90%;
-  max-height: 85vh;
+  top: 2.5vh;
+  left: 2.5vw;
+  width: 95%;
+  /* max-height: 85vh; */
+  height: 95vh;
   overflow: auto;
   background-color: white;
   padding: 1rem;
@@ -23,12 +24,11 @@
   animation: slide-down 300ms ease-out forwards;
 }
 
-
-
 @media (min-width: 768px) {
   .modal {
-    top: 15vh;
+    top: 5vh;
     max-height: 50rem;
+    padding: 3rem;
   }
 }
 
@@ -37,6 +37,7 @@
     top: 15vh;
     width: 60rem;
     left: calc(50% - 30rem);
+    padding: 5rem;
   }
 }
 

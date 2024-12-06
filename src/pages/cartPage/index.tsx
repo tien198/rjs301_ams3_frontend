@@ -1,6 +1,6 @@
 import Banner from "../../components/layout/Banner";
 import Container from "../../components/UI/Container";
-import { getJwt } from "../../ultil/authenTokenUltil";
+import { getJwt } from "../../ultil/storageUltil/authenTokenUltil";
 import { json, Outlet, useLocation } from "react-router-dom";
 import ErrorRes from "../../ultil/DataModels/implementations/ErrorResponse";
 import { PageUrlsList } from "../../ultil/ultilEnums";

@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import ICartState, { IItemWithQuantityPayload } from './storeModels/interfaces/ICartState';
 import CartItem from './storeModels/implementations/CartItem';
+import { getLocalStorageCartItems, addLocalStorageCartItems } from '../ultil/storageUltil/cartItemsUltil';
 
+const localCartItems = getLocalStorageCartItems()
 
 const initialState: ICartState = {
-    items: [],
+    items: localCartItems ? JSON.parse(localCartItems) : [],
     currentItemIndex: 0
 }
 
@@ -36,6 +38,7 @@ function addWithQuantity(state: ICartState, action: PayloadAction<IItemWithQuant
         updItemsList.push({ ...newItem })
     }
 
+    addLocalStorageCartItems(updItemsList)
     state.items = updItemsList
 }
 
@@ -55,6 +58,8 @@ function updateQuantity(state: ICartState, action: PayloadAction<IItemWithQuanti
         else
             updItemsList.splice(updIndex, 1)
     }
+
+    addLocalStorageCartItems(updItemsList)
     state.items = updItemsList
 }
 

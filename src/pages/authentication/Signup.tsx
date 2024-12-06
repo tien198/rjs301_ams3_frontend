@@ -10,11 +10,11 @@ import Container from '../../components/UI/Container';
 // validate inputs
 import ErrorMsg from '../../components/UI/ErrorMsg';
 import useValidate from '../../hooks/useValidate';
-import { isMinLength, isNotNull } from '../../ultil/inputValidation/validate';
+import { isMinLength, isNotNull } from '../../ultil/inputValidationUltil/validate';
 import User from '../../ultil/DataModels/implementations/User';
 import ErrorResponse from '../../ultil/DataModels/implementations/ErrorResponse';
 import AuthenResponse from '../../ultil/DataModels/implementations/AuthenRespone';
-import { addJwt } from '../../ultil/authenTokenUltil';
+import { addJwt } from '../../ultil/storageUltil/authenTokenUltil';
 
 // css
 import classes from './Authen.module.scss'

@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import validate from "../ultil/inputValidation/validate"
+import validate from "../ultil/inputValidationUltil/validate"
 
 export default function useValidate(inputTitle: string, inputVal: string | number, funcArr: Function[]) {
     const invalidAuthorMsg = useMemo(

@@ -103,7 +103,7 @@ export default function MainNav() {
 
     return (
         <>
-            <header className="fixed w-full font-medium h-16 bg-white z-40">
+            <header className="fixed w-full font-medium h-16 bg-white z-30">
 
                 <Container className=" py-4 relative z-10">
                     <nav className={`flex items-center justify-between w-full h-full ${classes['nav']}`}>

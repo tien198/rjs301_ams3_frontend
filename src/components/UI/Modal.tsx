@@ -2,10 +2,12 @@ import { PropsWithChildren, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { hide as hideAction, setHideClass as fadingHide } from "../../store/modalSlice";
-// css
-import classes from './Modal.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
+// css
+import classes from './Modal.module.css'
+
 
 export function useHideModal() {
     const dispath = useAppDispatch()

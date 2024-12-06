@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { hide as hideAction, setHideClass as fadingHide } from "../../store/modalSlice";
+import { setHideClass as fadingHide } from "../../store/modalSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,9 +13,6 @@ export function useHideModal() {
     const dispath = useAppDispatch()
     return () => {
         dispath(fadingHide('fading-hidden'))
-        setTimeout(() => {
-            dispath(hideAction())
-        }, 300);
     }
 }
 
@@ -26,7 +23,7 @@ function Modal({ children }: PropsWithChildren) {
 
     useEffect(() => {
         window.addEventListener('keydown', e => {
-            if (e.key.toLowerCase() === 'escape')
+            if (e.key === 'Escape')
                 hide()
         })
     }, [])

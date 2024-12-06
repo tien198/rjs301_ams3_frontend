@@ -34,8 +34,9 @@
 
 @media (min-width: 1024px) {
   .modal {
-    top: 15vh;
+    top: 10vh;
     width: 60rem;
+    height: 80vh;
     left: calc(50% - 30rem);
     padding: 5rem;
   }

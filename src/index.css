@@ -74,5 +74,32 @@ input[type="number"]::-webkit-inner-spin-button {
   }
   100% {
     opacity: 0;
+    display: none;
   }
+}
+
+.ta-da{
+  animation: ta-da 300ms ease-out forwards;
+}
+  
+@keyframes ta-da {
+  0% {
+      transform: scale(0%);
+  }
+
+  20% {
+      transform: scale(100%) ;
+  }
+  40%{
+    transform: rotate(-0.05turn);
+  }
+
+  70% {
+      transform: rotate(0.025turn);
+  }
+
+  100% {
+      transform: rotate(0turn);
+  }
+
 }

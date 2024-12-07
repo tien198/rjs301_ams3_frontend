@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import LiveChatBoxModal from "./LiveChatBoxModal";
+import store from "../../store";
 
 export default function LiveChatIcon() {
     const [isBounce, setIsBounce] = useState(true)
     const [liveChatDisplayClass, setLiveChatDisplayClass] = useState('hidden')
+
     function toggleLiveChat() {
         setIsBounce(prev => !prev)
         setLiveChatDisplayClass(prev => {
@@ -18,12 +20,16 @@ export default function LiveChatIcon() {
     }
     function hideLiveChat() {
         setIsBounce(true)
-        setLiveChatDisplayClass('fading-hidden')
+        setLiveChatDisplayClass(prev => {
+            if (prev !== 'hidden') return 'fading-hidden'
+            return 'hidden'
+        })
     }
 
     useEffect(() => {
         window.addEventListener('keydown', e => {
-            if (e.key === 'Escape')
+            const modalHidden = store.getState().modal.hiddenClass
+            if (e.key === 'Escape' && modalHidden !== '')
                 hideLiveChat()
         })
     }, [])

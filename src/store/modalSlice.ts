@@ -20,7 +20,10 @@ const modalSlice = createSlice({
             state.hiddenClass = 'hidden'
         },
         setHideClass(state, action: PayloadAction<string>) {
-            state.hiddenClass = action.payload
+            if (state.hiddenClass !== 'hidden')
+                state.hiddenClass = action.payload
+            else
+                state.hiddenClass === 'hidden'
         }
     }
 })

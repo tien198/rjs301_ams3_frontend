@@ -6,6 +6,7 @@ import fetchedProductsReducer from "./fetchedProductsSlice";
 import fetchedDetailProductsReducer from "./fetchedDetailProductsSlice";
 import cartReducer from "./cartSlice";
 import cartTotalReducer from "./cartTotalSlice";
+import livechatReducer from "./livechatSlice";
 
 
 const store = configureStore({
@@ -16,7 +17,8 @@ const store = configureStore({
         modal: modalReducer,
         productModal: productModalReducer,
         cart: cartReducer,
-        cartTotal: cartTotalReducer
+        cartTotal: cartTotalReducer,
+        livechat: livechatReducer
     }
 })
 

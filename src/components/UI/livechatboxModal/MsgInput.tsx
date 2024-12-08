@@ -22,10 +22,10 @@ export default function MsgInput() {
         <form onSubmit={sendMsg} className='fixed bottom-0 left-0 bg-zinc-100 py-3 px-4 w-full flex items-center gap-4'>
             <input type='text' placeholder='Enter Message!' className='px-5 py-3 rounded-md'
                 value={msg} onChange={onChangeMsg} />
-            <button type='button'>
+            <button type='button' className='hidden md:inline-block'>
                 <FontAwesomeIcon icon={faPaperclip} className='text-zinc-500' />
             </button>
-            <button type='button'>
+            <button type='button' className='hidden md:inline-block'>
                 <FontAwesomeIcon icon={faFaceSmile} className='text-zinc-500' />
             </button>
             <button>

@@ -1,6 +1,6 @@
 import User from "../DataModels/implementations/User";
 import IAuthenResponse from "../DataModels/interfaces/IAuthenResponse";
-import { getLocalStorageCartItems, removeLocalStorageCartItems } from "./cartItemsUltil";
+import {  removeLocalStorageCartItems } from "./cartItemsUltil";
 import StorageEnum from "./StorageEnum";
 
 export function addJwt(authenRes: IAuthenResponse) {
@@ -21,6 +21,5 @@ export function getUserInfor(): User | undefined {
 export function removeJwt() {
     localStorage.removeItem(StorageEnum.authenToken)
     localStorage.removeItem(StorageEnum.userInfor)
-    getLocalStorageCartItems()
-        && removeLocalStorageCartItems()
+    removeLocalStorageCartItems()
 }

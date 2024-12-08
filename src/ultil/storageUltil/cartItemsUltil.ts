@@ -1,3 +1,5 @@
+import store from "../../store"
+import { removeAllItem } from "../../store/cartSlice"
 import StorageEnum from "./StorageEnum"
 
 export function getLocalStorageCartItems() {
@@ -11,4 +13,5 @@ export function addLocalStorageCartItems(items: any[]) {
 
 export function removeLocalStorageCartItems() {
     localStorage.removeItem(StorageEnum.cartItems)
+    store.dispatch(removeAllItem())
 }

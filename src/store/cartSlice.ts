@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import ICartState, { IItemWithQuantityPayload } from './storeModels/interfaces/ICartState';
 import CartItem from './storeModels/implementations/CartItem';
-import { getLocalStorageCartItems, addLocalStorageCartItems, removeLocalStorageCartItems } from '../ultil/storageUltil/cartItemsUltil';
+import { getLocalStorageCartItems, addLocalStorageCartItems } from '../ultil/storageUltil/cartItemsUltil';
 
 const localCartItems = getLocalStorageCartItems()
 
@@ -65,8 +65,11 @@ function updateQuantity(state: ICartState, action: PayloadAction<IItemWithQuanti
 
 /** @param action - payload is productId */
 function remove(state: ICartState, action: PayloadAction<string>) {
-    removeLocalStorageCartItems()
     state.items = state.items.filter(i => i._id?.$oid !== action.payload)
+}
+
+function removeAll(state:ICartState){
+    state.items=[]
 }
 
 const cartSlice = createSlice({
@@ -76,9 +79,10 @@ const cartSlice = createSlice({
         setCurrentItemIndex: setCurrent,
         addItemWithQuantity: addWithQuantity,
         updateItemQuantity: updateQuantity,
-        removeItem: remove
+        removeItem: remove,
+        removeAllItem:removeAll
     }
 })
 
-export const { setCurrentItemIndex, addItemWithQuantity, updateItemQuantity, removeItem } = cartSlice.actions
+export const { setCurrentItemIndex, addItemWithQuantity, updateItemQuantity, removeItem, removeAllItem } = cartSlice.actions
 export default cartSlice.reducer

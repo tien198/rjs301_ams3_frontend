@@ -24,7 +24,7 @@ function Root() {
 
     useEffect(() => {
         if (location.pathname === PageUrlsList.Home
-            || isHasLiveChat(location.pathname, [PageUrlsList.Shop, PageUrlsList.Cart])) {
+            || isHasLiveChat(location.pathname, [PageUrlsList.Shop, PageUrlsList.Detail, PageUrlsList.Cart])) {
             setHasLiveChat(true)
         }
         else setHasLiveChat(false)

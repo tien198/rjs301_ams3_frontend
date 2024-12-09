@@ -30,7 +30,7 @@ export default function LiveChatIcon() {
         window.addEventListener('keydown', e => {
             const modalHidden = store.getState().modal.hiddenClass
 
-            if (e.key === 'Escape' && modalHidden === '')
+            if (e.key === 'Escape' && modalHidden !== '')
                 hideLiveChat()
         })
     }, [])

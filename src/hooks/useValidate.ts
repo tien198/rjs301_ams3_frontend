@@ -18,10 +18,10 @@ import validate from "../ultil/inputValidationUltil/validate"
  *                                                          và cần hiển thị thông báo lỗi lên UI cho người dùng biết
  *          
  */
-export default function useValidate(inputTitle: string, inputVal: string | number, funcArr: Function[]) {
+export default function useValidate(inputTitle: string, inputVal: string | number, funcArr: (() => string | boolean)[]) {
     const invalidAuthorMsg = useMemo(
         () => validate(inputTitle, inputVal, funcArr),
-        [inputVal])
+        [inputVal, funcArr, inputTitle])
 
     return invalidAuthorMsg
 }

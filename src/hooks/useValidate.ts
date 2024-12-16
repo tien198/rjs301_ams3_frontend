@@ -5,7 +5,7 @@ import validate from "../ultil/inputValidationUltil/validate"
  * @param {string} inputTitle - Tên của input, sẽ được chèn vào thông báo lỗi nếu trả về invalid (không hợp lệ). 
  *                              Vd: inputTitle = 'name' => 'name can't not be null'
  * @param {string} inputVal - giá trị input cần xác thực
- * @param {Function[]} funcArr - mảng chứa các hàm xác thực, 
+ * @param {Functionp[]} funcArr - mảng chứa các hàm xác thực, 
  *          các hàm này luôn nhận 1 tham số là giá trị input 
  *          và trả về một mảng với định dạng như sau [true] hoặc [false, 'error msg']
  *          useValidate() sẽ gọi hàm validate(), 
@@ -18,10 +18,10 @@ import validate from "../ultil/inputValidationUltil/validate"
  *                                                          và cần hiển thị thông báo lỗi lên UI cho người dùng biết
  *          
  */
-export default function useValidate(inputTitle: string, inputVal: string | number, funcArr: (() => string | boolean)[]) {
+export default function useValidate(inputTitle: string, inputVal: string | number, funcArr: Function[]) {
     const invalidAuthorMsg = useMemo(
         () => validate(inputTitle, inputVal, funcArr),
-        [inputVal, funcArr, inputTitle])
+        [funcArr, inputTitle, inputVal])
 
     return invalidAuthorMsg
 }
